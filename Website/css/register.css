@@ -1,0 +1,70 @@
+@import url("css/global.css");
+
+:root{
+    --margin-register: 3vw;
+    --margin-form: 1vw;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.register{
+    margin-left: var(--margin-register);
+    margin-right: var(--margin-register);    
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    border: 2px rgb(36, 30, 30) solid;
+    min-width: 50vw;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+}
+
+.user-name{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.avatar{
+    margin-right: auto;
+    margin-left: 5vw;
+    width: 14vh;
+    height: 14vh;
+}
+
+.form-line{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    text-align: right;
+    margin: var(--margin-form);
+}
+
+.form-line > p{
+    margin-right: var(--margin-form);
+    width: 20vw;
+}
+
+.form-line > input{
+    margin-left: var(--margin-form);
+    width: 20vw;
+}
+
+form > button{
+    float: right;
+    margin-right: var(--margin-register);
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.3em;
+    padding: 1vh 1.5vw;
+    background-color: var(--secondary-yellow);
+    border: unset;
+}
