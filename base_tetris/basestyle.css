@@ -1,0 +1,63 @@
+/*ELEMENTO BODY TRAZ A COR DE FUNDO*/
+body{
+    /*mesma cor do Figma*/
+    background: linear-gradient(180deg, #290C63 0%, #6822FD 38.54%, #000000 99.98%, #1561D4 99.99%, #1563D9 99.99%, #000000 100%);
+    background-position: no-repeat;
+    position: fixed;
+    top: 0px;
+    left:0px;
+    width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	background-attachment:fixed;
+	background-position:center; 
+	background-size:cover;
+}
+/*ALTERA O ESPAÇO DA PALAVRA LOGIN -> TÍTULO DA PÁGINA*/
+h1{
+    text-align: center;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: 50px;
+    letter-spacing: 5px; /*Espaçamento da fonte*/
+    font-size: 36px; /*Tamanho da fonte*/
+    text-transform: uppercase;
+}
+
+.logotetris{
+    position:fixed; /*posição fixa em relação à janela do navegador*/
+    text-align:center;
+	width:100%;
+    height:20%;
+    background-size: 17%;
+    float: center;
+    background-image:url('logo.png'); /*Imagem de fundo do elemento*/
+	background-repeat:no-repeat;
+    background-position:center; 
+}
+
+
+/*ALTERA "ESPAÇO" da borda de LOGIN/etc*/
+
+/*Caso seja necessário modificar para cada página, realizar aqui as alterações do espaço.*/
+.login{
+    background: radial-gradient(50% 50% at 50% 50%, #000000 0%, #202020 100%), linear-gradient(180deg, #310099 0%, #4B19B5 46.35%, #290C63 100%);
+	width:15%; /*altera a largura do login */
+	height:50%; /*altera a altura do login */
+    margin-left:40%;
+	margin-right:50%;
+	margin-top:12%;
+	padding-left:3%;
+	padding-right:3%;
+	padding-top:4%;
+	padding-bottom:3%;
+    border-radius: 15px;
+    overflow:auto; /*haverá barra de rolagem*/
+}
+}
+
+
