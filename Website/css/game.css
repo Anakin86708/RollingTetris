@@ -127,14 +127,17 @@ th, td{
     text-align: left;
     padding:5px;
     border-bottom: 1px solid #ddd;
-    background-color: dimgray;
+    background-color: var(--neutral-gray);
 }
 
 tr:nth-child(even) {
     background-color: var(--neutral-gray);
 }
-
 /*FIM - RANKING*/
 
-
+.global-button{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+}
 

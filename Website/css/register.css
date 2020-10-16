@@ -60,11 +60,4 @@ main{
 
 form > button{
     float: right;
-    margin-right: var(--margin-register);
-    font-family: Roboto, Arial, sans-serif;
-    font-weight: 800;
-    font-size: 1.3em;
-    padding: 1vh 1.5vw;
-    background-color: var(--secondary-yellow);
-    border: unset;
 }

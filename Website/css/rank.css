@@ -1,0 +1,40 @@
+@import url("css/game.css");
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title{
+    color: var(--neutral-white);
+}
+
+
+/*INICIO - RANKING*/
+.ranking{
+    background-color: black;
+    flex:2;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    height:100%;
+}
+
+th, td{
+    text-align: left;
+    padding:5px;
+    border-bottom: 1px solid #ddd;
+    background-color: var(--neutral-gray);
+}
+
+tr:nth-child(even) {
+    background-color: var(--neutral-gray);
+}
+/*FIM - RANKING*/

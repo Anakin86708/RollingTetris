@@ -1,0 +1,105 @@
+
+:root{
+  --margin-signup: 5vw;
+}  
+
+/*define a parte do label*/
+h1{
+  color: var(--neutral-white);
+  justify-content: center;  /*centralizar o site*/
+  display: flex; /*modelo flexbox*/;
+  margin-top: 5vh;
+}
+
+
+
+/*altera os blocs de colocar informações do usuário*/
+input{
+  width: 60%;
+  padding: 10px; /*tamanho das caixas*/
+  color: white;
+  font-weight: bold;
+  font-size: 16px; 
+  background: var(--secondary-green);
+  justify-content: center;
+  display: flex;
+  /* margin: 20px auto; */
+  border: 2px solid var(--secondary-green);
+  letter-spacing: 1px; /*espaçamento entre as letras*/
+}
+
+
+
+/*alinha os textos para click (password) e criar uma conta nova*/
+a{
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+div.container{
+  display: flex;
+  /*Head como uma coluna e Main com 3 colunas*/
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.signup{
+  /* margin-left: var(--margin-signup); */
+  /* margin-right: var(--margin-signup); */
+  width: 25vw;
+  /* max-width: 50vh; */
+  display: flex;
+  flex-direction: column;
+  height: 65vh;
+}
+
+.signup h1{
+  margin-bottom: 12vh;
+}
+
+/*Elemento layout já definido no HTML*/
+.global{
+  display: flex; /*define a renderização -> apresenta o conteúdo do site como um bloco (flexbox)*/
+  /*flex-direction: column; eixos iguais na coluna*/
+}
+
+.signup #submit{
+  margin: auto;
+  width: 7vw;
+  cursor: pointer;
+
+  /* teste */
+  transition: transform .2s;
+
+}
+.signup #submit:hover{
+  /* opacity: 0.8;  */
+  transform: scale(1.1);
+}
+
+.signup p{
+  text-align: center;
+  margin-top: 2vw;
+}
+
+.input-line{
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--secondary-green);  COLOCAR A COR EM TUDO*/
+  /* width: max-content; */
+}
+
+.input-line > img{
+  width: 8%;
+  height: 8%;
+  margin: 5px;
+}
