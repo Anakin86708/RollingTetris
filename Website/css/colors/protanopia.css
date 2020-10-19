@@ -1,0 +1,15 @@
+/* Cores */
+
+:root{
+    --main-purple: #0051B7;
+    --secondary-red: #685A00;
+    --secondary-orange: #A99400;
+    --secondary-yellow: #EDD100;
+    --secondary-green: #98872A;
+    --secondary-blue: #006EDA;
+    --secondary-purple: #005ED6;
+    --neutral-black: #000000;
+    --neutral-gray: #202020;
+    --neutral-white: #ffffff;
+    --main-gradient: linear-gradient(180deg, var(--main-purple) 0%, #0046BA 40.1%, #000000 100%)
+}
