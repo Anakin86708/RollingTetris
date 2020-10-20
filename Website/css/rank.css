@@ -1,40 +1,65 @@
 @import url("css/game.css");
+@import url("css/global.css");
 
-.container{
+:root{
+    --margin-register: 20vw;
+    --margin-form: 1vw;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+/* header{
+    justify-content: flex-start;
+} */
+/* header .tetris-logo{
+    display: flex;
+    justify-content: center;
+} */
+
+.back-button{
+    /* width: 41.3%;  ¯\_(ツ)_/¯ foi o que deu */
+    position: absolute;
+    float: left;
+    right: auto;
+    left: 60px;
+    top: 75px;
+}
+
+.back-button button{
+    background-color: var(--secondary-red);
+}
+
+.container-main{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    width:100%;
+    height:100%;
+    /* border: 4px solid black; */
+    margin-left: var(--margin-register);
+    margin-right: var(--margin-register);
 }
 
 .title{
     color: var(--neutral-white);
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--margin-form);
+    /* border: 4px solid black; */
 }
-
 
 /*INICIO - RANKING*/
 .ranking{
-    background-color: black;
-    flex:2;
-    padding: 10px;
-}
-
-table{
-    border-collapse: collapse;
-    border-radius: 15px;
-    overflow: hidden;
+    /*background-color: var(--neutral-black);*/
     width: 100%;
-    height:100%;
+    height: 100%;
+    flex:1;
+    margin-bottom: var(--margin-form);
 }
 
-th, td{
-    text-align: left;
-    padding:5px;
-    border-bottom: 1px solid #ddd;
-    background-color: var(--neutral-gray);
-}
 
-tr:nth-child(even) {
-    background-color: var(--neutral-gray);
-}
 /*FIM - RANKING*/

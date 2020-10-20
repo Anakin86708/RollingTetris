@@ -72,12 +72,8 @@ div.container{
 
 .signup #submit{
   margin: auto;
-  width: 7vw;
-  cursor: pointer;
-
-  /* teste */
-  transition: transform .2s;
-
+  width: 8vw;
+  border: none;
 }
 .signup #submit:hover{
   /* opacity: 0.8;  */
@@ -92,14 +88,24 @@ div.container{
 .input-line{
   display: flex;
   margin: 20px auto;
+  padding-left: 2px;
+  padding-right: 2px;
   justify-content: center;
   align-items: center;
-  /* background-color: var(--secondary-green);  COLOCAR A COR EM TUDO*/
-  /* width: max-content; */
+  background-color: var(--secondary-green);  /* COLOCAR A COR EM TUDO */
+  width: 15vw;
 }
 
 .input-line > img{
   width: 8%;
   height: 8%;
   margin: 5px;
+}
+
+.input-line > input{
+  width: 100%;
+}
+
+.go{
+  background-color: var(--secondary-yellow);
 }

@@ -38,6 +38,8 @@ main{
     margin-left: 5vw;
     width: 14vh;
     height: 14vh;
+    opacity: 1;
+    display: block;
 }
 
 .form-line{

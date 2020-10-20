@@ -11,5 +11,5 @@
     --neutral-black: #000000;
     --neutral-gray: #202020;
     --neutral-white: #ffffff;
-    --main-gradient: linear-gradient(180deg, var(--main-purple) 0%, #0046BA 40.1%, #000000 100%)
+    --main-gradient: linear-gradient(180deg, var(--main-purple) 0%, #0046BA 40.1%, var(--secondary-blue) 60%, #000000 100%)
 }
