@@ -1,8 +1,7 @@
-@import url('register.css');
+@import url('/css/register.css');
 /* a página tem  exatamente o mesmo layout, mudando apenas sua funcionalidade */ 
 
 .back-button{
-    /* width: 41.3%;  ¯\_(ツ)_/¯ foi o que deu */
     position: absolute;
     float: left;
     right: auto;

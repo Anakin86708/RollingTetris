@@ -23,7 +23,6 @@ input{
   background: var(--secondary-green);
   justify-content: center;
   display: flex;
-  /* margin: 20px auto; */
   border: 2px solid var(--secondary-green);
   letter-spacing: 1px; /*espaçamento entre as letras*/
 }
@@ -51,10 +50,7 @@ div.container{
 }
 
 .signup{
-  /* margin-left: var(--margin-signup); */
-  /* margin-right: var(--margin-signup); */
   width: 25vw;
-  /* max-width: 50vh; */
   display: flex;
   flex-direction: column;
   height: 65vh;
@@ -67,7 +63,6 @@ div.container{
 /*Elemento layout já definido no HTML*/
 .global{
   display: flex; /*define a renderização -> apresenta o conteúdo do site como um bloco (flexbox)*/
-  /*flex-direction: column; eixos iguais na coluna*/
 }
 
 .signup #submit{
