@@ -1,14 +1,18 @@
-@import url("/css/global.css");
+@import url("global.css");
 
 :root{
     --margin-register: 3vw;
     --margin-form: 1vw;
 }
+/* .container{
+    height: 100%;
+} */
 
 main{
     display: flex;
     justify-content: center;
 }
+
 
 .register{
     margin-left: var(--margin-register);
@@ -16,6 +20,7 @@ main{
     width: fit-content;
     display: flex;
     flex-direction: column;
+    height: 80%;
 }
 
 .header{

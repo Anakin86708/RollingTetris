@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('/css/colors/default.css');
+@import url('colors/default.css');
+/* @import url('colors/default.css'); */
 /* FUTURAS OPÇÕES PARA ACESSIBILIDADE */
-/* @import url('/css/colors/deuteranopia.css'); */
-/* @import url('/css/colors/protanopia.css'); */
-/* @import url('/css/colors/tritanopia.css'); */
+/* @import url('colors/deuteranopia.css'); */
+/* @import url('colors/protanopia.css'); */
+/* @import url('colors/tritanopia.css'); */
 
 /* Tipofaces */
 @font-face {
