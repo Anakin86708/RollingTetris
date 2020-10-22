@@ -55,9 +55,9 @@ header > div > a > img{
 
 h1{
     font-family: Roboto, Arial, sans-serif;
-    font-size: 2em;
+    font-size: 1.6em;
 }
-.btn-global{
+.btn-global{    
     display: flex;
     background-color: var(--secondary-orange);
     margin-top: 4vh;

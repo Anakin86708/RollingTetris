@@ -41,8 +41,8 @@ main{
 .avatar{
     margin-right: auto;
     margin-left: 5vw;
-    width: 14vh;
-    height: 14vh;
+    width: 10%;
+    height: 10%;
     opacity: 1;
     display: block;
 }
