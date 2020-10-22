@@ -18,9 +18,9 @@ main{
     left: 60px;
     top: 75px;
 }
-
-.back-button button{
+.back-button a{
     background-color: var(--secondary-red);
+    text-decoration: none;
 }
 
 .container-main{

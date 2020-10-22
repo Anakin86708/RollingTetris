@@ -57,6 +57,21 @@ h1{
     font-family: Roboto, Arial, sans-serif;
     font-size: 2em;
 }
+.btn-global{
+    display: flex;
+    background-color: var(--secondary-orange);
+    margin-top: 4vh;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh;
+    transition: transform .2s;
+    font-weight: bold;
+    color: #000;
+}
+.btn-global:hover{
+    transform: scale(1.1);
+    color: #000;
+}
 
 button{
     padding: 1vh 1.5vw;

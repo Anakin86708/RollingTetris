@@ -1,11 +1,11 @@
 @import url("global.css");
 
 a{
-    color:white;
+    color:var(--neutral-white);
     text-decoration: none;
 }
 a:hover{
-    color: red;
+    color: var(--secondary-orange);
 }
 
 div.container{
@@ -31,7 +31,7 @@ main > div{
 .user-panel { /* .header-panel */
     display:flex;
     flex-direction: column;
-    background-color: #000;
+    background-color: var(--neutral-black);
 }
 .header-panel .user-name{
     display:flex;
@@ -126,16 +126,6 @@ main > div{
 }
 
 /*FIM - RANKING*/
-
-.world-ranking button{
-    display: flex;
-    background-color: var(--secondary-orange);
-    width: 100%;
-    height: 20%;
-    margin-top: 4vh;
-    align-items: center;
-    justify-content: center
-}
 
 .img-demo{
     height: 60vh;
