@@ -67,7 +67,9 @@ main > div{
 .game{
     flex: 4;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+
+
 }
 
 /*INICIO - Painel de Informações da partida*/
@@ -130,3 +132,72 @@ main > div{
 .img-demo{
     height: 60vh;
 }
+
+/* Game */
+
+.game-canvas {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
+
+/* Div dentro do Game*/
+
+.game-painel{
+    background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+/*Cabeçalho (header) do painel à direita, com o botão play*/
+#cabecalho{
+    padding: 10px;    
+    background-color: var(--neutral-black);
+    text-align: center;
+    align-items: center;
+    display: flex;
+    border-radius: 8px; 
+    height: 15%;
+    width: 100%;
+}
+
+#lista-pecas{
+    background-color: var(--neutral-white);
+    border-radius: 20px;
+    height: 60%;
+    width: 100%;
+}
+
+/* Botão de pausa e play */
+.dot{
+    height: 80px;
+    width: 80px;
+    position: relative;
+    background-color: var(--neutral-gray);
+    border-radius: 50%;
+    display: inline-block;
+    background-color: var(--neutral-white);
+    height: 70%;
+    width: 80%;
+  }
+/* Criando um botão alterando sua cor -> cabível de mudança*/
+
+.dot:hover{
+    background-color: aqua;
+}
+
+
+
+
+
+
+
+
+
+

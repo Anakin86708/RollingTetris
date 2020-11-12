@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <header>
             <div>
@@ -62,7 +63,26 @@
             </div>
 
             <div class="default-div game">
-                <img class="img-demo" src="images/sample-game-menu.png" alt="imagem de tetris">
+                <!-- <img class="img-demo" src="images/sample-game-menu.png" alt="imagem de tetris"> -->
+                <canvas id="tetris" class="default-div game-canvas"></canvas>
+                <!--Painel à direita do jogo que avisa ao usuário as próximas peças -->
+                <div class="game-painel">
+                    <!--Nesse daqui, identificamos o cabeçalho do jogo-->
+                    <div id="cabecalho">
+                        <h3>Próxima peça</h3>
+                    </div>
+                    <!--Aqui é o local que as próximas peças irão entrar-->
+                    <div id="lista-pecas">
+                        
+                    </div>
+                    <!--Botão-->
+                    <div>
+                        <!--Implementar, via JavaScript, a troca do logo de Play com Pause-->
+                        <span class="dot" onclick="playPause()" id="botao-pp">
+                            <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png" alt="Play" width="100%" height="100%" id="playPause">
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <!--Inicio - Ranking-->
@@ -125,6 +145,8 @@
             SI401B - Programação para a Web, Unicamp, 2020.
         </footer>
     </div>
+    <script src="script/Peca.js"></script>
+    <script src="script/game.js"></script>
 </body>
 
 </html>
