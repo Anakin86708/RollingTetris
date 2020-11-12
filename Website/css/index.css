@@ -1,0 +1,135 @@
+
+:root{
+  --margin-signup: 5vw;
+}  
+
+/*define a parte do label*/
+h1{
+  color: var(--neutral-white);
+  justify-content: center;  /*centralizar o site*/
+  display: flex; /*modelo flexbox*/;
+  margin-top: 5vh;
+}
+
+/*altera os blocs de colocar informações do usuário*/
+input{
+  width: 60%;
+  padding: 10px; /*tamanho das caixas*/
+  color: white;
+  font-weight: bold;
+  font-size: 16px; 
+  background: var(--secondary-green);
+  justify-content: center;
+  display: flex;
+  border: 2px solid var(--secondary-green);
+  letter-spacing: 1px; /*espaçamento entre as letras*/
+}
+
+/*alinha os textos para click (password) e criar uma conta nova*/
+a{
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+div.container{
+  display: flex;
+  /*Head como uma coluna e Main com 3 colunas*/
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup{
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  height: 65vh;
+}
+
+.signup h1{
+  margin-bottom: 15%;
+}
+
+/*Elemento layout já definido no HTML*/
+.global{
+  display: flex; /*define a renderização -> apresenta o conteúdo do site como um bloco (flexbox)*/
+}
+
+.signup #submit{
+  margin: auto;
+  width: 8vw;
+  border: none;
+}
+.signup #submit:hover{
+  /* opacity: 0.8;  */
+  transform: scale(1.1);
+}
+
+.signup p{
+  text-align: center;
+  margin-top: 2vw;
+}
+
+.input-line{
+  display: flex;
+  margin: 20px auto;
+  margin-bottom: 2vh;
+  padding-left: 2px;
+  padding-right: 2px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-green);  /* COLOCAR A COR EM TUDO */
+  width: 15vw;
+}
+
+.input-line > img{
+  width: 10%;
+  margin: 5px;
+}
+
+.input-line > input{
+  width: 100%;
+}
+
+.go{
+  background-color: var(--secondary-yellow);
+}
+.btn-global{
+  width: 20%;
+}
+
+#btn-go:hover{
+  text-decoration: none;
+}
+
+.acessibilidade{
+  position: absolute;
+  right: auto;
+  left: 95%;
+  top: 90%;
+}
+
+.acessibilidade > img{  
+  width: 65%;
+  height: 65%;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5vh;
+}

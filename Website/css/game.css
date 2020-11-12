@@ -1,0 +1,132 @@
+@import url("global.css");
+
+a{
+    color:var(--neutral-white);
+    text-decoration: none;
+}
+a:hover{
+    color: var(--secondary-orange);
+}
+
+div.container{
+    display: flex;
+    /*Head como uma coluna e Main com 3 colunas*/
+    flex-direction: column;
+    height: 100%;
+}
+
+main{
+    display:flex;
+    justify-content: space-around;
+    flex: 1;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+main > div{
+    margin: 1.5vw;
+}
+
+/* Configurações do usuário (painel da esquerda) */
+
+.user-panel { /* .header-panel */
+    display:flex;
+    flex-direction: column;
+    background-color: var(--neutral-black);
+}
+.header-panel .user-name{
+    display:flex;
+    width:50%;
+    align-items: center;
+    justify-content: center;
+    
+}
+/* FIM Configurações do usuário (painel da esquerda) */
+
+.item-01{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.edit-logout{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2vh 0;
+    width: 80%;
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.header-panel img{
+    width: 12vh;
+    height: 12vh;
+}
+
+.game{
+    flex: 4;
+    display: flex;
+    justify-content: center;
+}
+
+/*INICIO - Painel de Informações da partida*/
+
+.match-info{
+    background-color: var(--neutral-gray);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1.5vh;
+}
+
+.match-info h2{
+    margin-bottom: 1vh;    
+}
+
+.match-info ul li{
+    margin-left: 2vh;
+}
+
+.gen-info{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+}
+
+.match-info > .info-title{
+    padding: 5px;
+}
+
+.gen-info > .item{
+    padding: 5px;
+}
+/*FIM - Painel de Informações da partida*/
+
+/*INICIO - RANKING*/
+
+.rank-panel{
+    margin-top: 0;
+}
+
+.rank-panel h2{
+    text-align: center;
+    color: var(--neutral-white);
+    font-size: 36px;
+    margin-bottom: 1vh;
+}
+
+.ranking{
+    flex: 1.5;
+    padding: 10px;
+    height: 80%;
+}
+
+/*FIM - RANKING*/
+
+.img-demo{
+    height: 60vh;
+}

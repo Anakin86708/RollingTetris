@@ -1,0 +1,66 @@
+/* @import url("/css/game.css"); */
+@import url("global.css");
+
+:root{
+    --margin-register: 20vw;
+    --margin-form: 1vw;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.back-button{
+    position: absolute;
+    float: left;
+    right: auto;
+    left: 4%;
+    top: 3%;
+}
+.back-button a{
+    background-color: var(--secondary-red);
+    text-decoration: none;
+}
+
+.container-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:100%;
+    margin-left: var(--margin-register);
+    margin-right: var(--margin-register);
+}
+
+.title{
+    color: var(--neutral-white);
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--margin-form);
+}
+
+/*INICIO - RANKING*/
+.ranking{
+    /* width: 100%;
+    height: 100%; */
+    width: 48vw;
+    height: 48vh;
+    flex:1;
+    margin-bottom: var(--margin-form);
+}
+
+header{
+    height: 20%;
+}
+main{
+    height: 60%;
+}
+
+/*FIM - RANKING*/
+
+footer{
+    height: 20%;
+    margin-top: 10vh;
+}

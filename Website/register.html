@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/icon.png">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/register.css">
+    <title>Rolling Tetris</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <a href="game.html"><img src="images/logo-peq.png" alt="logo do tetris rolling"></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="default-div register">
+                <div class="header">
+                    <div class="user-name">
+                        <h1>Cadastro</h1>
+                    </div>
+                    <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
+                    <!-- Futuro evento em JS para permitir a edição da imagem -->
+                </div>
+                <form>
+                    <div class="form-line">
+                        <p>Nome completo</p>
+                        <input type="text">
+                    </div>
+                    <div class="form-line">
+                        <p>Data de nascimento</p>
+                        <input type="date">
+                    </div>
+                    <div class="form-line">
+                        <p>CPF</p>
+                        <input type="text"> <!-- É necessário criar um máscara para o campo no futuro -->
+                    </div>
+                    <div class="form-line">
+                        <p>Telefone</p>
+                        <input type="tel"> <!-- É necessário criar um máscara para o campo no futuro -->
+                    </div>
+                    <div class="form-line">
+                        <p>E-Mail</p>
+                        <input type="email"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                    </div>
+                    <div class="form-line">
+                        <p>Username</p>
+                        <input type="text">
+                    </div>
+                    <div class="form-line">
+                        <p>Senha</p>
+                        <input type="password">
+                    </div>
+                    <button type="submit">Enviar</button>
+                    <!-- <input type="submit" id="submit" value="Go!"> -->
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <b>Gaveta Filmes - Web</b>. <br>
+            SI401B - Programação para a Web, Unicamp, 2020.
+        </footer>
+    </div>
+</body>
+
+</html>

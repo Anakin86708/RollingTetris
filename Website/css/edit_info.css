@@ -1,0 +1,15 @@
+@import url('register.css');
+/* a página tem  exatamente o mesmo layout da página register, mudando apenas sua funcionalidade */ 
+
+.back-button{
+    position: absolute;
+    float: left;
+    right: auto;
+    left: 4%;
+    top: 3%;
+}
+
+.back-button a{
+    background-color: var(--secondary-red);
+    text-decoration: none;
+}
