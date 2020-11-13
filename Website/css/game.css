@@ -68,8 +68,6 @@ main > div{
     flex: 4;
     display: flex;
     justify-content: space-between;
-
-
 }
 
 /*INICIO - Painel de Informações da partida*/
@@ -137,8 +135,8 @@ main > div{
 
 .game-canvas {
     border-radius: 0;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 40%; */
     padding: 0px;
 }
 
@@ -151,6 +149,7 @@ main > div{
     flex-direction: column;
     align-items: center;
     width: 15%;
+    height: 100%;
     justify-content: space-between;
     margin-left: 5px;
 }
@@ -174,14 +173,24 @@ main > div{
     width: 100%;
 }
 
+#opcao-tamanho{
+    background-color: var(--neutral-white);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#opcao-tamanho > a{
+    color: var(--neutral-black);
+}
+
 /* Botão de pausa e play */
 .dot{
-    height: 80px;
-    width: 80px;
-    position: relative;
+    /* height: 80px;
+    width: 80px; */
+    /* position: relative; */
     background-color: var(--neutral-gray);
     border-radius: 50%;
-    display: inline-block;
+    /* display: inline-block; */
     background-color: var(--neutral-white);
     height: 70%;
     width: 80%;
@@ -192,6 +201,13 @@ main > div{
     background-color: aqua;
 }
 
+.game-botao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
 
 
 

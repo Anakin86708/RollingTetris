@@ -1,28 +1,25 @@
-// função para perguntar ao usuário a opção do tamanho da largura e da altura do jogo
-
-
-
-// função para trocar o usuário trocar o botão de pause e play e vice-versa
-function playPause() {
-    var status = document.getElementById("playPause").src;
-    var corFundo = document.getElementById("botao-pp").style.backgroundColor;
-    
-    //Define o status do jogo como Pause 
-    if(status == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
-    {
-        document.getElementById("playPause").src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
-        // corFundo = 'yellow';
-    }
-        
-        
-    //Define o status do jogo como Play
-    if(status == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
-        document.getElementById("playPause").src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png";
-}
-
 // Desenho de uma peça
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d',{ alpha: false });
+
+const COLS = 10;
+const ROWS = 20;
+var TAMANHO_BROCO = setTamanhoBROCO(ROWS);
+const corPadrao = "#111" // cor das células
+const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
+
+let board = []
+
+for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++)
+{
+    board[linhaAtual] = []
+    for (let colunaAtual = 0; colunaAtual < COLS; colunaAtual++)
+    {
+        board[linhaAtual][colunaAtual] = corPadrao // preenche as cores do board
+    }
+}
+
+resize();
 
 let inicial_x = canvas.width / 2;
 let inicial_y = 0;
@@ -33,23 +30,18 @@ const dy = 1;
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 let peca = new Peca();
-peca = peca.tipo;
+// peca = peca.tipo;
 
 // Variaveis para o teclado
-var upPressed = false;
-var rightPressed = false;
-var leftPressed = false;
-var downPressed = false;
-
-
-function clear() {
-
-}
+var upPressed, rightPressed, leftPressed, downPressed = false;
 
 function desenha()
 {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    peca.forEach((row, y) =>{
+    // context.canvas.width = window.innerWidth;
+    // context.canvas.height = window.innerHeight;
+    clear();
+    desenhaBoard();
+    peca.valueOf().forEach((row, y) =>{
         row.forEach((value, x) => {
             if (value != 0){
                 context.fillStyle = 'red';
@@ -57,19 +49,23 @@ function desenha()
             }
         });
     });
+
     inicial_x += dx;
     inicial_y += dy;
 
+    // Permite gerar uma nova peça ao sair do tabuleiro
     if (inicial_y > canvas.height) {
         inicial_y = 0;
         inicial_x = canvas.width/2;
-        peca = new Peca();
-        peca = peca.tipo;
+        peca = new Peca();        
     }
+}
 
-    //Comando relaciona às teclas
+function gerenciarTeclas() {
+    //Comando relacionado às teclas
     if(rightPressed) //Tecla direita
     {
+        console.log(peca.valueOf());
         inicial_x = inicial_x + 10;
         if(inicial_x + 4 > canvas.width) //Checagem do limite direito
         {
@@ -89,22 +85,8 @@ function desenha()
         inicial_y = inicial_y + 3;
     }
     if(upPressed) //Tecla Superior
-        peca.tipo = rotate(peca);
-
-    
+        peca.rotacionar()
 }
-
-// function update()
-// {
-
-// }
-
-// anima();
-
-// context.scale(2,2);
-// let p = new Peca();
-// desenha(p.tipo);
-
 
 
 //Verificação dos botões pressionados
@@ -125,6 +107,7 @@ function keyDownHandler(e){
     {
         upPressed = true;
     }
+    gerenciarTeclas();
 }
 
 //verificação dos botões soltos 
@@ -145,10 +128,11 @@ function keyUpHandler(e){
     {
         upPressed = false;
     }
-
+    gerenciarTeclas();
 }
+
+desenhaBoard();
+var test = setInterval(desenha, 200);
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-
-var test = setInterval(desenha, 200);
