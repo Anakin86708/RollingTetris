@@ -43,7 +43,12 @@ class Peca {
     get tipo() { return this._tipo;}
 
     set tipo(value) {this._tipo = value;}
+
+    // Retorna a largura da peça atual
+    get largura() { return this._tipo[0].length; }
     
+    get altura() { return this._tipo.length}
+
     gerarTipo() {
         let index = 0;
         const limite = this.gerarRandom(0, qtdTipos);

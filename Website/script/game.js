@@ -48,6 +48,8 @@ function desenha()
     desenhaBoard();
     peca.valueOf().forEach((row, y) =>{
         row.forEach((value, x) => {
+            // console.log("x:" + x + " y:" + y);
+            console.log("inicial_x: " + inicial_x + " inicial_y: " + inicial_y);
             if (value != 0){
                 context.fillStyle = 'red';
                 context.fillRect(blocoParaCoordenada(x+inicial_x), blocoParaCoordenada(y+inicial_y), TAMANHO_BROCO, TAMANHO_BROCO);
@@ -56,7 +58,8 @@ function desenha()
     });
 
     // Permite gerar uma nova peça ao sair do tabuleiro
-    if (inicial_y > canvas.height) {
+    if (inicial_y >= ROWS - peca.altura) {
+        inicial_y = ROWS
         resetPecas();    
     }
 }
@@ -65,16 +68,14 @@ function gerenciarTeclas() {
     //Comando relacionado às teclas
     if(rightPressed) //Tecla direita
     {
-        console.log(peca.valueOf());
-        inicial_x += 1;
-        if(inicial_x + 4 > canvas.width) //Checagem do limite direito
-        {
-            inicial_x = canvas.width - 4;
+        // Peça para a direita
+        if(inicial_x < COLS-peca.largura) {
+            inicial_x++;
         }
     }
     if(leftPressed) //Tecla esquerda
     {
-        inicial_x -= 1;
+        inicial_x--;
         if(inicial_x < 0)   //Checagem do limite esquerdo
         {
             inicial_x = 0;
