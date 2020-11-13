@@ -3,40 +3,29 @@
 const qtdTipos = 7;
 const tipos = {
     LINHA: [
-        [0,0,0,0],
-        [1,1,1,1],
-        [0,0,0,0],
-        [0,0,0,0]
+        [1,1,1,1]
     ],
     T: [
-        [0,0,0,0],
-        [0,1,0,0],
-        [1,1,1,0],
-        [0,0,0,0]
+        [0,1,0],
+        [1,1,1],
     ],
     L_INFERIOR: [
-        [0,1,0,0],
-        [0,1,0,0],
-        [0,1,1,0],
-        [0,0,0,0]
+        [1,0],
+        [1,0],
+        [1,1],
     ],
     L_SUPERIOR: [
-        [0,1,1,0],
-        [0,1,0,0],
-        [0,1,0,0],
-        [0,0,0,0]
+        [1,1],
+        [1,0],
+        [1,0],
     ],
     U: [
-        [0,0,0,0],
-        [1,0,1,0],
-        [1,1,1,0],
-        [0,0,0,0]
+        [1,0,1],
+        [1,1,1],
     ],
     CUBO: [
-        [0,0,0,0],
-        [0,1,1,0],
-        [0,1,1,0],
-        [0,0,0,0]
+        [1,1],
+        [1,1],
     ],
     ESPECIAL: [
         [1]
@@ -46,7 +35,7 @@ const tipos = {
 class Peca {
     constructor() {
         this._tipo = this.gerarTipo();
-        
+        this._orientacaoOriginal = true;
     }
     get tipo() { return this._tipo;}
 
@@ -66,16 +55,30 @@ class Peca {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    rotacionar() {   
-        alert('GIRANDO');
-        const matrix = this._tipo;
-        const N = matrix.length - 1;      
-        const result = matrix.map((row, i) => 
-             row.map((val, j) => matrix[N - j][i])
-        );
-        matrix.length = 0;       // hold original array reference
-        matrix.push(...result);  // Spread operator
-        return matrix;
+    rotacionar() {
+        var rotate;
+        this.transpor();
+        if (!this._orientacaoOriginal){
+            // Se necessário, inverte a matriz
+            this._tipo.reverse();
+        }
+
+        this._orientacaoOriginal = !this._orientacaoOriginal;
+    }
+
+    transpor(){
+        const linhas = this._tipo.length;
+        const colunas = this._tipo[0].length;
+        const rotate = new Array();
+        const matriz = this._tipo;
+        
+        for (let col = 0; col < colunas; col++) {
+            rotate.push(new Array());
+            for (let lin = 0; lin < linhas;lin++) {
+                rotate[col].push(matriz[lin][col]);
+            }
+        }
+        this._tipo = rotate;
     }
 }
 
@@ -83,16 +86,3 @@ class Peca {
 Peca.prototype.valueOf = function () {
     return this._tipo;
 };
-
-
-// função para rotacionar as peças do jogo
-function rotate(matrix) {  
-    const N = matrix.length - 1;   // use a constant
-    // use arrow functions and nested map;
-    const result = matrix.map((row, i) => 
-         row.map((val, j) => matrix[N - j][i])
-    );
-    matrix.length = 0;       // hold original array reference
-    matrix.push(...result);  // Spread operator
-    return matrix;
-}
