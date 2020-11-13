@@ -3,7 +3,10 @@
 const qtdTipos = 7;
 const tipos = {
     LINHA: [
-        [1,1,1,1]
+        [1],
+        [1],
+        [1],
+        [1]
     ],
     T: [
         [0,1,0],

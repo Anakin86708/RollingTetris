@@ -21,8 +21,8 @@ for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++)
 
 resize();
 
-let inicial_x = canvas.width / 2;
-let inicial_y = 0;
+let inicial_x = parseInt(COLS / 2)-1;
+let inicial_y = -1;
 
 const dx = 0;
 const dy = 1;
@@ -35,29 +35,29 @@ let peca = new Peca();
 // Variaveis para o teclado
 var upPressed, rightPressed, leftPressed, downPressed = false;
 
+function gerenciaDesenho() {
+    desenha();
+
+    inicial_x += dx;
+    inicial_y += dy;
+}
+
 function desenha()
 {
-    // context.canvas.width = window.innerWidth;
-    // context.canvas.height = window.innerHeight;
     clear();
     desenhaBoard();
     peca.valueOf().forEach((row, y) =>{
         row.forEach((value, x) => {
             if (value != 0){
                 context.fillStyle = 'red';
-                context.fillRect(x + inicial_x, y+inicial_y, 1, 1);
+                context.fillRect(blocoParaCoordenada(x+inicial_x), blocoParaCoordenada(y+inicial_y), TAMANHO_BROCO, TAMANHO_BROCO);
             }
         });
     });
 
-    inicial_x += dx;
-    inicial_y += dy;
-
     // Permite gerar uma nova peça ao sair do tabuleiro
     if (inicial_y > canvas.height) {
-        inicial_y = 0;
-        inicial_x = canvas.width/2;
-        peca = new Peca();        
+        resetPecas();    
     }
 }
 
@@ -66,7 +66,7 @@ function gerenciarTeclas() {
     if(rightPressed) //Tecla direita
     {
         console.log(peca.valueOf());
-        inicial_x = inicial_x + 10;
+        inicial_x += 1;
         if(inicial_x + 4 > canvas.width) //Checagem do limite direito
         {
             inicial_x = canvas.width - 4;
@@ -74,7 +74,7 @@ function gerenciarTeclas() {
     }
     if(leftPressed) //Tecla esquerda
     {
-        inicial_x = inicial_x - 10;
+        inicial_x -= 1;
         if(inicial_x < 0)   //Checagem do limite esquerdo
         {
             inicial_x = 0;
@@ -82,10 +82,11 @@ function gerenciarTeclas() {
     }
     if(downPressed) //Tecla inferior
     {
-        inicial_y = inicial_y + 3;
+        inicial_y += 1;
     }
     if(upPressed) //Tecla Superior
         peca.rotacionar()
+    desenha();
 }
 
 
@@ -132,7 +133,7 @@ function keyUpHandler(e){
 }
 
 desenhaBoard();
-var test = setInterval(desenha, 200);
+var test = setInterval(gerenciaDesenho, 1000);
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);

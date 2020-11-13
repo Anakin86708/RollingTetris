@@ -1,5 +1,17 @@
-// função para perguntar ao usuário a opção do tamanho da largura e da altura do jogo
+// função para usuário escolher opção do tamanho
+function trocaLinhas(){
+    var status = document.getElementById("tamanho-jogo").textContent
+    console.log(status);
 
+    if(status == '10x20'){
+        document.getElementById("tamanho-jogo").innerText = '22x40';
+        setTamanhoBROCO(40);
+    }
+    else if(status == '22x40'){
+        document.getElementById("tamanho-jogo").innerText = '10x20';
+        setTamanhoBROCO(20);   
+    }
+}
 
 // função para trocar o usuário trocar o botão de pause e play e vice-versa
 function playPause() {
@@ -23,7 +35,7 @@ function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-
+// Varre todas as linhas e colunas da nossa matriz board, pegando a cor de cada célula e chamando a função desenhaQuadrado para  desenhar de fato a célula
 function desenhaBoard()
 {
     for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++)
@@ -37,7 +49,7 @@ function desenhaBoard()
     }
 }
 
-
+// desenha de fato as células no nosso board.
 function desenhaQuadrado(y, x, cor)
 {
     context.fillStyle = cor
@@ -71,4 +83,18 @@ function resize() {
 
     console.log("Width: " + canvas.width);
     console.log("Height: " + canvas.height);
+}
+
+// Converte valores da matriz (unidade do jogo) para a respectiva coordenada
+// considerando o tamanho de um bloco
+function blocoParaCoordenada(posBloco) {
+    return posBloco * TAMANHO_BROCO;
+}
+
+// Usado para reiniciar pecas quando for necessário criar uma nova peça no
+// inicio do tabuleiro
+function resetPecas() {
+    inicial_x = parseInt(COLS / 2)-1;
+    inicial_y = -1;
+    peca = new Peca();
 }

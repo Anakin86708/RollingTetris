@@ -155,7 +155,7 @@ main > div{
 }
 
 /*Cabeçalho (header) do painel à direita, com o botão play*/
-#cabecalho{
+.cabecalho{
     padding: 10px;    
     background-color: var(--neutral-black);
     text-align: center;
@@ -166,20 +166,20 @@ main > div{
     width: 100%;
 }
 
-#lista-pecas{
+.lista-pecas{
     background-color: var(--neutral-white);
     border-radius: 20px;
     height: 60%;
     width: 100%;
 }
 
-#opcao-tamanho{
+.opcao-tamanho{
     background-color: var(--neutral-white);
     border-radius: 20px;
     padding: 5px;
 }
 
-#opcao-tamanho > a{
+.opcao-tamanho > span{
     color: var(--neutral-black);
 }
 
@@ -205,8 +205,6 @@ main > div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: fit-content;
-    height: fit-content;
 }
 
 
