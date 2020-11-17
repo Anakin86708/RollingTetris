@@ -16,8 +16,9 @@ function trocaLinhas(){
 // função para trocar o usuário trocar o botão de pause e play e vice-versa
 function playPause() {
     var status = document.getElementById("playPause").src;
-    var corFundo = document.getElementById("botao-pp").style.backgroundColor;
-    
+    // var corFundo = document.getElementsByClassName("dot").style.backgroundColor;
+    // alert(corFundo);
+
     //Define o status do jogo como Pause 
     if(status == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")  // Talvez alterar para o link de imagem local
     {

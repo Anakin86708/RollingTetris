@@ -6,10 +6,12 @@
     <link rel="shortcut icon" href="images/icon.png">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/game.css">
+    <link id="colorsCSS" rel="stylesheet" type="text/css" href="css/colors/default.css">
+    <script src="script/default.js"></script>
     <title>Rolling Tetris</title>
 </head>
 
-<body onresize="resize()">
+<body onresize="resize()" onload="onLoad()">
 
     <div class="container">
         <header>
@@ -84,9 +86,7 @@
                     </div>
                     
                     <div class="game-botao">
-                        <span class="dot" onclick="playPause()" id="botao-pp">
-                            <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png" alt="Play" width="100%" height="100%" id="playPause">
-                        </span>
+                            <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png" alt="Play" width="100%" height="100%" class="dot" id="playPause" onclick="playPause()">
                     </div>
                 </div>
             </div>

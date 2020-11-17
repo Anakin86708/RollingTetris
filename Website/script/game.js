@@ -49,7 +49,7 @@ function desenha()
     peca.valueOf().forEach((row, y) =>{
         row.forEach((value, x) => {
             // console.log("x:" + x + " y:" + y);
-            console.log("inicial_x: " + inicial_x + " inicial_y: " + inicial_y);
+            // console.log("inicial_x: " + inicial_x + " inicial_y: " + inicial_y);
             if (value != 0){
                 context.fillStyle = 'red';
                 context.fillRect(blocoParaCoordenada(x+inicial_x), blocoParaCoordenada(y+inicial_y), TAMANHO_BROCO, TAMANHO_BROCO);
