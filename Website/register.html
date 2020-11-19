@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/register.css">
     <link id="colorsCSS" rel="stylesheet" type="text/css" href="css/colors/default.css">
-    <script src="script/default.js"></script>
+    <script src="script/default.js"> </script>
+    <script src="script/formulario.js"> </script>
     <title>Rolling Tetris</title>
 </head>
 
@@ -19,6 +20,7 @@
             </div>
         </header>
 
+        <!--Formulario -->
         <main>
             <div class="default-div register">
                 <div class="header">
@@ -28,36 +30,36 @@
                     <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
                     <!-- Futuro evento em JS para permitir a edição da imagem -->
                 </div>
-                <form>
+                <form id="form" name="form">
                     <div class="form-line">
                         <p>Nome completo</p>
-                        <input type="text">
+                        <input type="text" name="nome">
                     </div>
                     <div class="form-line">
                         <p>Data de nascimento</p>
-                        <input type="date">
+                        <input type="date" name="aniversario">
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="identificacao"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="tel"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="phone"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" name="mail"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
                     </div>
                     <div class="form-line">
                         <p>Username</p>
-                        <input type="text">
+                        <input type="text" name="user">
                     </div>
                     <div class="form-line">
                         <p>Senha</p>
-                        <input type="password">
+                        <input type="password" name="senha">
                     </div>
-                    <button type="submit">Enviar</button>
+                    <button type="submit"onclick="playerCadastro()">Enviar</button> 
                     <!-- <input type="submit" id="submit" value="Go!"> -->
                 </form>
             </div>

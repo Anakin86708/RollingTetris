@@ -6,12 +6,14 @@
   <meta charset="UTF-8">
   <link rel="shortcut icon" href="images/icon.png">
   <title>Tetris</title>
+
+  <link id="colorsCSS" rel="stylesheet" href="css/colors/default.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
 <!--Informações dentro do site-->
 
-<body>
+<body onload="onLoad()">
   <div class="container">
     <header>
       <div>
@@ -40,6 +42,22 @@
       </div>
     </main>
 
+    <div class="menu-acessibilidade">
+      <form>
+        <input type="radio" id="default" name="acessibilidade" value="default" onclick="changeColor('default')" checked>
+        <label for="default">Default</label>
+
+        <input type="radio" id="deuteranopia" name="acessibilidade" value="deuteranopia" onclick="changeColor('deuteranopia')">
+        <label for="deuteranopia">Deuteranopia</label>
+
+        <input type="radio" id="protanopia" name="acessibilidade" value="protanopia" onclick="changeColor('protanopia')">
+        <label for="protanopia">Protanopia</label>
+
+        <input type="radio" id="tritanopia" name="acessibilidade" value="tritanopia" onclick="changeColor('tritanopia')">
+        <label for="tritanopia">Tritanopia</label>
+      </form>
+    </div>
+
     <div class="acessibilidade">
       <img src="images/acessibilidade.png" alt="Icone de acessibilidade">
       <!-- Implementado com JS -->
@@ -50,6 +68,7 @@
       SI401B - Programação para a Web, Unicamp, 2020.
     </footer>
   </div>
+  <script src="script/default.js"></script>
 </body>
 
 </html>

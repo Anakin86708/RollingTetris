@@ -126,10 +126,48 @@ form{
   height: 65%;
 }
 
+.menu-acessibilidade {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+  width: 15%;
+  height: 20%;
+  background-color: var(--neutral-white);
+  border-radius: 15px;
+}
+
 main{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-bottom: 5vh;
+}
+
+.play-popup {
+  animation-name: 'popup';
+  animation-duration: 0.6;  
+}
+
+@keyframes popup {
+80% {
+  transform: scale(0.8);
+}
+100% {
+  transform: scale(1);
+}
+}
+
+.play-fadeout {
+  animation-name: 'fadeout';
+  animation-duration: 0.9;  /* Alterar valor no JS */
+}
+
+@keyframes fadeout {
+80% {
+  transform: scale(0.3)
+}
+100% {
+  transform: scale(0);
+}
 }
