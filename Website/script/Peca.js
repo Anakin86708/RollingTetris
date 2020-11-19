@@ -1,6 +1,8 @@
 'use strict';
 
 const qtdTipos = 7;
+
+// define os tipos de peças que caem 
 const tipos = {
     LINHA: [
         [1],
@@ -47,7 +49,16 @@ class Peca {
     // Retorna a largura da peça atual
     get largura() { return this._tipo[0].length; }
     
-    get altura() { return this._tipo.length}
+    // Retorna a altura da peça atual
+    get altura() { return this._tipo.length;}
+
+    set x(x) { this._x = x; }
+
+    get x() { return this._x;}
+
+    set y(y) { this._y = y; }
+
+    get y() { return this._y;}
 
     gerarTipo() {
         let index = 0;
@@ -88,6 +99,62 @@ class Peca {
         }
         this._tipo = rotate;
     }
+
+    colisorInferior(board) {
+        if(this.y<0){
+            // Ignora o início
+            return true;
+        }
+        console.log(this.y+this.altura);
+        if(this.y + this.altura == ROWS) {
+            // Chegou no fim
+            console.log('Bateu no fim!');
+            // this.pintaPecaBoard(board);
+            return false;
+        }
+        // Verificar na matriz com peças fixas se é possível descer
+        // Os pontos de colisão de cada peça devem ser o primeiro elemento com 1 de cada coluna da matriz da peça, começando de baixo
+        try {
+            for (let col = 0; col < this.largura; col++) {
+                for (var row = this.altura - 1; row >= 0; row--) {
+                    // Encontar o ponto mais baixo
+                    if (this.tipo[row][col] == 1) {
+                        break;
+                    }
+                }
+                // Verificar se é possivel avançar
+                let corBaixo = board[this.y + col + 1][this.x + row];
+                console.log('Cor abaixo: ' +corBaixo);
+                if (corBaixo != corPadrao) {
+                    // COLISÃO
+                    console.log('BATEU!');
+                    return false;
+                }
+            }
+            // Não houve colisão
+            return true;
+        } catch (error) {
+            console.log("erro");
+            if(this.y + this.altura == ROWS) {
+                // Chegou no fim
+                console.log('Bateu no fim!');
+                // this.pintaPecaBoard(board);
+                return false;
+            }
+            // continue;
+        }
+    }
+
+    pintaPecaBoard(board) {
+        this.valueOf().forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value != 0) {
+                    board[y + this.y][x + this.x] = '#00f';
+                }
+            });
+        });
+    }
+
 }
 
 // Onde devo colocar isso daqui??
