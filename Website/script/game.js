@@ -7,37 +7,23 @@ const ROWS = 20;
 var TAMANHO_BROCO = setTamanhoBROCO(ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
-
-// Setup inicial de board
-let board = [];
-// Desenhando fundo do board
-for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++) {
-    board[linhaAtual] = [];
-    for (let colunaAtual = 0; colunaAtual < COLS; colunaAtual++) {
-        board[linhaAtual][colunaAtual] = corPadrao; // preenche as cores do board
-    }
-}
+var board = resetBoard();
+var upPressed, rightPressed, leftPressed, downPressed = false;
 
 resize();
 
-let inicial_x = parseInt(COLS / 2) - 1;
-let inicial_y = -1;
+let peca = new Peca();
 
 const dx = 0;
 const dy = 1;
 
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
-let peca = new Peca();
-// peca = peca.tipo;
 
 // Variaveis para o teclado
-var upPressed, rightPressed, leftPressed, downPressed = false;
 
 function gerenciaDesenho() {
     // Verifica antes de desenhar se é possiver avançar
-    peca.x = inicial_x;
-    peca.y = inicial_y;
     if (!peca.colisorInferior(board)){
         // desenha();
         peca.pintaPecaBoard(board);
@@ -46,8 +32,8 @@ function gerenciaDesenho() {
 
     desenha();
 
-    inicial_x += dx;
-    inicial_y += dy;
+    peca.x += dx;
+    peca.y += dy;
 }
 
 function desenha() {
@@ -56,50 +42,42 @@ function desenha() {
     // alert('continuando')
     peca.valueOf().forEach((row, y) => {
         row.forEach((value, x) => {
-            // console.log("x:" + x + " y:" + y);
-            // console.log("inicial_x: " + inicial_x + " inicial_y: " + inicial_y);
             if (value != 0) {
                 context.fillStyle = 'red';
-                context.fillRect(blocoParaCoordenada(x + inicial_x), blocoParaCoordenada(y + inicial_y), TAMANHO_BROCO, TAMANHO_BROCO);
+                context.fillRect(blocoParaCoordenada(x + peca.x), blocoParaCoordenada(y + peca.y), TAMANHO_BROCO, TAMANHO_BROCO);
             }
         });
     });
 
-    // // Verifica o limite inferior e permite gerar uma nova peça ao sair do tabuleiro
-    // if (inicial_y >= ROWS - peca.altura) {
-    //     inicial_y = ROWS
-    //     resetPecas();
-    // }
-
     proximaPeca();
 }
 
+// Comportamento relacionado à movimentação das peças
 function gerenciarTeclas() {
     //Comando relacionado às teclas
     if (rightPressed) //Tecla direita
     {
         // Peça para a direita
-        if (inicial_x < COLS - peca.largura) {
-            inicial_x++;
+        if (peca.x < COLS - peca.largura) {
+            peca.x++;
         }
     }
     if (leftPressed) //Tecla esquerda
     {
-        inicial_x--;
-        if (inicial_x < 0)   //Checagem do limite esquerdo
+        peca.x--;
+        if (peca.x < 0)   //Checagem do limite esquerdo
         {
-            inicial_x = 0;
+            peca.x = 0;
         }
     }
     if (downPressed) //Tecla inferior
     {
-        inicial_y += 1;
+        peca.y += 1;
     }
     if (upPressed) //Tecla Superior
         peca.rotacionar()
     desenha();
 }
-
 
 //Verificação dos botões pressionados
 function keyDownHandler(e) {
@@ -141,9 +119,6 @@ var test = setInterval(gerenciaDesenho, 1000);
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-
-
-
 
 
 // audios no jogo - implementar as classes que estão no lugar de novoJogo, 

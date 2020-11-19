@@ -41,6 +41,8 @@ class Peca {
     constructor() {
         this._tipo = this.gerarTipo();
         this._orientacaoOriginal = true;
+        this.x = parseInt(COLS / 2) - 1;
+        this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
     }
     get tipo() { return this._tipo;}
 
@@ -101,7 +103,7 @@ class Peca {
     }
 
     colisorInferior(board) {
-        if(this.y<0){
+        if(this.y<-this.altura || this.y < 0){
             // Ignora o início
             return true;
         }
@@ -123,8 +125,8 @@ class Peca {
                     }
                 }
                 // Verificar se é possivel avançar
-                let corBaixo = board[this.y + col + 1][this.x + row];
-                console.log('Cor abaixo: ' +corBaixo);
+                let corBaixo = board[this.y + row + 1][this.x + col];
+                console.log('Cor em [' + (this.y + row + 1) + ']['+ (this.x + col) + ']: ' + corBaixo);
                 if (corBaixo != corPadrao) {
                     // COLISÃO
                     console.log('BATEU!');
