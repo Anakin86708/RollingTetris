@@ -147,6 +147,35 @@ class Peca {
         }
     }
 
+    colisorLateral(board, movingToRight) {
+        if(this.y<-this.altura || this.y < 0){
+            // Ignora o início
+            return true;
+        }
+        if(movingToRight) {
+            // Para o movimento a direita, verificar toda a última coluna
+            for (let lin = 0; lin < this.altura; lin++) {
+                let corDifeita = board[this.y + lin][this.x + this.largura];  // Não é necessário incrementar 1, pois largura já está com incremento
+                if (corDifeita != corPadrao) {
+                    // COLISÃO
+                    return false;
+                }
+            }
+            return true;
+            
+        } else {
+            // Para o movimento a esquerda, verificar toda coluna 0
+            for(let lin = 0; lin < this.altura; lin++) {
+                let corEsquerda = board[this.y + lin][this.x - 1];
+                if (corEsquerda != corPadrao) {
+                    // COLISÃO
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     pintaPecaBoard(board) {
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {

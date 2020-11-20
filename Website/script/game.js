@@ -56,17 +56,22 @@ function gerenciarTeclas() {
     //Comando relacionado às teclas
     if (rightPressed) //Tecla direita
     {
-        // Peça para a direita
-        if (peca.x < COLS - peca.largura) {
-            peca.x++;
+        // É possivel ir para a direita?
+        if (peca.colisorLateral(board, true)){
+            // Peça para a direita
+            if (peca.x < COLS - peca.largura) {
+                peca.x++;
+            }
         }
     }
     if (leftPressed) //Tecla esquerda
     {
-        peca.x--;
-        if (peca.x < 0)   //Checagem do limite esquerdo
-        {
-            peca.x = 0;
+        if(peca.colisorLateral(board, false)){
+            peca.x--;
+            if (peca.x < 0)   //Checagem do limite esquerdo
+            {
+                peca.x = 0;
+            }
         }
     }
     if (downPressed) //Tecla inferior
