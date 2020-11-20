@@ -8,11 +8,12 @@ var TAMANHO_BROCO = setTamanhoBROCO(ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
 var board = resetBoard();
-var upPressed, rightPressed, leftPressed, downPressed = false;
+var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;
 
 resize();
 
 let peca = new Peca();
+let pecaProxima = new Peca();
 
 const dx = 0;
 const dy = 1;
@@ -20,7 +21,6 @@ const dy = 1;
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-// Variaveis para o teclado
 
 function gerenciaDesenho() {
     desenha();
@@ -39,21 +39,22 @@ function desenha() {
     clear();
     desenhaBoard();
     // alert('continuando')
-    peca.valueOf().forEach((row, y) => {
-        row.forEach((value, x) => {
-            if (value != 0) {
-                context.fillStyle = 'red';
-                context.fillRect(blocoParaCoordenada(x + peca.x), blocoParaCoordenada(y + peca.y), TAMANHO_BROCO, TAMANHO_BROCO);
-            }
-        });
-    });
+    peca.desenhaDinamico(context, 'red');
 
+    //Criação do tabuleiro reservado à próxima peça
     proximaPeca();
+
+    //Print da próxima peça
+    pecaProxima.desenhaDinamico(ctxNext, 'red', -3, 6);
 }
 
 // Comportamento relacionado à movimentação das peças
 function gerenciarTeclas() {
     //Comando relacionado às teclas
+    if(pPressed)
+    {
+        playPause();
+    }
     if (rightPressed) //Tecla direita
     {
         // É possivel ir para a direita?
@@ -97,6 +98,9 @@ function keyDownHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = true;
     }
+    else if (e.key == 'P' || e.key == 'p') {
+        pPressed = true;
+    }
     gerenciarTeclas();
 }
 
@@ -114,13 +118,36 @@ function keyUpHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = false;
     }
+    else if (e.key == 'P' || e.key == 80) {
+        pPressed = false;
+    }
     gerenciarTeclas();
 }
 
 
 desenhaBoard();
-var test = setInterval(gerenciaDesenho, 1000);
+//var test = setInterval(gerenciaDesenho, 1000);
 
+var timer = new timer(gerenciaDesenho, 1000);
+
+var botao = document.getElementById('playPause');
+
+botao.addEventListener("click", function(){
+    if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
+    {
+        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
+        timer.pause();
+    }
+    else if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
+    {
+        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
+        timer.resume();
+    }
+})
+
+timer.resume();
+
+// Eventos para tecla pressionada e tecla não pressionada
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 

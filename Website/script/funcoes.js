@@ -14,22 +14,6 @@ function trocaLinhas() {
     }
 }
 
-// função para trocar o usuário trocar o botão de pause e play e vice-versa
-function playPause() {
-    var status = document.getElementById("playPause").src;
-    // var corFundo = document.getElementsByClassName("dot").style.backgroundColor;
-    // alert(corFundo);
-
-    //Define o status do jogo como Pause 
-    if (status == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")  // Talvez alterar para o link de imagem local
-    {
-        document.getElementById("playPause").src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";  // Talvez alterar para o link de imagem local
-        // corFundo = 'yellow';
-    }
-    //Define o status do jogo como Play
-    if (status == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")  // Talvez alterar para o link de imagem local
-        document.getElementById("playPause").src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png";  // Talvez alterar para o link de imagem local
-}
 // função que limpa 
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,7 +75,12 @@ function blocoParaCoordenada(posBloco) {
 function resetPecas() {
     inicial_x = parseInt(COLS / 2) - 1;
     inicial_y = -1;
-    peca = new Peca();
+    
+    //Peça movimentavel será a peçaProxima
+    peca = pecaProxima;
+
+    //Nova peça sendo criada para mostrar a proxima peça
+    pecaProxima = new Peca();
 }
 
 function resetBoard() {
@@ -107,19 +96,72 @@ function resetBoard() {
     return board;
 }
 
+//Canvas para a próxima jogada
+
+//Define o canvas e o context
+const canvasNext = document.getElementById('prox-piece');
+const ctxNext = canvasNext.getContext('2d');
+
+//Definição do tamanho do canvas e etc
 function proximaPeca() {
-    const canvasNext = document.getElementById('prox-piece');
-    const ctxNext = canvasNext.getContext('2d');
+    const COLUNA = 4;
+    const LINHA = 8;
+    const VAGO = "white"
 
-    var board = [];
+    let board = [];
 
-    ctxNext.canvas.width = 4 * 20;
-    ctxNext.canvas.height = 4 * 20;
-    ctxNext.scale(20,20);
+    for(l = 0; l < LINHA; l++){
+        board[l] = []
+        for(c = 0; c < COLUNA; c++){
+            board[l][c] = VAGO;
+        }
+    }
+    proxDesenhaBoard(LINHA, COLUNA);
+}
 
-    // desenhaBoard();
+//Insere cores no quadro criado
+function proxDesenhaQuadrado(x,y,cor)
+{
+    ctxNext.fillStyle = cor;
+    ctxNext.fillRect(x*20,y*20,20,20);
 
-    var next = new Peca();
-    ctxNext.clearRect(0,0,ctxNext.canvas.width/2,ctxNext.canvas.height/2);
+    if (cor == corPadrao) {
+        context.strokeStyle = bordaPadrao;
+    }
+
+    // ctxNext.strokeStyle = 'black';
+    ctxNext.strokeRect(x*20,y*20,20,20);
 
 }
+
+//Iniciliza o quadro
+function proxDesenhaBoard(LINHA, COLUNA)
+{
+    for(r = 0; r<LINHA; r++){
+        for(c = 0; c<COLUNA; c++){
+            proxDesenhaQuadrado(c,r,board[r][c]);
+        }
+    }
+}
+
+//Função para a peça iniciar e pausar a animação
+function timer(callback, delay) {
+    var timerId;
+    var start;
+    var remaining = delay;
+  
+    this.pause = function () {
+      window.clearTimeout(timerId);
+      remaining -= new Date() - start;
+    };
+  
+    var resume = function () {
+      start = new Date();
+      timerId = window.setTimeout(function () {
+        remaining = delay;
+        resume();
+        callback();
+      }, remaining);
+    };
+    this.resume = resume;
+  }

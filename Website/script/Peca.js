@@ -186,6 +186,31 @@ class Peca {
         });
     }
 
+    desenhaDinamico(context, cor, xMargem=0, yMargem=0) {
+        this.valueOf().forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value != 0) {
+                    context.fillStyle = cor;
+                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BROCO, TAMANHO_BROCO);
+                }
+            });
+        });
+    }
+
+    //Print no canvas à direita da próxima Peça
+    geraListaQuadrado()
+    {
+        for(let r=  0; r < this.largura; r++){
+            for(let c = 0; c<this.altura; c++){
+                console.log('O valor da largura é: '+ this.largura);
+                console.log('O valor da altura é: '+ this.altura);
+                if(this.tipo[r][c] == 1){
+                    proxDesenhaQuadrado(r + 1,c + 2,'red');
+                }
+            }
+        }
+    }
+
 }
 
 // Onde devo colocar isso daqui??
