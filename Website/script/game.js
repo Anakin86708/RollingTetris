@@ -23,13 +23,6 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 // Variaveis para o teclado
 
 function gerenciaDesenho() {
-    // Verifica antes de desenhar se é possiver avançar
-    if (!peca.colisorInferior(board)){
-        // desenha();
-        peca.pintaPecaBoard(board);
-        resetPecas();
-    }
-
     desenha();
 
     peca.x += dx;
@@ -37,6 +30,12 @@ function gerenciaDesenho() {
 }
 
 function desenha() {
+    // Verifica antes de desenhar se é possiver avançar
+    if (!peca.colisorInferior(board)){
+        peca.pintaPecaBoard(board);
+        resetPecas();
+    }
+
     clear();
     desenhaBoard();
     // alert('continuando')
