@@ -169,8 +169,12 @@ main > div{
 .lista-pecas{
     background-color: var(--neutral-white);
     border-radius: 20px;
+    border: 5px solid black;
     height: 60%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .opcao-tamanho{
