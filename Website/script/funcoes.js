@@ -20,37 +20,36 @@ function clear() {
 }
 
 // Varre todas as linhas e colunas da nossa matriz board, pegando a cor de cada célula e chamando a função desenhaQuadrado para  desenhar de fato a célula
-function desenhaBoard() {
-    for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++) {
-        for (let colunaAtual = 0; colunaAtual < COLS; colunaAtual++) {
+function desenhaBoard(ctx, board, linhas, colunas) {
+    for (let linhaAtual = 0; linhaAtual < linhas; linhaAtual++) {
+        for (let colunaAtual = 0; colunaAtual < colunas; colunaAtual++) {
             const corAtualCelula = board[linhaAtual][colunaAtual]; // pega a cor de cada quadradinho
-
-            desenhaQuadrado(linhaAtual, colunaAtual, corAtualCelula);
+            desenhaQuadrado(ctx, linhaAtual, colunaAtual, corAtualCelula);
         }
     }
 }
 
 // desenha de fato as células no nosso board.
-function desenhaQuadrado(y, x, cor) {
-    context.fillStyle = cor;
-    context.fillRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
+function desenhaQuadrado(ctx, y, x, cor) {
+    ctx.fillStyle = cor;
+    ctx.fillRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
 
     if (cor == corPadrao) {
-        context.strokeStyle = bordaPadrao;
+        ctx.strokeStyle = bordaPadrao;
     }
 
-    context.strokeRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
+    ctx.strokeRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
 }
 
 function setTamanhoBROCO(qtdLinhas) {
     // 1 determine o menor tamanho
-    // 2 veja uantos brocos vai querer
-    // 3 calcule o tamanho de acordo
     const width = document.getElementById('game').offsetWidth;
     const height = document.getElementById('game').clientHeight - 100;
+    // 2 veja quantos blocos vai querer
     const minSize = width < height ? width : height;
     console.log("Min size: " + minSize);
-
+    
+    // 3 calcule o tamanho de acordo
     return parseInt(minSize / qtdLinhas);
 }
 
@@ -90,33 +89,30 @@ function resetBoard() {
     for (let linhaAtual = 0; linhaAtual < ROWS; linhaAtual++) {
         board[linhaAtual] = [];
         for (let colunaAtual = 0; colunaAtual < COLS; colunaAtual++) {
-            board[linhaAtual][colunaAtual] = corPadrao; // preenche as cores do board
+            board[linhaAtual][colunaAtual] = corPadrao; // Preenche com as cores do board
         }
     }
     return board;
 }
 
-//Canvas para a próxima jogada
-
-//Define o canvas e o context
-const canvasNext = document.getElementById('prox-piece');
-const ctxNext = canvasNext.getContext('2d');
-
 //Definição do tamanho do canvas e etc
-function proximaPeca() {
-    const COLUNA = 4;
-    const LINHA = 8;
-    const VAGO = "white"
+function proximaPeca(context) {
+    const coluna = 4;
+    const linha = 8;
 
-    let board = [];
+    let canvas = document.getElementById('prox-piece');
+    canvas.width = coluna * TAMANHO_BROCO;
+    canvas.height = linha * TAMANHO_BROCO;
 
-    for(l = 0; l < LINHA; l++){
-        board[l] = []
-        for(c = 0; c < COLUNA; c++){
-            board[l][c] = VAGO;
+    let nextBoard = [];
+
+    for(l = 0; l < linha; l++){
+        nextBoard[l] = []
+        for(c = 0; c < coluna; c++){
+            nextBoard[l][c] = corPadrao;
         }
     }
-    proxDesenhaBoard(LINHA, COLUNA);
+    desenhaBoard(context, nextBoard, linha, coluna);
 }
 
 //Insere cores no quadro criado
@@ -165,3 +161,25 @@ function timer(callback, delay) {
     };
     this.resume = resume;
   }
+
+//   Usado para
+  function gerarCores() {
+    const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
+    const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
+    const orange = getComputedStyle(document.documentElement).getPropertyValue('--secondary-orange');
+    const yellow = getComputedStyle(document.documentElement).getPropertyValue('--secondary-yellow');
+    const green = getComputedStyle(document.documentElement).getPropertyValue('--secondary-green');
+    const blue = getComputedStyle(document.documentElement).getPropertyValue('--secondary-blue');
+    const secPurple = getComputedStyle(document.documentElement).getPropertyValue('--secondary-purple');
+
+    return {
+        PURPLE: purple,
+        RED: red,
+        ORANGE: orange,
+        YELLOW: yellow,
+        GREEN: green,
+        BLUE: blue,
+        SEC_PURPLE: secPurple
+    }
+
+}

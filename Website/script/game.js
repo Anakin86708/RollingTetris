@@ -2,15 +2,17 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d', { alpha: false });
 
+//Canvas para a próxima peça
+const canvasNext = document.getElementById('prox-piece');
+const ctxNext = canvasNext.getContext('2d');
+
 const COLS = 10;
 const ROWS = 20;
 var TAMANHO_BROCO = setTamanhoBROCO(ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
 var board = resetBoard();
-var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;
-
-resize();
+var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Teclas do jogo
 
 let peca = new Peca();
 let pecaProxima = new Peca();
@@ -18,6 +20,8 @@ let pecaProxima = new Peca();
 const dx = 0;
 const dy = 1;
 
+// Limpa o canvas
+resize();
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -37,12 +41,12 @@ function desenha() {
     }
 
     clear();
-    desenhaBoard();
+    desenhaBoard(context, board, ROWS, COLS);
     // alert('continuando')
     peca.desenhaDinamico(context, 'red');
 
     //Criação do tabuleiro reservado à próxima peça
-    proximaPeca();
+    proximaPeca(ctxNext);
 
     //Print da próxima peça
     pecaProxima.desenhaDinamico(ctxNext, 'red', -3, 6);
@@ -125,7 +129,7 @@ function keyUpHandler(e) {
 }
 
 
-desenhaBoard();
+desenhaBoard(context, board, ROWS, COLS);
 //var test = setInterval(gerenciaDesenho, 1000);
 
 var timer = new timer(gerenciaDesenho, 1000);

@@ -213,7 +213,6 @@ class Peca {
 
 }
 
-// Onde devo colocar isso daqui??
 Peca.prototype.valueOf = function () {
     return this._tipo;
 };
