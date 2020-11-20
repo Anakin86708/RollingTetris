@@ -32,16 +32,16 @@ function desenhaBoard(ctx, board, linhas, colunas) {
 // desenha de fato as células no nosso board.
 function desenhaQuadrado(ctx, y, x, cor) {
     ctx.fillStyle = cor;
-    ctx.fillRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
+    ctx.fillRect(x * TAMANHO_BLOCO, y * TAMANHO_BLOCO, TAMANHO_BLOCO, TAMANHO_BLOCO);
 
     if (cor == corPadrao) {
         ctx.strokeStyle = bordaPadrao;
     }
 
-    ctx.strokeRect(x * TAMANHO_BROCO, y * TAMANHO_BROCO, TAMANHO_BROCO, TAMANHO_BROCO);
+    ctx.strokeRect(x * TAMANHO_BLOCO, y * TAMANHO_BLOCO, TAMANHO_BLOCO, TAMANHO_BLOCO);
 }
 
-function setTamanhoBROCO(qtdLinhas) {
+function setTamanhoBloco(qtdLinhas) {
     // 1 determine o menor tamanho
     const width = document.getElementById('game').offsetWidth;
     const height = document.getElementById('game').clientHeight - 100;
@@ -55,34 +55,39 @@ function setTamanhoBROCO(qtdLinhas) {
 
 
 function resize() {
-    TAMANHO_BROCO = setTamanhoBROCO(ROWS);
+    TAMANHO_BLOCO = setTamanhoBloco(ROWS);
     canvas.height = document.getElementById('game').offsetHeight - 100;
-    canvas.width = TAMANHO_BROCO * COLS;
+    canvas.width = TAMANHO_BLOCO * COLS;
 
     console.log("Width: " + canvas.width);
     console.log("Height: " + canvas.height);
 }
 
-// Converte valores da matriz (unidade do jogo) para a respectiva coordenada
-// considerando o tamanho de um bloco
 function blocoParaCoordenada(posBloco) {
-    return posBloco * TAMANHO_BROCO;
+    /*
+    Converte valores da matriz (unidade do jogo) para a respectiva coordenada
+    considerando o tamanho de um bloco 
+    */
+    return posBloco * TAMANHO_BLOCO;
 }
 
-// Usado para reiniciar pecas quando for necessário criar uma nova peça no
-// inicio do tabuleiro
 function resetPecas() {
-    inicial_x = parseInt(COLS / 2) - 1;
-    inicial_y = -1;
-    
+    /*
+    Usado para reiniciar pecas quando for necessário criar uma nova peça no
+    inicio do tabuleiro
+    Cria uma nova peça na posição inicial que será exibida
+    e passa a proxima peça para o tabuleiro de game
+    */    
     //Peça movimentavel será a peçaProxima
     peca = pecaProxima;
-
     //Nova peça sendo criada para mostrar a proxima peça
     pecaProxima = new Peca();
 }
 
 function resetBoard() {
+    /*
+    Configura inicialmente o tabuleiro principal do game
+    */
     // Setup inicial de board
     let board = [];
     // Desenhando fundo do board
@@ -93,26 +98,6 @@ function resetBoard() {
         }
     }
     return board;
-}
-
-//Definição do tamanho do canvas e etc
-function proximaPeca(context) {
-    const coluna = 4;
-    const linha = 8;
-
-    let canvas = document.getElementById('prox-piece');
-    canvas.width = coluna * TAMANHO_BROCO;
-    canvas.height = linha * TAMANHO_BROCO;
-
-    let nextBoard = [];
-
-    for(l = 0; l < linha; l++){
-        nextBoard[l] = []
-        for(c = 0; c < coluna; c++){
-            nextBoard[l][c] = corPadrao;
-        }
-    }
-    desenhaBoard(context, nextBoard, linha, coluna);
 }
 
 //Insere cores no quadro criado
@@ -128,16 +113,6 @@ function proxDesenhaQuadrado(x,y,cor)
     // ctxNext.strokeStyle = 'black';
     ctxNext.strokeRect(x*20,y*20,20,20);
 
-}
-
-//Iniciliza o quadro
-function proxDesenhaBoard(LINHA, COLUNA)
-{
-    for(r = 0; r<LINHA; r++){
-        for(c = 0; c<COLUNA; c++){
-            proxDesenhaQuadrado(c,r,board[r][c]);
-        }
-    }
 }
 
 //Função para a peça iniciar e pausar a animação
@@ -162,8 +137,11 @@ function timer(callback, delay) {
     this.resume = resume;
   }
 
-//   Usado para
-  function gerarCores() {
+function gerarCores() {
+    /*
+    Valores de cor de acordo com a paleta selecionada no CSS
+    Necessário para a acessibilidade!
+    */
     const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
     const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
     const orange = getComputedStyle(document.documentElement).getPropertyValue('--secondary-orange');

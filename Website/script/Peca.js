@@ -1,6 +1,7 @@
 'use strict';
 
 const qtdTipos = 7;
+// const cores = gerarCores();
 
 // define os tipos de peças que caem 
 const tipos = {
@@ -20,9 +21,9 @@ const tipos = {
         [1,1],
     ],
     L_SUPERIOR: [
+        [0,1],
+        [0,1],
         [1,1],
-        [1,0],
-        [1,0],
     ],
     U: [
         [1,0,1],
@@ -43,6 +44,8 @@ class Peca {
         this._orientacaoOriginal = true;
         this.x = parseInt(COLS / 2) - 1;
         this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
+        // this.cor = this.escolherCor();
+        // this.cor = 'red';
     }
     get tipo() { return this._tipo;}
 
@@ -52,15 +55,17 @@ class Peca {
     get largura() { return this._tipo[0].length; }
     
     // Retorna a altura da peça atual
-    get altura() { return this._tipo.length;}
+    get altura() { return this._tipo.length; }
+
+    get cor() { return this.cor; }
 
     set x(x) { this._x = x; }
 
-    get x() { return this._x;}
+    get x() { return this._x; }
 
     set y(y) { this._y = y; }
 
-    get y() { return this._y;}
+    get y() { return this._y; }
 
     gerarTipo() {
         let index = 0;
@@ -70,7 +75,17 @@ class Peca {
                 return tipos[item];
             }
         }
-    }    
+    }
+    
+    // escolherCor() {
+    //     let index = 0;
+    //     const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
+    //     for (let item in cores) {
+    //         if (index++ === limite) {
+    //             return cores[item];
+    //         }
+    //     }
+    // }
 
     gerarRandom(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -186,29 +201,15 @@ class Peca {
         });
     }
 
-    desenhaDinamico(context, cor, xMargem=0, yMargem=0) {
+    desenhanNoCanvas(context, cor, xMargem=0, yMargem=0) {
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value != 0) {
-                    context.fillStyle = cor;
-                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BROCO, TAMANHO_BROCO);
+                    context.fillStyle = '#f00';
+                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BLOCO, TAMANHO_BLOCO);
                 }
             });
         });
-    }
-
-    //Print no canvas à direita da próxima Peça
-    geraListaQuadrado()
-    {
-        for(let r=  0; r < this.largura; r++){
-            for(let c = 0; c<this.altura; c++){
-                console.log('O valor da largura é: '+ this.largura);
-                console.log('O valor da altura é: '+ this.altura);
-                if(this.tipo[r][c] == 1){
-                    proxDesenhaQuadrado(r + 1,c + 2,'red');
-                }
-            }
-        }
     }
 
 }

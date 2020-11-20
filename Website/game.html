@@ -66,7 +66,9 @@
 
             <div id="game" class="default-div game">
                 <!-- <img class="img-demo" src="images/sample-game-menu.png" alt="imagem de tetris"> -->
-                <canvas id="tetris" class="default-div game-canvas"></canvas>
+                <div class="jogoTetris">
+                    <canvas id="tetris" class="default-div game-canvas"></canvas>
+                </div>
                 <!--Painel à direita do jogo que avisa ao usuário as próximas peças -->
                 <div class="game-painel">
                     <!--Nesse daqui, identificamos o cabeçalho do jogo-->
@@ -74,7 +76,7 @@
                         <h3>Próxima peça</h3>
                     </div>
                     <!--Aqui é o local que as próximas peças irão entrar-->
-                    <div class="lista-pecas" id="teste">
+                    <div class="lista-pecas" id="lista-piece">
                         <canvas id='prox-piece' class="prox-piece"></canvas>
                     </div>
                     <!--Botão-->
@@ -155,6 +157,7 @@
     <script src="script/funcoes.js"></script>
     <script src="script/Peca.js"></script>
     <script src="script/game.js"></script>
+    <script src="script/proximaPeca.js"></script>
 </body>
 
 </html>

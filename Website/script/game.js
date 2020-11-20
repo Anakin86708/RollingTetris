@@ -8,25 +8,23 @@ const ctxNext = canvasNext.getContext('2d');
 
 const COLS = 10;
 const ROWS = 20;
-var TAMANHO_BROCO = setTamanhoBROCO(ROWS);
+var TAMANHO_BLOCO = setTamanhoBloco(ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
 var board = resetBoard();
 var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Teclas do jogo
 
 let peca = new Peca();
-let pecaProxima = new Peca();
-
+// Velocidade para a peça
 const dx = 0;
 const dy = 1;
 
-// Limpa o canvas
-resize();
-context.fillStyle = '#000';
-context.fillRect(0, 0, canvas.width, canvas.height);
-
 
 function gerenciaDesenho() {
+    /* 
+    Função dentro do tick do game.
+    Responsável por realiar o desenho da peça e a alteração de velocidade
+    */
     desenha();
 
     peca.x += dx;
@@ -36,20 +34,20 @@ function gerenciaDesenho() {
 function desenha() {
     // Verifica antes de desenhar se é possiver avançar
     if (!peca.colisorInferior(board)){
+        // Peça colide com a inferior e é printada na tela
         peca.pintaPecaBoard(board);
         resetPecas();
     }
 
     clear();
     desenhaBoard(context, board, ROWS, COLS);
-    // alert('continuando')
-    peca.desenhaDinamico(context, 'red');
+    peca.desenhanNoCanvas(context, 'red');
 
     //Criação do tabuleiro reservado à próxima peça
-    proximaPeca(ctxNext);
+    criaCanvasProx(ctxNext);
 
-    //Print da próxima peça
-    pecaProxima.desenhaDinamico(ctxNext, 'red', -3, 6);
+    // Atualiza desenho no canva proximo
+    pecaProxima.desenhanNoCanvas(ctxNext,'red', -3, 6);
 }
 
 // Comportamento relacionado à movimentação das peças
@@ -129,8 +127,13 @@ function keyUpHandler(e) {
 }
 
 
+// Limpa o canvas
+resize();
+context.fillStyle = '#000';
+context.fillRect(0, 0, canvas.width, canvas.height);
+
+// Primeiro desenho do board
 desenhaBoard(context, board, ROWS, COLS);
-//var test = setInterval(gerenciaDesenho, 1000);
 
 var timer = new timer(gerenciaDesenho, 1000);
 
@@ -155,14 +158,10 @@ timer.resume();
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-
+// WIP ENZO
 // audios no jogo - implementar as classes que estão no lugar de novoJogo, 
-var novoJogo = new Audio('colocar url');
-//audio quando começa a aumentar o nível de dificuldade do jogo
-var jogoPerdido = new Audio('musica do jogo perdido');
-//audio quando
-var novoLevel = new Audio('Nova musica quando aumenta o level');
-
-
-
-
+// var novoJogo = new Audio('colocar url');
+// //audio quando começa a aumentar o nível de dificuldade do jogo
+// var jogoPerdido = new Audio('musica do jogo perdido');
+// //audio quando
+// var novoLevel = new Audio('Nova musica quando aumenta o level');
