@@ -1,7 +1,7 @@
 'use strict';
 
 const qtdTipos = 7;
-// const cores = gerarCores();
+const cores = gerarCores();
 
 // define os tipos de peças que caem 
 const tipos = {
@@ -44,8 +44,7 @@ class Peca {
         this._orientacaoOriginal = true;
         this.x = parseInt(COLS / 2) - 1;
         this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
-        // this.cor = this.escolherCor();
-        // this.cor = 'red';
+        this._cor = this.escolherCor();
     }
     get tipo() { return this._tipo;}
 
@@ -57,7 +56,7 @@ class Peca {
     // Retorna a altura da peça atual
     get altura() { return this._tipo.length; }
 
-    get cor() { return this.cor; }
+    get cor() { return this._cor; }
 
     set x(x) { this._x = x; }
 
@@ -77,15 +76,15 @@ class Peca {
         }
     }
     
-    // escolherCor() {
-    //     let index = 0;
-    //     const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
-    //     for (let item in cores) {
-    //         if (index++ === limite) {
-    //             return cores[item];
-    //         }
-    //     }
-    // }
+    escolherCor() {
+        let index = 0;
+        const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
+        for (let item in cores) {
+            if (index++ === limite) {
+                return cores[item];
+            }
+        }
+    }
 
     gerarRandom(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -122,7 +121,6 @@ class Peca {
             // Ignora o início
             return true;
         }
-        console.log(this.y+this.altura);
         if(this.y + this.altura == ROWS) {
             // Chegou no fim
             console.log('Bateu no fim!');
@@ -141,7 +139,6 @@ class Peca {
                 }
                 // Verificar se é possivel avançar
                 let corBaixo = board[this.y + row + 1][this.x + col];
-                console.log('Cor em [' + (this.y + row + 1) + ']['+ (this.x + col) + ']: ' + corBaixo);
                 if (corBaixo != corPadrao) {
                     // COLISÃO
                     console.log('BATEU!');
@@ -195,17 +192,17 @@ class Peca {
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value != 0) {
-                    board[y + this.y][x + this.x] = '#00f';
+                    board[y + this.y][x + this.x] = this.cor;
                 }
             });
         });
     }
 
-    desenhanNoCanvas(context, cor, xMargem=0, yMargem=0) {
+    desenhanNoCanvas(context, xMargem=0, yMargem=0) {
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value != 0) {
-                    context.fillStyle = '#f00';
+                    context.fillStyle = this.cor;
                     context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BLOCO, TAMANHO_BLOCO);
                 }
             });

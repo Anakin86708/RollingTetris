@@ -152,15 +152,14 @@ form{
 }
 
 h2{
-  color: hsl(0, 0%, 90%);
+  color: var(--neutral-white);
   border-bottom: 2px solid var(--neutral-white);
 }
 
 label{
   cursor: pointer;
-  color: #fff;
+  color: var(--neutral-white);
 }
-
 
 main{
   display: flex;

@@ -41,13 +41,13 @@ function desenha() {
 
     clear();
     desenhaBoard(context, board, ROWS, COLS);
-    peca.desenhanNoCanvas(context, 'red');
+    peca.desenhanNoCanvas(context);
 
     //Criação do tabuleiro reservado à próxima peça
     criaCanvasProx(ctxNext);
 
     // Atualiza desenho no canva proximo
-    pecaProxima.desenhanNoCanvas(ctxNext,'red', -3, 6);
+    pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
 }
 
 // Comportamento relacionado à movimentação das peças
