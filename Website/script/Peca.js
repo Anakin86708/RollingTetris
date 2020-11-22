@@ -92,10 +92,16 @@ class Peca {
 
     rotacionar() {
         var rotate;
+        // Necessário repensar a forma de rotação das peças
         this.transpor();
         if (!this._orientacaoOriginal){
             // Se necessário, inverte a matriz
             this._tipo.reverse();
+        }
+    
+        // Verificar se ultrapassou o tabuleiro
+        while (this.x + this.largura > COLS) {
+            this.x--;
         }
 
         this._orientacaoOriginal = !this._orientacaoOriginal;
@@ -189,13 +195,17 @@ class Peca {
     }
 
     pintaPecaBoard(board) {
-        this.valueOf().forEach((row, y) => {
-            row.forEach((value, x) => {
-                if (value != 0) {
-                    board[y + this.y][x + this.x] = this.cor;
-                }
+        try {
+            this.valueOf().forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value != 0) {
+                        board[y + this.y][x + this.x] = this.cor;
+                    }
+                });
             });
-        });
+        } catch (e) {
+            this.y--;
+        }
     }
 
     desenhanNoCanvas(context, xMargem=0, yMargem=0) {
