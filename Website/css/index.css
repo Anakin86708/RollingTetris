@@ -12,7 +12,7 @@ h1{
 }
 
 /*altera os blocs de colocar informações do usuário*/
-input{
+.signup input{
   width: 60%;
   padding: 10px; /*tamanho das caixas*/
   color: white;
@@ -134,6 +134,31 @@ form{
   height: 20%;
   background-color: var(--neutral-white);
   border-radius: 15px;
+}
+
+/* Estilo do forms de acessibilidade */
+.menu-acessibilidade form{
+  background-color: var(--neutral-gray);
+  border-radius: 10px;
+  height: 100%;
+}
+
+.item-acessibilidade{
+  padding: 8px 0px;
+}
+
+.item-acessibilidade label:hover{
+  color: var(--secondary-red);
+}
+
+h2{
+  color: var(--neutral-white);
+  border-bottom: 2px solid var(--neutral-white);
+}
+
+label{
+  cursor: pointer;
+  color: var(--neutral-white);
 }
 
 main{
