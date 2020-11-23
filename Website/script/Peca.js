@@ -75,6 +75,7 @@ class Peca {
             }
         }
     }
+    
     escolherCor() {
         let index = 0;
         const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
