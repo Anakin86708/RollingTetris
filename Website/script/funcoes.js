@@ -162,3 +162,15 @@ function gerarCores() {
     }
 
 }
+
+function descerTabuleiro(linMin) {
+    for(let lin = linMin; lin > 0; lin--) {
+        // Passa por todas as linhas do tabuleiro
+        board[lin] = board[lin-1];
+    }
+    
+    // Cria uma nova linha superior
+    for (let col = 0; col < COLS; col++) {
+        board[0][col] = corPadrao;
+    }
+}

@@ -27,6 +27,7 @@ function gerenciaGame() {
     Responsável por realiar o desenho da peça e a alteração de velocidade
     */
     peca.descerPeca();
+    linhaCompleta();
 }
 
 function desenha() {
@@ -45,6 +46,31 @@ function desenha() {
     criaCanvasProx(ctxNext);
     // Atualiza desenho no canva proximo
     pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
+}
+
+// Verifica se uma linha está completa
+function linhaCompleta() {
+    // Começar da ultima linha de board
+    for (let lin = ROWS-1; lin >= 0; lin--) {
+        var completa = true;
+        for (let col = 0; col < COLS; col++) {
+            let corAtual = board[lin][col];
+            if (corAtual == corPadrao) {
+                // Linha não está completa
+                completa = false;
+                break;
+            }
+        }
+
+        if (completa) {
+            // Descer tabuleiro
+            descerTabuleiro(lin);
+
+            // Somar pontuação
+            // WIP
+        }
+    }
+    // Verificar se todas as cores são diferentes da padrão
 }
 
 // Comportamento relacionado à movimentação das peças
