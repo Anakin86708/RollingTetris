@@ -15,20 +15,18 @@ var board = resetBoard();
 var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Teclas do jogo
 
 let peca = new Peca();
-// Velocidade para a peça
-const dx = 0;
-const dy = 1;
 
+context.fillStyle = '#000';
+context.fillRect(0, 0, canvas.width, canvas.height);
 
-function gerenciaDesenho() {
+// Variaveis para o teclado
+
+function gerenciaGame() {
     /* 
     Função dentro do tick do game.
     Responsável por realiar o desenho da peça e a alteração de velocidade
     */
-    desenha();
-
-    peca.x += dx;
-    peca.y += dy;
+    peca.descerPeca();
 }
 
 function desenha() {
@@ -45,7 +43,6 @@ function desenha() {
 
     //Criação do tabuleiro reservado à próxima peça
     criaCanvasProx(ctxNext);
-
     // Atualiza desenho no canva proximo
     pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
 }
@@ -79,7 +76,7 @@ function gerenciarTeclas() {
     }
     if (downPressed) //Tecla inferior
     {
-        peca.y += 1;
+        peca.descerPeca()
     }
     if (upPressed) //Tecla Superior
         peca.rotacionar()
@@ -135,7 +132,7 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 // Primeiro desenho do board
 desenhaBoard(context, board, ROWS, COLS);
 
-var timer = new timer(gerenciaDesenho, 1000);
+var timer = new timer(gerenciaGame, 1000);
 
 var botao = document.getElementById('playPause');
 
