@@ -6,46 +6,119 @@ const cores = gerarCores();
 // define os tipos de peças que caem 
 const tipos = {
     LINHA: [
-        [1],
-        [1],
-        [1],
-        [1]
+        [
+            [1],
+            [1],
+            [1],
+            [1]
+        ],
+        [
+            [1,1,1,1]
+        ]
     ],
     T: [
-        [0, 1, 0],
-        [1, 1, 1],
+        [
+            [0, 1, 0],
+            [1, 1, 1],
+        ],
+        [
+            [1,0],
+            [1,1],
+            [1,0]
+        ],
+        [
+            [1,1,1],
+            [0,1,0]
+        ],
+        [
+            [0,1],
+            [1,1],
+            [0,1]
+        ]
     ],
     L_INFERIOR: [
-        [1, 0],
-        [1, 0],
-        [1, 1],
+        [
+            [1, 0],
+            [1, 0],
+            [1, 1],
+        ],
+        [
+            [1,1,1],
+            [1,0,0]
+        ],
+        [
+            [1,1],
+            [0,1],
+            [0,1]
+        ],
+        [
+            [0,0,1],
+            [1,1,1]
+        ]
     ],
     L_SUPERIOR: [
-        [0, 1],
-        [0, 1],
-        [1, 1],
+        [
+            [0, 1],
+            [0, 1],
+            [1, 1],
+        ],
+        [
+            [1,0,0],
+            [1,1,1]
+        ],
+        [
+            [1,1],
+            [1,0],
+            [1,0]
+        ],
+        [
+            [1,1,1],
+            [0,0,1]
+        ]
     ],
     U: [
-        [1, 0, 1],
-        [1, 1, 1],
+        [   
+            [1, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1,1],
+            [1,0],
+            [1,1]
+        ],
+        [
+            [1,1,1],
+            [1,0,1]
+        ],
+        [
+            [1,1],
+            [0,1],
+            [1,1]
+        ]
     ],
     CUBO: [
-        [1, 1],
-        [1, 1],
+        [
+            [1, 1],
+            [1, 1]
+        ]
     ],
     ESPECIAL: [
-        [1]
+        [
+            [1]
+        ]
     ]
 }
 
 class Peca {
     constructor() {
-        this._tipo = this.gerarTipo();
-        this._orientacaoOriginal = true;
+        this._arrayTipo = this.gerarTipo();
+        this._estado = 0;
+        this._tipo = this._arrayTipo[this.estado];
         this.x = parseInt(COLS / 2) - 1;
         this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
         this._cor = this.escolherCor();
     }
+
     get tipo() { return this._tipo; }
 
     set tipo(value) { this._tipo = value; }
@@ -65,6 +138,8 @@ class Peca {
     set y(y) { this._y = y; }
 
     get y() { return this._y; }
+
+    get estado() { return this._estado; }
 
     gerarTipo() {
         let index = 0;
@@ -91,25 +166,18 @@ class Peca {
     }
 
     rotacionar() {
-        var rotate;
-        // Necessário repensar a forma de rotação das peças
-        this.transpor();
-        if (!this._orientacaoOriginal) {
-            // Se necessário, inverte a matriz
-            this._tipo.reverse();
+        let max = this._arrayTipo.length-1;
+        this._estado++;
+        if (this._estado > max) {
+            this._estado = 0;
         }
-    
+        this.tipo = this._arrayTipo[this.estado];
+        
         // Verificar se ultrapassou o tabuleiro
         while (this.x + this.largura > COLS) {
             this.x--;
         }
 
-        // Verificar se ultrapassou o tabuleiro
-        while (this.x + this.largura > COLS) {
-            this.x--;
-        }
-
-        this._orientacaoOriginal = !this._orientacaoOriginal;
     }
 
     transpor() {
@@ -157,7 +225,7 @@ class Peca {
             for (let col = 0; col < this.largura; col++) {
                 for (var row = this.altura - 1; row >= 0; row--) {
                     // Encontar o ponto mais baixo
-                    if (this.tipo[row][col] == 1) {
+                    if (this.valueOf()[row][col] == 1) {
                         break;
                     }
                 }
@@ -201,35 +269,6 @@ class Peca {
         } else {
             // Para o movimento a esquerda, verificar toda coluna 0
             for (let lin = 0; lin < this.altura; lin++) {
-                let corEsquerda = board[this.y + lin][this.x - 1];
-                if (corEsquerda != corPadrao) {
-                    // COLISÃO
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    colisorLateral(board, movingToRight) {
-        if(this.y<-this.altura || this.y < 0){
-            // Ignora o início
-            return true;
-        }
-        if(movingToRight) {
-            // Para o movimento a direita, verificar toda a última coluna
-            for (let lin = 0; lin < this.altura; lin++) {
-                let corDifeita = board[this.y + lin][this.x + this.largura];  // Não é necessário incrementar 1, pois largura já está com incremento
-                if (corDifeita != corPadrao) {
-                    // COLISÃO
-                    return false;
-                }
-            }
-            return true;
-            
-        } else {
-            // Para o movimento a esquerda, verificar toda coluna 0
-            for(let lin = 0; lin < this.altura; lin++) {
                 let corEsquerda = board[this.y + lin][this.x - 1];
                 if (corEsquerda != corPadrao) {
                     // COLISÃO

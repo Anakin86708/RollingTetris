@@ -127,8 +127,16 @@ function gerenciarTeclas() {
     desenha();
 }
 
+function resetKey() {
+    rightPressed = false;
+    leftPressed = false;
+    downPressed = false;
+    upPressed = false;
+}
+
 //Verificação dos botões pressionados
 function keyDownHandler(e) {
+    resetKey();
     if (e.key == 'Right' || e.key == 'ArrowRight') {
         rightPressed = true;
     }
