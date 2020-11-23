@@ -1,6 +1,6 @@
 // função para escolher opção do tamanho
 function trocaLinhas() {
-    var status = document.getElementById("tamanho-jogo").textContent
+    var status = document.getElementById("tamanho-jogo").textContent;
     console.log(status);
 
     if (status == '10x20') {
@@ -174,3 +174,26 @@ function descerTabuleiro(linMin) {
         board[0][col] = corPadrao;
     }
 }
+
+function somaPontos() {
+    var linhaQuebrada = 10;
+    //Atualização da quantidade de pontos exibidos
+    POINTS += linhaQuebrada;
+    document.getElementById('pontos').innerHTML = POINTS;
+    //Atualização da quantidade de linhas quebradas
+    quantLinhas += 1;
+    document.getElementById('linhas').innerHTML = quantLinhas;
+    return linhaQuebrada;
+}
+
+function ativaBonus(quant, pontos) {
+    // console.log('Ponto acumulado: ' + pontos + 'quant: ' + quant);
+    // console.log('POINTS: ' + POINTS);
+    //Calculo e atualização da pontuação bônus
+    var somatorio = pontos*(quant-1);
+    POINTS += somatorio;
+    document.getElementById('pontos').innerHTML = POINTS;
+    
+}
+
+// função tempo 

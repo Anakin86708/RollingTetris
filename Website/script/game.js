@@ -14,6 +14,9 @@ const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
 var board = resetBoard();
 var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Teclas do jogo
 
+var POINTS = 0;
+var quantLinhas = 0;
+
 let peca = new Peca();
 
 context.fillStyle = '#000';
@@ -50,25 +53,40 @@ function desenha() {
 
 // Verifica se uma linha está completa
 function linhaCompleta() {
-    // Começar da ultima linha de board
-    for (let lin = ROWS-1; lin >= 0; lin--) {
-        var completa = true;
-        for (let col = 0; col < COLS; col++) {
-            let corAtual = board[lin][col];
-            if (corAtual == corPadrao) {
-                // Linha não está completa
-                completa = false;
-                break;
+    let totalLinhas = 0;
+    var pontosTotais = 0;
+    var pontosAcumulados = 0;
+
+    for(let num = 0; num < 4; num++) {
+        // Começar da ultima linha de board
+        for (let lin = ROWS-1; lin >= 0; lin--) {
+            var completa = true;
+            for (let col = 0; col < COLS; col++) {
+                let corAtual = board[lin][col];
+                if (corAtual == corPadrao) {
+                    // Linha não está completa
+                    completa = false;
+                    break;
+                }
+            }
+
+            if (completa) {
+                // Descer tabuleiro
+                descerTabuleiro(lin);
+
+                totalLinhas += 1;
+
+                // Somar pontuação
+                pontosAcumulados = somaPontos();
+                // console.log('O pontosAcumulados: ' + pontosAcumulados);
+                pontosTotais += pontosAcumulados;
+
             }
         }
-
-        if (completa) {
-            // Descer tabuleiro
-            descerTabuleiro(lin);
-
-            // Somar pontuação
-            // WIP
-        }
+    }
+    if(totalLinhas > 1) {
+        // console.log('O totalLinhass é: ' + totalLinhass);
+        ativaBonus(totalLinhas, pontosTotais);
     }
     // Verificar se todas as cores são diferentes da padrão
 }
