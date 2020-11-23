@@ -46,6 +46,7 @@ async function menuAcessibilidade() {
     const icon = document.getElementById('menu-acessibilidade');
     const status = icon.style.getPropertyValue('visibility');
     const value = status != 'visible' ? 'visible' : 'hidden';
+
     if (value == 'visible') {
         playAnimation('menu-acessibilidade', 'play-popup');
     } else {

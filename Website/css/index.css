@@ -134,6 +134,7 @@ form{
   height: 20%;
   background-color: var(--neutral-white);
   border-radius: 15px;
+  visibility: hidden;
 }
 
 /* Estilo do forms de acessibilidade */
@@ -171,12 +172,12 @@ main{
 
 .play-popup {
   animation-name: 'popup';
-  animation-duration: 0.6;  
+  animation-duration: 0.6s;  
 }
 
 @keyframes popup {
-80% {
-  transform: scale(0.8);
+20% {
+  transform: scale(0.9);
 }
 100% {
   transform: scale(1);
@@ -185,12 +186,12 @@ main{
 
 .play-fadeout {
   animation-name: 'fadeout';
-  animation-duration: 0.9;  /* Alterar valor no JS */
+  animation-duration: 0.9s;  /* Alterar valor no JS */
 }
 
 @keyframes fadeout {
-80% {
-  transform: scale(0.3)
+0% {
+  transform: scale(1)
 }
 100% {
   transform: scale(0);
