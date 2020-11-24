@@ -57,6 +57,7 @@ function linhaCompleta() {
     let totalLinhas = 0;
     var pontosTotais = 0;
     var pontosAcumulados = 0;
+    var contemEspecial = false;  // Variável usada para girar o tabuleiro
 
     for(let num = 0; num < 4; num++) {
         // Começar da ultima linha de board
@@ -64,6 +65,9 @@ function linhaCompleta() {
             var completa = true;
             for (let col = 0; col < COLS; col++) {
                 let corAtual = board[lin][col];
+                if (corAtual == CORESPECIAL) {
+                    contemEspecial = true;
+                }
                 if (corAtual == corPadrao) {
                     // Linha não está completa
                     completa = false;
@@ -74,6 +78,11 @@ function linhaCompleta() {
             if (completa) {
                 // Descer tabuleiro
                 descerTabuleiro(lin);
+
+                // Realiza rotação
+                if (contemEspecial) {
+                    girarTabuleiro();
+                }
 
                 totalLinhas += 1;
 

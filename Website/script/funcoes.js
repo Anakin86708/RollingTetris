@@ -150,6 +150,7 @@ function gerarCores() {
     const green = getComputedStyle(document.documentElement).getPropertyValue('--secondary-green');
     const blue = getComputedStyle(document.documentElement).getPropertyValue('--secondary-blue');
     const secPurple = getComputedStyle(document.documentElement).getPropertyValue('--secondary-purple');
+    const especial = getComputedStyle(document.documentElement).getPropertyValue('--neutral-white');
 
     return {
         PURPLE: purple,
@@ -158,7 +159,8 @@ function gerarCores() {
         YELLOW: yellow,
         GREEN: green,
         BLUE: blue,
-        SEC_PURPLE: secPurple
+        SEC_PURPLE: secPurple,
+        ESPECIAL: especial
     }
 
 }

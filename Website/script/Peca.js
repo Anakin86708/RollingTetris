@@ -2,6 +2,7 @@
 
 const qtdTipos = 7;
 const cores = gerarCores();
+const CORESPECIAL = cores.ESPECIAL;
 
 // define os tipos de peças que caem 
 const tipos = {
@@ -152,6 +153,10 @@ class Peca {
     }
     
     escolherCor() {
+        if (this.tipo == tipos.ESPECIAL[0]) {
+            // Peça causa a rotação
+            return CORESPECIAL;
+        }
         let index = 0;
         const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
         for (let item in cores) {
