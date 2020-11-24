@@ -17,6 +17,7 @@ var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Tec
 var POINTS = 0;
 var quantLinhas = 0;
 var sentidoBoardBaixo = true;
+var tickGame = 1000;  // ms usados como velocidade do game
 
 let peca = new Peca();
 
@@ -91,6 +92,13 @@ function linhaCompleta() {
                 // console.log('O pontosAcumulados: ' + pontosAcumulados);
                 pontosTotais += pontosAcumulados;
 
+                // Alterar a velocidade do game
+                // 300 indica o valor múltiplo que deve ser usado para aumentar
+                const multiplo = 300
+                if (pontosTotais % multiplo == 0) {
+                    aumentarVelocidade(multiplo);
+                }
+
             }
         }
     }
@@ -99,6 +107,10 @@ function linhaCompleta() {
         ativaBonus(totalLinhas, pontosTotais);
     }
     // Verificar se todas as cores são diferentes da padrão
+}
+
+function aumentarVelocidade(multiplo) {
+    tickGame = alterarTick(POINTS/multiplo);
 }
 
 // Comportamento relacionado à movimentação das peças
@@ -165,6 +177,7 @@ function keyDownHandler(e) {
 }
 
 async function girarTabuleiro() {
+    // PROBLEMA AO TER ESPECIAL EM VARIAS COLUNAS
     if (sentidoBoardBaixo) {
         // Peças devem subir
         var anguloInicio = '0deg';
@@ -222,7 +235,7 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 // Primeiro desenho do board
 desenhaBoard(context, board, ROWS, COLS);
 
-var timer = new timer(gerenciaGame, 1000);
+var timer = new timer(gerenciaGame, tickGame);
 
 var botao = document.getElementById('playPause');
 

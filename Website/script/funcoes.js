@@ -128,10 +128,10 @@ function timer(callback, delay) {
     var resume = function () {
         start = new Date();
         timerId = window.setTimeout(function () {
-            remaining = delay;
+            remaining = tickGame;
             resume();
             callback();
-        }, remaining);
+        }, tickGame);
     };
     this.resume = resume;
 }
@@ -198,3 +198,8 @@ function ativaBonus(quant, pontos) {
 }
 
 // função tempo 
+function alterarTick(x) {
+    // Função de autoria própria
+    let BASETICK = 1000;
+    return BASETICK * Math.pow(Math.E, (-0.1 * x));  
+}
