@@ -48,7 +48,7 @@ function setTamanhoBloco(qtdLinhas) {
     // 2 veja quantos blocos vai querer
     const minSize = width < height ? width : height;
     console.log("Min size: " + minSize);
-    
+
     // 3 calcule o tamanho de acordo
     return parseInt(minSize / qtdLinhas);
 }
@@ -77,7 +77,7 @@ function resetPecas() {
     inicio do tabuleiro
     Cria uma nova peça na posição inicial que será exibida
     e passa a proxima peça para o tabuleiro de game
-    */    
+    */
     //Peça movimentavel será a peçaProxima
     peca = pecaProxima;
     //Nova peça sendo criada para mostrar a proxima peça
@@ -101,17 +101,16 @@ function resetBoard() {
 }
 
 //Insere cores no quadro criado
-function proxDesenhaQuadrado(x,y,cor)
-{
+function proxDesenhaQuadrado(x, y, cor) {
     ctxNext.fillStyle = cor;
-    ctxNext.fillRect(x*20,y*20,20,20);
+    ctxNext.fillRect(x * 20, y * 20, 20, 20);
 
     if (cor == corPadrao) {
         context.strokeStyle = bordaPadrao;
     }
 
     // ctxNext.strokeStyle = 'black';
-    ctxNext.strokeRect(x*20,y*20,20,20);
+    ctxNext.strokeRect(x * 20, y * 20, 20, 20);
 
 }
 
@@ -120,29 +119,29 @@ function timer(callback, delay) {
     var timerId;
     var start;
     var remaining = delay;
-  
+
     this.pause = function () {
-      window.clearTimeout(timerId);
-      remaining -= new Date() - start;
+        window.clearTimeout(timerId);
+        remaining -= new Date() - start;
     };
-  
+
     var resume = function () {
-      start = new Date();
-      timerId = window.setTimeout(function () {
-        remaining = delay;
-        resume();
-        callback();
-      }, remaining);
+        start = new Date();
+        timerId = window.setTimeout(function () {
+            remaining = delay;
+            resume();
+            callback();
+        }, remaining);
     };
     this.resume = resume;
-  }
+}
 
 function gerarCores() {
     /*
     Valores de cor de acordo com a paleta selecionada no CSS
     Necessário para a acessibilidade!
     */
-   loadCookieStyle();
+    loadCookieStyle();
     const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
     const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
     const orange = getComputedStyle(document.documentElement).getPropertyValue('--secondary-orange');
@@ -166,11 +165,11 @@ function gerarCores() {
 }
 
 function descerTabuleiro(linMin) {
-    for(let lin = linMin; lin > 0; lin--) {
+    for (let lin = linMin; lin > 0; lin--) {
         // Passa por todas as linhas do tabuleiro
-        board[lin] = board[lin-1];
+        board[lin] = board[lin - 1];
     }
-    
+
     // Cria uma nova linha superior
     for (let col = 0; col < COLS; col++) {
         board[0][col] = corPadrao;
@@ -192,10 +191,10 @@ function ativaBonus(quant, pontos) {
     // console.log('Ponto acumulado: ' + pontos + 'quant: ' + quant);
     // console.log('POINTS: ' + POINTS);
     //Calculo e atualização da pontuação bônus
-    var somatorio = pontos*(quant-1);
+    var somatorio = pontos * (quant - 1);
     POINTS += somatorio;
     document.getElementById('pontos').innerHTML = POINTS;
-    
+
 }
 
 // função tempo 

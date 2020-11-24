@@ -36,7 +36,7 @@ function gerenciaGame() {
 
 function desenha() {
     // Verifica antes de desenhar se é possiver avançar
-    if (!peca.colisorInferior(board)){
+    if (!peca.colisorInferior(board)) {
         // Peça colide com a inferior e é printada na tela
         peca.pintaPecaBoard(board);
         resetPecas();
@@ -59,9 +59,9 @@ function linhaCompleta() {
     var pontosAcumulados = 0;
     var contemEspecial = false;  // Variável usada para girar o tabuleiro
 
-    for(let num = 0; num < 4; num++) {
+    for (let num = 0; num < 4; num++) {
         // Começar da ultima linha de board
-        for (let lin = ROWS-1; lin >= 0; lin--) {
+        for (let lin = ROWS - 1; lin >= 0; lin--) {
             var completa = true;
             for (let col = 0; col < COLS; col++) {
                 let corAtual = board[lin][col];
@@ -94,7 +94,7 @@ function linhaCompleta() {
             }
         }
     }
-    if(totalLinhas > 1) {
+    if (totalLinhas > 1) {
         // console.log('O totalLinhass é: ' + totalLinhass);
         ativaBonus(totalLinhas, pontosTotais);
     }
@@ -104,14 +104,13 @@ function linhaCompleta() {
 // Comportamento relacionado à movimentação das peças
 function gerenciarTeclas() {
     //Comando relacionado às teclas
-    if(pPressed)
-    {
+    if (pPressed) {
         playPause();
     }
     if (rightPressed) //Tecla direita
     {
         // É possivel ir para a direita?
-        if (peca.colisorLateral(board, true)){
+        if (peca.colisorLateral(board, true)) {
             // Peça para a direita
             if (peca.x < COLS - peca.largura) {
                 peca.x++;
@@ -120,7 +119,7 @@ function gerenciarTeclas() {
     }
     if (leftPressed) //Tecla esquerda
     {
-        if(peca.colisorLateral(board, false)){
+        if (peca.colisorLateral(board, false)) {
             peca.x--;
             if (peca.x < 0)   //Checagem do limite esquerdo
             {
@@ -227,14 +226,12 @@ var timer = new timer(gerenciaGame, 1000);
 
 var botao = document.getElementById('playPause');
 
-botao.addEventListener("click", function(){
-    if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
-    {
+botao.addEventListener("click", function () {
+    if (document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png") {
         document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
         timer.pause();
     }
-    else if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
-    {
+    else if (document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png") {
         document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
         timer.resume();
     }

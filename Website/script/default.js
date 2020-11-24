@@ -20,7 +20,7 @@ function loadCookieStyle() {
         style.innerHTML = '<link rel="stylesheet" href="css/colors/' + cookie + '.css">'
     } else {
         // Do contrário, carrega por padrão o default css
-        let head = document.getElementsByTagName('HEAD')[0];     
+        let head = document.getElementsByTagName('HEAD')[0];
         let link = document.createElement('link');
         link.id = 'colorsCSS';
         link.rel = 'stylesheet';
@@ -35,7 +35,7 @@ function loadCookieStyle() {
 function getCookieValue(wantedKey) {
     let cookies = document.cookie.split(';');
     for (let index in cookies) {
-        let key = cookies[index].split('=')[0];        
+        let key = cookies[index].split('=')[0];
         if (key == wantedKey)
             return cookies[index].split('=')[1];
     }
@@ -58,8 +58,8 @@ async function menuAcessibilidade() {
     icon.style.visibility = value;
 }
 
-function sleep(ms){
-    return new Promise( resolver => setTimeout(resolver, ms));
+function sleep(ms) {
+    return new Promise(resolver => setTimeout(resolver, ms));
 };
 
 function playAnimation(elementId, name) {
@@ -71,7 +71,7 @@ function playAnimation(elementId, name) {
     elem.classList.add(name);
 }
 
-function playFadeout(){
+function playFadeout() {
     const elem = document.getElementById('menu-acessibilidade');
     elem.style.animationPlayState = 'running';
     void elem.offsetWidth;
