@@ -183,11 +183,17 @@ main > div{
     text-align: center;
     background-color: var(--neutral-white);
     border-radius: 20px;
-    /* padding: 5px; */
+    padding: 10px 0px;
 }
 
 .opcao-tamanho > span{
     color: var(--neutral-black);
+}
+
+.opcao-tamanho:hover{
+    background-color:  var(--secondary-orange);
+    cursor: pointer;
+    user-select: none;
 }
 
 /* Botão de pausa e play */
@@ -205,6 +211,7 @@ main > div{
 
 .dot:hover{
     background-color: var(--secondary-orange);
+    cursor: pointer;
 }
 
 .game-botao{
@@ -221,11 +228,11 @@ main > div{
     position: relative;
 }
 
-/* Tentativa de criar uma tela de Game Over para o usuário */
+/* Cria uma tela de Game Over para o usuário */
 
 #gameover{
     display: flex;
-    background-color: dimgrey;
+    background-color: dimgray;
     width: 100%;
     height: 100%;
     justify-content: center; 
@@ -249,7 +256,7 @@ main > div{
     margin: 20px;
 }
 
-#gameover-botoes #home:hover, #restart:hover{
+#gameover-botoes #restart:hover{
     background-color: var(--secondary-orange);
 }
 
@@ -264,8 +271,7 @@ main > div{
     height: 3.4em;
 }
 
-/* Fim tentativa - leo */
-
+/* Fim tela de game over */ 
 
 
 
