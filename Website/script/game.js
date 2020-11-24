@@ -19,6 +19,8 @@ let peca = new Peca();
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
+let perdeu = false;
+let statusPause = false;
 // Variaveis para o teclado
 
 function gerenciaGame() {
@@ -26,8 +28,10 @@ function gerenciaGame() {
     Função dentro do tick do game.
     Responsável por realiar o desenho da peça e a alteração de velocidade
     */
-    peca.descerPeca();
-    linhaCompleta();
+    if (!statusPause){    
+        peca.descerPeca();
+        linhaCompleta();
+    }
 }
 
 function desenha() {
@@ -45,7 +49,16 @@ function desenha() {
     //Criação do tabuleiro reservado à próxima peça
     criaCanvasProx(ctxNext);
     // Atualiza desenho no canva proximo
-    pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
+    // Desenha apenas se o usuário ainda não perdeu o game.
+    if(perdeu == false)
+    {
+        pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
+    }
+    else
+    {
+        timer.pause()
+    }
+
 }
 
 // Verifica se uma linha está completa
@@ -165,13 +178,17 @@ var botao = document.getElementById('playPause');
 botao.addEventListener("click", function(){
     if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
     {
+        //O jogo é pausado
         document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
         timer.pause();
+        statusPause = true;
     }
     else if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
     {
+        //O jogo continua
         document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
         timer.resume();
+        statusPause = false;
     }
 })
 

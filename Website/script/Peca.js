@@ -252,14 +252,15 @@ class Peca {
             });
             // Verificar posição máxima se excede o tabuleiro
             if (this.y <= 0) {
-                alert('End game!');
-                document.getElementById('gameover').style.visibility = 'visible'
-
+                // alert('End game!');
+                document.getElementById('gameover').style.visibility = 'visible';
+                perdeu = true;
             }
         } catch (e) {
             console.log('Erro ao pintaPecaBoard');
             if (this.y <= 0) {
-                document.getElementById('gameover').style.visibility = 'visible'
+                document.getElementById('gameover').style.visibility = 'visible';
+                perdeu = true;
                 
                 // alert('End game!');
             }
