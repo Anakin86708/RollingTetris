@@ -16,6 +16,7 @@ var upPressed, rightPressed, leftPressed, downPressed, pPressed = false;  // Tec
 
 var POINTS = 0;
 var quantLinhas = 0;
+var sentidoBoardBaixo = true;
 
 let peca = new Peca();
 
@@ -153,6 +154,35 @@ function keyDownHandler(e) {
         pPressed = true;
     }
     gerenciarTeclas();
+}
+
+async function girarTabuleiro() {
+    if (sentidoBoardBaixo) {
+        // Peças devem subir
+        var anguloInicio = '0deg';
+        var anguloFim = '180deg';
+    } else {
+        var anguloInicio = '180deg';
+        var anguloFim = '360deg';
+    }
+
+    // Altera valores da transformaçào
+    document.documentElement.style.setProperty('--angulo-inicial', anguloInicio);
+    document.documentElement.style.setProperty('--angulo-final', anguloFim);
+
+    animacaoTabuleiro();
+    await sleep(1500);  // Deve ter o mesmo valor que o CSS
+    document.getElementById('tetris').style.transform = 'rotate(' + anguloFim + ')';
+
+    sentidoBoardBaixo = !sentidoBoardBaixo;
+}
+
+function animacaoTabuleiro() {
+    const elem = document.getElementById('tetris');
+    elem.style.animationPlayState = 'running';
+    elem.classList.remove('play-rotacao');
+    void elem.offsetWidth;
+    elem.classList.add('play-rotacao');
 }
 
 //verificação dos botões soltos 

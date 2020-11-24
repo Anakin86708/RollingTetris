@@ -1,5 +1,10 @@
 @import url("global.css");
 
+:root {
+    --angulo-inicial: '0deg';
+    --angulo-final: '180deg';
+}
+
 a{
     color:var(--neutral-white);
     text-decoration: none;
@@ -138,6 +143,17 @@ main > div{
     /* width: 100%; */
     /* height: 40%; */
     padding: 0px;
+    /* transform: rotate(180deg); */
+}
+
+.play-rotacao {
+    animation-name: 'rotacao';
+    animation-duration: 1500ms;  /* Deve ter o mesmo valor no JS */
+}
+
+@keyframes rotacao {
+    0% {transform: rotate(var(--angulo-inicial));}
+    100% {transform: rotate(var(--angulo-final));}
 }
 
 /* Div dentro do Game*/
