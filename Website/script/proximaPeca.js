@@ -1,6 +1,7 @@
 // Define a proxima peça que será disponibilizada ao jogador
 var pecaProxima = new Peca(5);
 var TAMANHO_BLOCO_NEXT;
+var nextBoard;
 
 function criaCanvasProx(context) {
     /*
@@ -14,13 +15,25 @@ function criaCanvasProx(context) {
     canvas.width = coluna * TAMANHO_BLOCO_NEXT;
     canvas.height = linha * TAMANHO_BLOCO_NEXT;
 
-    let nextBoard = [];
+    nextBoard = [];
     for(l = 0; l < linha; l++){
         nextBoard[l] = []
         for(c = 0; c < coluna; c++){
             nextBoard[l][c] = corPadrao;
         }
     }
+    // Cria o background do nextBoard
     desenhaBoard(context, nextBoard, linha, coluna, TAMANHO_BLOCO_NEXT);
+}
+
+function pintaPecaProxima(context) {
+    pecaProxima.valueOf().forEach((row, y) => {
+        row.forEach((value, x) => {
+            if (value != 0) {
+                nextBoard[y + pecaProxima.y + 6][x + pecaProxima.x] = pecaProxima.cor;
+            }
+        });
+    });
+    desenhaBoard(context, nextBoard, 8, 5, TAMANHO_BLOCO_NEXT);
 }
 
