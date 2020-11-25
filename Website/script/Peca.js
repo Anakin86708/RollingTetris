@@ -2,50 +2,124 @@
 
 const qtdTipos = 7;
 const cores = gerarCores();
+const CORESPECIAL = cores.ESPECIAL;
 
 // define os tipos de peças que caem 
 const tipos = {
     LINHA: [
-        [1],
-        [1],
-        [1],
-        [1]
+        [
+            [1],
+            [1],
+            [1],
+            [1]
+        ],
+        [
+            [1, 1, 1, 1]
+        ]
     ],
     T: [
-        [0, 1, 0],
-        [1, 1, 1],
+        [
+            [0, 1, 0],
+            [1, 1, 1],
+        ],
+        [
+            [1, 0],
+            [1, 1],
+            [1, 0]
+        ],
+        [
+            [1, 1, 1],
+            [0, 1, 0]
+        ],
+        [
+            [0, 1],
+            [1, 1],
+            [0, 1]
+        ]
     ],
     L_INFERIOR: [
-        [1, 0],
-        [1, 0],
-        [1, 1],
+        [
+            [1, 0],
+            [1, 0],
+            [1, 1],
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 0]
+        ],
+        [
+            [1, 1],
+            [0, 1],
+            [0, 1]
+        ],
+        [
+            [0, 0, 1],
+            [1, 1, 1]
+        ]
     ],
     L_SUPERIOR: [
-        [0, 1],
-        [0, 1],
-        [1, 1],
+        [
+            [0, 1],
+            [0, 1],
+            [1, 1],
+        ],
+        [
+            [1, 0, 0],
+            [1, 1, 1]
+        ],
+        [
+            [1, 1],
+            [1, 0],
+            [1, 0]
+        ],
+        [
+            [1, 1, 1],
+            [0, 0, 1]
+        ]
     ],
     U: [
-        [1, 0, 1],
-        [1, 1, 1],
+        [
+            [1, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1, 1],
+            [1, 0],
+            [1, 1]
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 1]
+        ],
+        [
+            [1, 1],
+            [0, 1],
+            [1, 1]
+        ]
     ],
     CUBO: [
-        [1, 1],
-        [1, 1],
+        [
+            [1, 1],
+            [1, 1]
+        ]
     ],
     ESPECIAL: [
-        [1]
+        [
+            [1]
+        ]
     ]
 }
 
 class Peca {
-    constructor() {
-        this._tipo = this.gerarTipo();
-        this._orientacaoOriginal = true;
-        this.x = parseInt(COLS / 2) - 1;
+    constructor(col) {
+        this._arrayTipo = this.gerarTipo();
+        this._estado = 0;
+        this._tipo = this._arrayTipo[this.estado];
+        this.x = parseInt(col / 2) - 1;
         this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
         this._cor = this.escolherCor();
     }
+
     get tipo() { return this._tipo; }
 
     set tipo(value) { this._tipo = value; }
@@ -66,6 +140,8 @@ class Peca {
 
     get y() { return this._y; }
 
+    get estado() { return this._estado; }
+
     gerarTipo() {
         let index = 0;
         const limite = this.gerarRandom(0, qtdTipos);
@@ -75,8 +151,12 @@ class Peca {
             }
         }
     }
-    
+
     escolherCor() {
+        if (this.tipo == tipos.ESPECIAL[0]) {
+            // Peça causa a rotação
+            return CORESPECIAL;
+        }
         let index = 0;
         const limite = this.gerarRandom(0, 7);  // CASO NOVAS CORES SEJAM ADICIONADAS DEVE SER ALTERADO AQUI
         for (let item in cores) {
@@ -91,25 +171,18 @@ class Peca {
     }
 
     rotacionar() {
-        var rotate;
-        // Necessário repensar a forma de rotação das peças
-        this.transpor();
-        if (!this._orientacaoOriginal) {
-            // Se necessário, inverte a matriz
-            this._tipo.reverse();
+        let max = this._arrayTipo.length - 1;
+        this._estado++;
+        if (this._estado > max) {
+            this._estado = 0;
         }
-    
-        // Verificar se ultrapassou o tabuleiro
-        while (this.x + this.largura > COLS) {
-            this.x--;
-        }
+        this.tipo = this._arrayTipo[this.estado];
 
         // Verificar se ultrapassou o tabuleiro
         while (this.x + this.largura > COLS) {
             this.x--;
         }
 
-        this._orientacaoOriginal = !this._orientacaoOriginal;
     }
 
     transpor() {
@@ -157,7 +230,7 @@ class Peca {
             for (let col = 0; col < this.largura; col++) {
                 for (var row = this.altura - 1; row >= 0; row--) {
                     // Encontar o ponto mais baixo
-                    if (this.tipo[row][col] == 1) {
+                    if (this.valueOf()[row][col] == 1) {
                         break;
                     }
                 }
@@ -240,11 +313,13 @@ class Peca {
     }
 
     desenhanNoCanvas(context, xMargem = 0, yMargem = 0) {
+        const id = context.canvas.id;
+        const bloco = id == 'tetris' ? TAMANHO_BLOCO : 30;  // Usado para definir o tamanho do canvas principal ou next
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value != 0) {
                     context.fillStyle = this.cor;
-                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BLOCO, TAMANHO_BLOCO);
+                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem, bloco), blocoParaCoordenada(y + this.y + yMargem, bloco), bloco, bloco);
                 }
             });
         });

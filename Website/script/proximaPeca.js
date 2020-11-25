@@ -1,5 +1,6 @@
 // Define a proxima peça que será disponibilizada ao jogador
-var pecaProxima = new Peca();
+var pecaProxima = new Peca(5);
+var TAMANHO_BLOCO_NEXT;
 
 function criaCanvasProx(context) {
     /*
@@ -9,8 +10,9 @@ function criaCanvasProx(context) {
     const linha = 8;  // Quantidade de linhas do tabuleiro de próxima peça
 
     let canvas = document.getElementById('prox-piece');
-    canvas.width = coluna * TAMANHO_BLOCO;
-    canvas.height = linha * TAMANHO_BLOCO;
+    TAMANHO_BLOCO_NEXT = 30;
+    canvas.width = coluna * TAMANHO_BLOCO_NEXT;
+    canvas.height = linha * TAMANHO_BLOCO_NEXT;
 
     let nextBoard = [];
     for(l = 0; l < linha; l++){
@@ -19,6 +21,6 @@ function criaCanvasProx(context) {
             nextBoard[l][c] = corPadrao;
         }
     }
-    desenhaBoard(context, nextBoard, linha, coluna);
+    desenhaBoard(context, nextBoard, linha, coluna, TAMANHO_BLOCO_NEXT);
 }
 
