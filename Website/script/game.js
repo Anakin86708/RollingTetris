@@ -114,7 +114,7 @@ function linhaCompleta() {
 
                 // Somar pontuação
                 pontosAcumulados = somaPontos();
-                // console.log('O pontosAcumulados: ' + pontosAcumulados);
+        
                 pontosTotais += pontosAcumulados;
 
                 // Alterar a velocidade do game
@@ -128,7 +128,6 @@ function linhaCompleta() {
         }
     }
     if (totalLinhas > 1) {
-        // console.log('O totalLinhass é: ' + totalLinhass);
         ativaBonus(totalLinhas, pontosTotais);
     }
     // Verificar se todas as cores são diferentes da padrão
@@ -324,13 +323,11 @@ function gerarAjudaControles() {
         baixo.innerText += 'Acelerar';
         direita.innerText += 'Mover direita';
         esquerda.innerText += 'Mover esquerda';
-        // document.getElementById('controles').classList.remove('controles-inv');
     } else {
         cima.innerText += 'Acelerar';
         baixo.innerText += 'Rotacionar';
         direita.innerText += 'Mover esquerda';
         esquerda.innerText += 'Mover direita';
-        // document.getElementById('controles').classList.add('controles-inv');
     }
 
     // Adiciona os elementos ao documento
@@ -362,7 +359,6 @@ comecaTempoJogo();
 
 botao.addEventListener("click", playPause);
 
-// timer.resume();
 start();
 
 // Eventos para tecla pressionada e tecla não pressionada
@@ -401,11 +397,3 @@ function restart() {
     document.getElementById('linhas').innerHTML = quantLinhas;
     start();
 }
-
-// WIP ENZO
-// audios no jogo - implementar as classes que estão no lugar de novoJogo, 
-// var novoJogo = new Audio('colocar url');
-// //audio quando começa a aumentar o nível de dificuldade do jogo
-// var jogoPerdido = new Audio('musica do jogo perdido');
-// //audio quando
-// var novoLevel = new Audio('Nova musica quando aumenta o level');

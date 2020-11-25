@@ -15,5 +15,3 @@ function playerCadastro(){
     }
     mydatabase.push(basedados);
 }
-
-// não sei exatamente como transpor uma nova classe para a Pessoa que estiver jogando
