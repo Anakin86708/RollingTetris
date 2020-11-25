@@ -7,8 +7,8 @@ const canvasNext = document.getElementById('prox-piece');
 const ctxNext = canvasNext.getContext('2d');
 
 // Tamanhos do tabuleiro
-const COLS = 10;
-const ROWS = 20;
+var COLS = 10;
+var ROWS = 20;
 var TAMANHO_BLOCO = setTamanhoBloco('game', ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
@@ -20,14 +20,15 @@ var quantLinhas = 0;
 var sentidoBoardBaixo = true;
 var tickGame = 1000;  // ms usados como velocidade do game
 
-let peca = new Peca(COLS);
+var peca = new Peca(COLS);
 
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-let perdeu = false;
-let statusPause = false;
+var perdeu = false;
+var statusPause = false;
 var controleTrocado = false;
+var jogoIniciado = false;
 
 var segundo = 0;
 var minuto = 0;
@@ -135,15 +136,15 @@ function linhaCompleta() {
 
 function aumentarVelocidade(multiplo) {
     tickGame = alterarTick(POINTS / multiplo);
-    if(tickGame >= 666) {
+    if (tickGame >= 666) {
         dificuldade = 'Fácil';
         document.getElementById('dificuldade').innerHTML = dificuldade;
     }
-    else if(tickGame < 666 && tickGame >= 333) {
+    else if (tickGame < 666 && tickGame >= 333) {
         dificuldade = 'Médio';
         document.getElementById('dificuldade').innerHTML = dificuldade;
     }
-    else if(tickGame < 333) {
+    else if (tickGame < 333) {
         dificuldade = 'Difícil';
         document.getElementById('dificuldade').innerHTML = dificuldade;
     }
@@ -361,7 +362,8 @@ comecaTempoJogo();
 
 botao.addEventListener("click", playPause);
 
-timer.resume();
+// timer.resume();
+start();
 
 // Eventos para tecla pressionada e tecla não pressionada
 document.addEventListener("keydown", keyDownHandler, false);
@@ -369,16 +371,22 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 document.getElementById('dificuldade').innerHTML = dificuldade;
 
+function start() {
+    playPause();  // Inicia o game pausado
+    
+    jogoIniciado = false;
+}
+
 function restart() {
     board = resetBoard();
     resetPecas();
     desenhaBoard(context, board, ROWS, COLS);
     document.getElementById('gameover').style.visibility = 'hidden';
-    
-    if (!sentidoBoardBaixo){
+
+    if (!sentidoBoardBaixo) {
         girarTabuleiro();
     }
-    
+
     perdeu = false;
     statusPause = false;
     timer.resume();
@@ -391,6 +399,7 @@ function restart() {
     quantLinhas = 0;
     document.getElementById('pontos').innerHTML = POINTS;
     document.getElementById('linhas').innerHTML = quantLinhas;
+    start();
 }
 
 // WIP ENZO

@@ -13,6 +13,7 @@ function playPause() {
         statusPause = false;
         comecaTempoJogo();
     }
+    jogoIniciado = true;
 }
 
 //Inicia a contagem do tempo de partida
@@ -36,17 +37,27 @@ function tempoPartida() {
 
 // função para escolher opção do tamanho
 function trocaLinhas() {
-    var status = document.getElementById("tamanho-jogo").textContent;
-    console.log(status);
-
-    if (status == '10x20') {
-        document.getElementById("tamanho-jogo").innerText = '22x40';
-        setTamanhoBROCO(40);
-    }
-
-    else if (status == '22x40') {
-        document.getElementById("tamanho-jogo").innerText = '10x20';
-        setTamanhoBROCO(20);
+    if (!jogoIniciado) {
+        var status = document.getElementById("tamanho-jogo").textContent;
+        console.log(status);
+    
+        if (status == '10x20') {
+            document.getElementById("tamanho-jogo").innerText = '22x40';
+            ROWS = 40;
+            COLS = 22;
+        }
+        
+        else if (status == '22x40') {
+            document.getElementById("tamanho-jogo").innerText = '10x20';
+            ROWS = 20;
+            COLS = 10;
+        }
+        board = resetBoard();
+        resetPecas();
+        resize();
+        
+        TAMANHO_BLOCO = setTamanhoBloco('game', ROWS);
+        desenhaBoard(context, board, ROWS, COLS, TAMANHO_BLOCO);
     }
 }
 
