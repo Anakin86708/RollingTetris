@@ -221,7 +221,6 @@ class Peca {
         }
         if (this.y + this.altura == ROWS) {
             // Chegou no fim
-            console.log('Bateu no fim!');
             return false;
         }
         // Verificar na matriz com peças fixas se é possível descer
@@ -238,17 +237,14 @@ class Peca {
                 let corBaixo = board[this.y + row + 1][this.x + col];
                 if (corBaixo != corPadrao) {
                     // COLISÃO
-                    console.log('BATEU!');
                     return false;
                 }
             }
             // Não houve colisão
             return true;
         } catch (error) {
-            console.log("erro");
             if (this.y + this.altura == ROWS) {
                 // Chegou no fim
-                console.log('Bateu no fim!');
                 return false;
             }
             return true; // Peça fora do board
@@ -299,7 +295,6 @@ class Peca {
                 gameOver();
             }
         } catch (e) {
-            console.log('Erro ao pintaPecaBoard');
             if (this.y <= 0) {
                 gameOver();
             }

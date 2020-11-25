@@ -50,7 +50,6 @@ async function menuAcessibilidade() {
     if (value == 'visible') {
         playAnimation('menu-acessibilidade', 'play-popup');
     } else {
-        // playAnimation('menu-acessibilidade', 'play-fadeout');
         playAnimation('menu-acessibilidade', 'play-fadeout');
         await sleep(900);  // Valor deve ser alterado no CSS também
     }

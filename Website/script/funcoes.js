@@ -39,7 +39,6 @@ function tempoPartida() {
 function trocaLinhas() {
     if (!jogoIniciado) {
         var status = document.getElementById("tamanho-jogo").textContent;
-        console.log(status);
     
         if (status == '10x20') {
             document.getElementById("tamanho-jogo").innerText = '22x40';
@@ -94,7 +93,6 @@ function setTamanhoBloco(elemID, qtdLinhas) {
     const height = document.getElementById(elemID).clientHeight - 100;
     // 2 veja quantos blocos vai querer
     const minSize = width < height ? width : height;
-    console.log("Min size: " + minSize);
 
     // 3 calcule o tamanho de acordo
     return parseInt(minSize / qtdLinhas);
@@ -105,9 +103,6 @@ function resize() {
     TAMANHO_BLOCO = setTamanhoBloco('game', ROWS);
     canvas.height = document.getElementById('game').offsetHeight - 100;
     canvas.width = TAMANHO_BLOCO * COLS;
-
-    console.log("Width: " + canvas.width);
-    console.log("Height: " + canvas.height);
 }
 
 function blocoParaCoordenada(posBloco, bloco) {
@@ -225,8 +220,6 @@ function somaPontos() {
 }
 
 function ativaBonus(quant, pontos) {
-    // console.log('Ponto acumulado: ' + pontos + 'quant: ' + quant);
-    // console.log('POINTS: ' + POINTS);
     //Calculo e atualização da pontuação bônus
     var somatorio = pontos * (quant - 1);
     POINTS += somatorio;
