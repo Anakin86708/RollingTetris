@@ -111,11 +111,11 @@ const tipos = {
 }
 
 class Peca {
-    constructor() {
+    constructor(col) {
         this._arrayTipo = this.gerarTipo();
         this._estado = 0;
         this._tipo = this._arrayTipo[this.estado];
-        this.x = parseInt(COLS / 2) - 1;
+        this.x = parseInt(col / 2) - 1;
         this.y = (-1 * this.altura) - 1;  // Permite que a peça seja gerada antes do tabuleiro visual
         this._cor = this.escolherCor();
     }
@@ -308,11 +308,13 @@ class Peca {
     }
 
     desenhanNoCanvas(context, xMargem = 0, yMargem = 0) {
+        const id = context.canvas.id;
+        const bloco = id == 'tetris' ? TAMANHO_BLOCO : 30;  // Usado para definir o tamanho do canvas principal ou next
         this.valueOf().forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value != 0) {
                     context.fillStyle = this.cor;
-                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem), blocoParaCoordenada(y + this.y + yMargem), TAMANHO_BLOCO, TAMANHO_BLOCO);
+                    context.fillRect(blocoParaCoordenada(x + this.x + xMargem, bloco), blocoParaCoordenada(y + this.y + yMargem, bloco), bloco, bloco);
                 }
             });
         });

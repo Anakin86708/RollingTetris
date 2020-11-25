@@ -9,7 +9,7 @@ const ctxNext = canvasNext.getContext('2d');
 // Tamanhos do tabuleiro
 const COLS = 10;
 const ROWS = 20;
-var TAMANHO_BLOCO = setTamanhoBloco(ROWS);
+var TAMANHO_BLOCO = setTamanhoBloco('game', ROWS);
 const corPadrao = "#111" // cor das células
 const bordaPadrao = "#rgba(255, 255, 255, 0.1)" // cor das bordinhas
 var board = resetBoard();
@@ -20,7 +20,7 @@ var quantLinhas = 0;
 var sentidoBoardBaixo = true;
 var tickGame = 1000;  // ms usados como velocidade do game
 
-let peca = new Peca();
+let peca = new Peca(COLS);
 
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
@@ -51,13 +51,13 @@ function desenha() {
     }
 
     clear();
-    desenhaBoard(context, board, ROWS, COLS);
+    desenhaBoard(context, board, ROWS, COLS, TAMANHO_BLOCO);
     peca.desenhanNoCanvas(context);
 
     //Criação do tabuleiro reservado à próxima peça
     criaCanvasProx(ctxNext);
     // Atualiza desenho no canva proximo
-    pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
+    pecaProxima.desenhanNoCanvas(ctxNext, 0, 6 );
 }
 
 // Verifica se uma linha está completa
@@ -319,7 +319,7 @@ context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 // Primeiro desenho do board
-desenhaBoard(context, board, ROWS, COLS);
+desenhaBoard(context, board, ROWS, COLS, TAMANHO_BLOCO);
 
 var timer = new timer(gerenciaGame, tickGame);
 var botao = document.getElementById('playPause');
