@@ -1,33 +1,29 @@
 function playPause() {
-    if (document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png") {
-        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
-        
-        //Pausa animação das peças caindo
+    if (document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png") {
+        //O jogo é pausado
+        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png";
         timer.pause();
-
-        //Pausa a contagem do tempo de partida
+        statusPause = true;
         clearInterval(tempoTotalPartida);
     }
-    else if (document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png") {
-        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
-        
-        //Continua a animação das peças caindo
+    else if (document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png") {
+        //O jogo continua
+        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png"
         timer.resume();
-
-        //Retoma a contagem do tempo de partida
+        statusPause = false;
         comecaTempoJogo();
     }
 }
 
 //Inicia a contagem do tempo de partida
 function comecaTempoJogo() {
-    tempoTotalPartida = setInterval(() => {tempoPartida();}, 1000);
+    tempoTotalPartida = setInterval(() => { tempoPartida(); }, 1000);
 }
 
 //Realiza a contagem do tempo de partida
 function tempoPartida() {
     segundo += 1;
-    if(segundo == 60){
+    if (segundo == 60) {
         minuto += 1;
         segundo = 0;
         document.getElementById('tempo').innerHTML = minuto + 'm : ' + segundo + 's';
@@ -35,7 +31,7 @@ function tempoPartida() {
     else {
         document.getElementById('tempo').innerHTML = minuto + 'm : ' + segundo + 's';
     }
-    
+
 }
 
 // função para escolher opção do tamanho
@@ -95,7 +91,7 @@ function setTamanhoBloco(elemID, qtdLinhas) {
 
 
 function resize() {
-    TAMANHO_BLOCO = setTamanhoBloco('game',ROWS);
+    TAMANHO_BLOCO = setTamanhoBloco('game', ROWS);
     canvas.height = document.getElementById('game').offsetHeight - 100;
     canvas.width = TAMANHO_BLOCO * COLS;
 
@@ -143,21 +139,6 @@ function resetBoard() {
     }
     return board;
 }
-
-// MARCADO PARA LIXO
-// //Insere cores no quadro criado
-// function proxDesenhaQuadrado(x, y, cor) {
-//     ctxNext.fillStyle = cor;
-//     ctxNext.fillRect(x * 20, y * 20, 20, 20);
-
-//     if (cor == corPadrao) {
-//         context.strokeStyle = bordaPadrao;
-//     }
-
-//     // ctxNext.strokeStyle = 'black';
-//     ctxNext.strokeRect(x * 20, y * 20, 20, 20);
-
-// }
 
 //Função para a peça iniciar e pausar a animação
 function timer(callback, delay) {
@@ -246,7 +227,7 @@ function ativaBonus(quant, pontos) {
 function alterarTick(x) {
     // Função de autoria própria
     let BASETICK = 1000;
-    return BASETICK * Math.pow(Math.E, (-0.1 * x));  
+    return BASETICK * Math.pow(Math.E, (-0.1 * x));
 }
 
 function animacao(elemID, name) {

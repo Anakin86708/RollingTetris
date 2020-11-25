@@ -40,7 +40,7 @@ function gerenciaGame() {
     Função dentro do tick do game.
     Responsável por realiar o desenho da peça e a alteração de velocidade
     */
-    if (!statusPause){    
+    if (!statusPause) {
         peca.descerPeca();
         linhaCompleta();
     }
@@ -62,16 +62,14 @@ function desenha() {
     criaCanvasProx(ctxNext);
     // Atualiza desenho no canva proximo
     // Desenha apenas se o usuário ainda não perdeu o game.
-    if(perdeu == false)
-    {
+    if (perdeu == false) {
         pecaProxima.desenhanNoCanvas(ctxNext, -3, 6);
     }
-    else
-    {
+    else {
         timer.pause()
         statusPause = true;
     }
-    pecaProxima.desenhanNoCanvas(ctxNext, 0, 6 );
+    pecaProxima.desenhanNoCanvas(ctxNext, 0, 6);
 }
 
 // Verifica se uma linha está completa
@@ -131,77 +129,77 @@ function linhaCompleta() {
 }
 
 function aumentarVelocidade(multiplo) {
-    tickGame = alterarTick(POINTS/multiplo);
+    tickGame = alterarTick(POINTS / multiplo);
 }
 
 // Comportamento relacionado à movimentação das peças
 function gerenciarTeclas() {
     //Comando relacionado às teclas
-    
-    if (!statusPause){ // condição para permitir o movimento das peças SOMENTE se o jogo NÃO ESTIVER em pause.
-        if (pPressed) {
-          playPause();
-        }
-    if (rightPressed) //Tecla direita
-    {
-        //Bloco irá para a direita
-        if(controleTrocado == false) {
-            // É possivel ir para a direita?
-            if (peca.colisorLateral(board, true)) {
-                // Peça para a direita
-                if (peca.x < COLS - peca.largura) {
-                    peca.x++;
+    if (pPressed) {
+        playPause();
+    }
+
+    if (!statusPause) { // condição para permitir o movimento das peças SOMENTE se o jogo NÃO ESTIVER em pause.
+        if (rightPressed) //Tecla direita
+        {
+            //Bloco irá para a direita
+            if (controleTrocado == false) {
+                // É possivel ir para a direita?
+                if (peca.colisorLateral(board, true)) {
+                    // Peça para a direita
+                    if (peca.x < COLS - peca.largura) {
+                        peca.x++;
+                    }
+                }
+            }
+            //Bloco irá para a direita (controle invertido)
+            else {
+                // É possivel ir para a direita?
+                if (peca.colisorLateral(board, false)) {
+                    peca.x--;
+                    if (peca.x < 0)   //Checagem do limite direito (canvas invertido)
+                        peca.x = 0;
                 }
             }
         }
-        //Bloco irá para a direita (controle invertido)
-        else {
-            // É possivel ir para a direita?
-            if (peca.colisorLateral(board, false)) {
-                peca.x--;
-                if (peca.x < 0)   //Checagem do limite direito (canvas invertido)
-                    peca.x = 0;
+        if (leftPressed) //Tecla esquerda
+        {
+            //Bloco irá para a esquerda
+            if (controleTrocado == false) {
+                if (peca.colisorLateral(board, false)) {
+                    peca.x--;
+                    if (peca.x < 0)   //Checagem do limite esquerdo
+                        peca.x = 0;
+                }
             }
-        }   
-    }
-    if (leftPressed) //Tecla esquerda
-    {
-        //Bloco irá para a esquerda
-        if(controleTrocado == false) {
-            if (peca.colisorLateral(board, false)) {
-                peca.x--;
-                if (peca.x < 0)   //Checagem do limite esquerdo
-                    peca.x = 0;
+            //Bloco irá para a esquerda (controle invertido)
+            else {
+                if (peca.colisorLateral(board, true)) {
+                    if (peca.x < COLS - peca.largura) //Checagem do limite esquerdo (canvas invertido)
+                        peca.x++;
+                }
             }
         }
-        //Bloco irá para a esquerda (controle invertido)
-        else {
-            if (peca.colisorLateral(board, true)) {
-                if (peca.x < COLS - peca.largura) //Checagem do limite esquerdo (canvas invertido)
-                    peca.x++;
+        if (downPressed) //Tecla inferior
+        {
+            //Bloco irá descer
+            if (controleTrocado == false) {
+                peca.descerPeca();
             }
-        }  
-    }
-    if (downPressed) //Tecla inferior
-    {
-        //Bloco irá descer
-        if(controleTrocado == false){
-            peca.descerPeca();
+            //Bloco irá rotacionar (controle invertido)
+            else {
+                peca.rotacionar();
+            }
+
         }
-        //Bloco irá rotacionar (controle invertido)
-        else {
-            peca.rotacionar();
-        }
-        
-    }
-    if (upPressed) //Tecla Superior
-        //Bloco irá rotacionar
-        if(controleTrocado == false)    
-            peca.rotacionar()
-        else { //Bloco irá subir (controle invertido)
-            peca.descerPeca();
-        }
-    desenha();
+        if (upPressed) //Tecla Superior
+            //Bloco irá rotacionar
+            if (controleTrocado == false)
+                peca.rotacionar()
+            else { //Bloco irá subir (controle invertido)
+                peca.descerPeca();
+            }
+        desenha();
     }
 }
 
@@ -255,7 +253,7 @@ async function girarTabuleiro() {
     document.getElementById('tetris').style.transform = 'rotate(' + anguloFim + ')';
 
     // Altera controles
-    
+
     sentidoBoardBaixo = !sentidoBoardBaixo;
     gerarAjudaControles();
 }
@@ -343,23 +341,6 @@ var botao = document.getElementById('playPause');
 //Inicia a contagem de tempo do jogo
 comecaTempoJogo();
 
-botao.addEventListener("click", function(){
-    if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
-    {
-        //O jogo é pausado
-        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png";
-        timer.pause();
-        statusPause = true;
-    }
-    else if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
-    {
-        //O jogo continua
-        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png"
-        timer.resume();
-        statusPause = false;
-    }
-})
-//   ALTERAR COM A CHAMADA DA FUNÇÃO
 botao.addEventListener("click", playPause);
 
 timer.resume();
@@ -368,7 +349,7 @@ timer.resume();
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-function restart(){
+function restart() {
     document.getElementById('gameover').style.visibility = 'hidden';
     board = resetBoard();
     resetPecas();
