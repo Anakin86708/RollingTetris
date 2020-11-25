@@ -328,5 +328,7 @@ main > div{
 
 /* Fim tela de game over */ 
 
-
+audio {
+    display: none;
+}
 

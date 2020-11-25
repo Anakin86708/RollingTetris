@@ -20,7 +20,7 @@ const tipos = {
     T: [
         [
             [0, 1, 0],
-            [1, 1, 1],
+            [1, 1, 1]
         ],
         [
             [1, 0],
@@ -41,7 +41,7 @@ const tipos = {
         [
             [1, 0],
             [1, 0],
-            [1, 1],
+            [1, 1]
         ],
         [
             [1, 1, 1],
@@ -61,7 +61,7 @@ const tipos = {
         [
             [0, 1],
             [0, 1],
-            [1, 1],
+            [1, 1]
         ],
         [
             [1, 0, 0],
@@ -80,7 +80,7 @@ const tipos = {
     U: [
         [
             [1, 0, 1],
-            [1, 1, 1],
+            [1, 1, 1]
         ],
         [
             [1, 1],
@@ -183,21 +183,6 @@ class Peca {
             this.x--;
         }
 
-    }
-
-    transpor() {
-        const linhas = this._tipo.length;
-        const colunas = this._tipo[0].length;
-        const rotate = new Array();
-        const matriz = this._tipo;
-
-        for (let col = 0; col < colunas; col++) {
-            rotate.push(new Array());
-            for (let lin = 0; lin < linhas; lin++) {
-                rotate[col].push(matriz[lin][col]);
-            }
-        }
-        this._tipo = rotate;
     }
 
     descerPeca() {

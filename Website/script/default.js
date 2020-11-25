@@ -15,6 +15,7 @@ function loadCookieStyle() {
     // Verifica se o cookie já existe
     let cookie = getCookieValue('cssAcessibilidade');
     let style = document.getElementById('colorsCSS');
+    console.log("Valor do cookie: " + cookie);
     if (cookie != null && style != null) {
         // Se existir, carrega a página com o style do cookie
         style.innerHTML = '<link rel="stylesheet" href="css/colors/' + cookie + '.css">'

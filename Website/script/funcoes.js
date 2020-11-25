@@ -179,6 +179,7 @@ function gerarCores() {
     Necessário para a acessibilidade!
     */
     loadCookieStyle();
+    console.log('Carregando cores!');
     const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
     const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
     const orange = getComputedStyle(document.documentElement).getPropertyValue('--secondary-orange');
