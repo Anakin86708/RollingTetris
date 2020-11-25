@@ -201,12 +201,14 @@ timer.resume();
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-/*  Teste leo - tentar fazer o botão de restart funcionar! */
-
 function restart(){
     document.getElementById('gameover').style.visibility = 'hidden';
     board = resetBoard();
-    desenhaBoard(context, board, ROWS, COLS)
+    resetPecas();
+    desenhaBoard(context, board, ROWS, COLS);
+    perdeu = false;
+    statusPause = false;
+    timer.resume();
 }
 
 // WIP ENZO
