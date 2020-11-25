@@ -350,13 +350,18 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function restart() {
-    document.getElementById('gameover').style.visibility = 'hidden';
     board = resetBoard();
     resetPecas();
     desenhaBoard(context, board, ROWS, COLS);
+    document.getElementById('gameover').style.visibility = 'hidden';
     perdeu = false;
     statusPause = false;
     timer.resume();
+    // resetar timer
+    minuto = 0;
+    segundo = 0;
+    comecaTempoJogo();
+    //resetar pontos
 }
 
 // WIP ENZO

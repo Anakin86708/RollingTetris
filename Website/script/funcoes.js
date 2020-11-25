@@ -237,3 +237,10 @@ function animacao(elemID, name) {
     void elem.offsetWidth;
     elem.classList.add(name);
 }
+
+function gameOver()
+{
+    clearInterval(tempoTotalPartida); /* pausa tempo */
+    document.getElementById('gameover').style.visibility = 'visible';
+    perdeu = true;
+}
