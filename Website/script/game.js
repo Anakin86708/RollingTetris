@@ -354,14 +354,23 @@ function restart() {
     resetPecas();
     desenhaBoard(context, board, ROWS, COLS);
     document.getElementById('gameover').style.visibility = 'hidden';
+    
+    if (!sentidoBoardBaixo){
+        girarTabuleiro();
+    }
+    
     perdeu = false;
     statusPause = false;
     timer.resume();
-    // resetar timer
+    // reseta tempo
     minuto = 0;
     segundo = 0;
     comecaTempoJogo();
-    //resetar pontos
+    //resetar pontos e linhas quebradas.
+    POINTS = 0;
+    quantLinhas = 0;
+    document.getElementById('pontos').innerHTML = POINTS;
+    document.getElementById('linhas').innerHTML = quantLinhas;
 }
 
 // WIP ENZO

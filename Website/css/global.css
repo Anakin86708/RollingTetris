@@ -45,11 +45,13 @@ header{
 header > div > img{
     width: 17vw;
     height: 17vh;
+    user-select: none;
 }
 
 header > div > a > img{
     width: 17vw;
     height: 17vh;
+    user-select: none;
 }
 
 h1{

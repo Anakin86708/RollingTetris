@@ -220,7 +220,6 @@ function ativaBonus(quant, pontos) {
     var somatorio = pontos * (quant - 1);
     POINTS += somatorio;
     document.getElementById('pontos').innerHTML = POINTS;
-
 }
 
 // função tempo 
