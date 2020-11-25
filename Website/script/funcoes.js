@@ -1,3 +1,43 @@
+function playPause() {
+    if (document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png") {
+        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
+        
+        //Pausa animação das peças caindo
+        timer.pause();
+
+        //Pausa a contagem do tempo de partida
+        clearInterval(tempoTotalPartida);
+    }
+    else if (document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png") {
+        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
+        
+        //Continua a animação das peças caindo
+        timer.resume();
+
+        //Retoma a contagem do tempo de partida
+        comecaTempoJogo();
+    }
+}
+
+//Inicia a contagem do tempo de partida
+function comecaTempoJogo() {
+    tempoTotalPartida = setInterval(() => {tempoPartida();}, 1000);
+}
+
+//Realiza a contagem do tempo de partida
+function tempoPartida() {
+    segundo += 1;
+    if(segundo == 60){
+        minuto += 1;
+        segundo = 0;
+        document.getElementById('tempo').innerHTML = minuto + 'm : ' + segundo + 's';
+    }
+    else {
+        document.getElementById('tempo').innerHTML = minuto + 'm : ' + segundo + 's';
+    }
+    
+}
+
 // função para escolher opção do tamanho
 function trocaLinhas() {
     var status = document.getElementById("tamanho-jogo").textContent;

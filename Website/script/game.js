@@ -24,6 +24,12 @@ let peca = new Peca();
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
+var controleTrocado = false;
+
+var segundo = 0;
+var minuto = 0;
+var tempoTotalPartida;
+
 // Variaveis para o teclado
 
 function gerenciaGame() {
@@ -121,30 +127,63 @@ function gerenciarTeclas() {
     }
     if (rightPressed) //Tecla direita
     {
-        // É possivel ir para a direita?
-        if (peca.colisorLateral(board, true)) {
-            // Peça para a direita
-            if (peca.x < COLS - peca.largura) {
-                peca.x++;
+        //Bloco irá para a direita
+        if(controleTrocado == false) {
+            // É possivel ir para a direita?
+            if (peca.colisorLateral(board, true)) {
+                // Peça para a direita
+                if (peca.x < COLS - peca.largura) {
+                    peca.x++;
+                }
             }
         }
+        //Bloco irá para a direita (controle invertido)
+        else {
+            // É possivel ir para a direita?
+            if (peca.colisorLateral(board, false)) {
+                peca.x--;
+                if (peca.x < 0)   //Checagem do limite direito (canvas invertido)
+                    peca.x = 0;
+            }
+        }   
     }
     if (leftPressed) //Tecla esquerda
     {
-        if (peca.colisorLateral(board, false)) {
-            peca.x--;
-            if (peca.x < 0)   //Checagem do limite esquerdo
-            {
-                peca.x = 0;
+        //Bloco irá para a esquerda
+        if(controleTrocado == false) {
+            if (peca.colisorLateral(board, false)) {
+                peca.x--;
+                if (peca.x < 0)   //Checagem do limite esquerdo
+                    peca.x = 0;
             }
         }
+        //Bloco irá para a esquerda (controle invertido)
+        else {
+            if (peca.colisorLateral(board, true)) {
+                if (peca.x < COLS - peca.largura) //Checagem do limite esquerdo (canvas invertido)
+                    peca.x++;
+            }
+        }  
     }
     if (downPressed) //Tecla inferior
     {
-        peca.descerPeca()
+        //Bloco irá descer
+        if(controleTrocado == false){
+            peca.descerPeca();
+        }
+        //Bloco irá rotacionar (controle invertido)
+        else {
+            peca.rotacionar();
+        }
+        
     }
     if (upPressed) //Tecla Superior
-        peca.rotacionar()
+        //Bloco irá rotacionar
+        if(controleTrocado == false)    
+            peca.rotacionar()
+        else { //Bloco irá subir (controle invertido)
+            peca.descerPeca();
+        }
     desenha();
 }
 
@@ -170,7 +209,7 @@ function keyDownHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = true;
     }
-    else if (e.key == 'P' || e.key == 'p') {
+    else if (e.key == 'p' || e.code == 'KeyP') {
         pPressed = true;
     }
     gerenciarTeclas();
@@ -182,9 +221,11 @@ async function girarTabuleiro() {
         // Peças devem subir
         var anguloInicio = '0deg';
         var anguloFim = '180deg';
+        controleTrocado = true;
     } else {
         var anguloInicio = '180deg';
         var anguloFim = '360deg';
+        controleTrocado = false;
     }
 
     // Altera valores da transformaçào
@@ -220,7 +261,7 @@ function keyUpHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = false;
     }
-    else if (e.key == 'P' || e.key == 80) {
+    else if (e.key == 'p' || e.code == 'KeyP') {
         pPressed = false;
     }
     gerenciarTeclas();
@@ -236,19 +277,11 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 desenhaBoard(context, board, ROWS, COLS);
 
 var timer = new timer(gerenciaGame, tickGame);
-
 var botao = document.getElementById('playPause');
+//Inicia a contagem de tempo do jogo
+comecaTempoJogo();
 
-botao.addEventListener("click", function () {
-    if (document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png") {
-        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
-        timer.pause();
-    }
-    else if (document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png") {
-        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
-        timer.resume();
-    }
-})
+botao.addEventListener("click", playPause);
 
 timer.resume();
 
