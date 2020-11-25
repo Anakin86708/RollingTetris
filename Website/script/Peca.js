@@ -303,7 +303,7 @@ class Peca {
             if (this.y <= 0) {
                 alert('End game!');
             }
-            // this.y--;
+            this.y--;   
         }
     }
 

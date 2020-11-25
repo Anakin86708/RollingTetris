@@ -36,16 +36,16 @@ function gerenciaGame() {
 }
 
 function desenha() {
+    clear();
+    desenhaBoard(context, board, ROWS, COLS);
     // Verifica antes de desenhar se é possiver avançar
     if (!peca.colisorInferior(board)) {
         // Peça colide com a inferior e é printada na tela
         peca.pintaPecaBoard(board);
         resetPecas();
+    } else {
+        peca.desenhanNoCanvas(context);
     }
-
-    clear();
-    desenhaBoard(context, board, ROWS, COLS);
-    peca.desenhanNoCanvas(context);
 
     //Criação do tabuleiro reservado à próxima peça
     criaCanvasProx(ctxNext);

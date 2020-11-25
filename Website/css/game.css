@@ -144,6 +144,7 @@ main > div{
     /* height: 40%; */
     padding: 0px;
     /* transform: rotate(180deg); */
+    display: inline-block;
 }
 
 .play-rotacao {
@@ -152,8 +153,18 @@ main > div{
 }
 
 @keyframes rotacao {
-    0% {transform: rotate(var(--angulo-inicial));}
-    100% {transform: rotate(var(--angulo-final));}
+    0% {
+        transform: rotate(var(--angulo-inicial));
+        -webkit-transform: rotate(var(--angulo-inicial));
+        -moz-transform: rotate(var(--angulo-inicial));
+        -o-transform: rotate(var(--angulo-inicial));
+    }
+    100% {
+        transform: rotate(var(--angulo-final));
+        -webkit-transform: rotate(var(--angulo-final));
+        -moz-transform: rotate(var(--angulo-final));
+        -o-transform: rotate(var(--angulo-final));
+    }
 }
 
 /* Div dentro do Game*/
@@ -235,11 +246,3 @@ main > div{
     display: flex;
     justify-content: center;
 }
-
-
-
-
-
-
-
-
