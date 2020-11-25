@@ -243,3 +243,11 @@ function alterarTick(x) {
     let BASETICK = 1000;
     return BASETICK * Math.pow(Math.E, (-0.1 * x));  
 }
+
+function animacao(elemID, name) {
+    const elem = document.getElementById(elemID);
+    elem.style.animationPlayState = 'running';
+    elem.classList.remove(name);
+    void elem.offsetWidth;
+    elem.classList.add(name);
+}

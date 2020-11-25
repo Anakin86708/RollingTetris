@@ -233,7 +233,7 @@ async function girarTabuleiro() {
     document.documentElement.style.setProperty('--angulo-inicial', anguloInicio);
     document.documentElement.style.setProperty('--angulo-final', anguloFim);
 
-    animacaoTabuleiro();
+    animacao('tetris', 'play-rotacao');
     await sleep(1500);  // Deve ter o mesmo valor que o CSS
     document.getElementById('tetris').style.transform = 'rotate(' + anguloFim + ')';
 
@@ -241,14 +241,6 @@ async function girarTabuleiro() {
     
     sentidoBoardBaixo = !sentidoBoardBaixo;
     gerarAjudaControles();
-}
-
-function animacaoTabuleiro() {
-    const elem = document.getElementById('tetris');
-    elem.style.animationPlayState = 'running';
-    elem.classList.remove('play-rotacao');
-    void elem.offsetWidth;
-    elem.classList.add('play-rotacao');
 }
 
 //verificação dos botões soltos 
@@ -286,11 +278,11 @@ function gerarAjudaControles() {
     let pause = document.createElement('li');
 
     // Configura o texto da tecla
-    cima.innerText = 'Seta cima: ';
-    baixo.innerText = 'Seta baixo: ';
-    direita.innerText = 'Seta direita: ';
-    esquerda.innerText = 'Seta esquerda: ';
-    pause.innerText = 'P: pause';
+    cima.innerText = 'Seta ⬆: ';
+    baixo.innerText = 'Seta ⬇: ';
+    direita.innerText = 'Seta ➡: ';
+    esquerda.innerText = 'Seta ⬅: ';
+    pause.innerText = '🅿: pause';
 
     if (sentidoBoardBaixo) {
         // Sentido normal
@@ -298,11 +290,13 @@ function gerarAjudaControles() {
         baixo.innerText += 'Acelerar';
         direita.innerText += 'Mover direita';
         esquerda.innerText += 'Mover esquerda';
+        // document.getElementById('controles').classList.remove('controles-inv');
     } else {
         cima.innerText += 'Acelerar';
         baixo.innerText += 'Rotacionar';
         direita.innerText += 'Mover esquerda';
         esquerda.innerText += 'Mover direita';
+        // document.getElementById('controles').classList.add('controles-inv');
     }
 
     // Adiciona os elementos ao documento
@@ -311,6 +305,9 @@ function gerarAjudaControles() {
     elem.appendChild(direita);
     elem.appendChild(esquerda);
     elem.appendChild(pause);
+
+    // Aplica animacao
+    animacao('controles', 'play-controles');
 }
 
 // Exibe ajuda de controles
