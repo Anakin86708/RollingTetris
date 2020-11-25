@@ -232,11 +232,17 @@ main > div{
     text-align: center;
     background-color: var(--neutral-white);
     border-radius: 20px;
-    /* padding: 5px; */
+    padding: 10px 0px;
 }
 
 .opcao-tamanho > span{
     color: var(--neutral-black);
+}
+
+.opcao-tamanho:hover{
+    background-color:  var(--secondary-orange);
+    cursor: pointer;
+    user-select: none;
 }
 
 /* Botão de pausa e play */
@@ -253,7 +259,8 @@ main > div{
 /* Criando um botão alterando sua cor -> cabível de mudança*/
 
 .dot:hover{
-    background-color: aqua;
+    background-color: var(--secondary-orange);
+    cursor: pointer;
 }
 
 .game-botao{
@@ -267,12 +274,51 @@ main > div{
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+/* Cria uma tela de Game Over para o usuário */
+
+#gameover{
+    display: flex;
+    background-color: dimgray;
+    width: 100%;
+    height: 100%;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 20px;
+    flex-direction: column;
+    visibility: hidden;
+    position: absolute; /* NÃO É GAMBIARRA!!!!! */
+    opacity: 0.8;
+}
+
+#gameover #texto{
+    font-size: 6em;
+}
+
+#gameover #score{
+    font-size: 2em;
+}
+
+#gameover-botoes{
+    margin: 20px;
+}
+
+#gameover-botoes #restart:hover{
+    background-color: var(--secondary-orange);
 }
 
 
 
+#gameover-botoes #restart{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 1em;
+    height: 3.4em;
+}
 
-
+/* Fim tela de game over */ 
 
 
 
