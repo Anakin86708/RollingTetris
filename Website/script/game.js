@@ -33,6 +33,8 @@ var segundo = 0;
 var minuto = 0;
 var tempoTotalPartida;
 
+var dificuldade = 'Fácil';
+
 // Variaveis para o teclado
 
 function gerenciaGame() {
@@ -133,6 +135,19 @@ function linhaCompleta() {
 
 function aumentarVelocidade(multiplo) {
     tickGame = alterarTick(POINTS / multiplo);
+    if(tickGame >= 666) {
+        dificuldade = 'Fácil';
+        document.getElementById('dificuldade').innerHTML = dificuldade;
+    }
+    else if(tickGame < 666 && tickGame >= 333) {
+        dificuldade = 'Médio';
+        document.getElementById('dificuldade').innerHTML = dificuldade;
+    }
+    else if(tickGame < 333) {
+        dificuldade = 'Difícil';
+        document.getElementById('dificuldade').innerHTML = dificuldade;
+    }
+
 }
 
 // Comportamento relacionado à movimentação das peças
@@ -351,6 +366,8 @@ timer.resume();
 // Eventos para tecla pressionada e tecla não pressionada
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
+document.getElementById('dificuldade').innerHTML = dificuldade;
 
 function restart() {
     board = resetBoard();
