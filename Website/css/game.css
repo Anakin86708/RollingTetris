@@ -260,11 +260,9 @@ main > div{
     background-color: var(--secondary-orange);
 }
 
-#gameover-botoes #home{
-    margin-right: 2em;
-}
 
-#gameover-botoes #home, #restart{
+
+#gameover-botoes #restart{
     background-color: #fff;
     padding: 5px;
     border-radius: 1em;

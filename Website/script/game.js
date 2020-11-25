@@ -57,8 +57,8 @@ function desenha() {
     else
     {
         timer.pause()
+        statusPause = true;
     }
-
 }
 
 // Verifica se uma linha está completa
@@ -89,37 +89,40 @@ function linhaCompleta() {
 // Comportamento relacionado à movimentação das peças
 function gerenciarTeclas() {
     //Comando relacionado às teclas
-    if(pPressed)
-    {
-        playPause();
-    }
-    if (rightPressed) //Tecla direita
-    {
-        // É possivel ir para a direita?
-        if (peca.colisorLateral(board, true)){
-            // Peça para a direita
-            if (peca.x < COLS - peca.largura) {
-                peca.x++;
+    
+    if (!statusPause){ // condição para permitir o movimento das peças SOMENTE se o jogo NÃO ESTIVER em pause.
+        if(pPressed)
+        {
+            playPause();
+        }
+        if (rightPressed) //Tecla direita
+        {
+            // É possivel ir para a direita?
+            if (peca.colisorLateral(board, true)){
+                // Peça para a direita
+                if (peca.x < COLS - peca.largura) {
+                    peca.x++;
+                }
             }
         }
-    }
-    if (leftPressed) //Tecla esquerda
-    {
-        if(peca.colisorLateral(board, false)){
-            peca.x--;
-            if (peca.x < 0)   //Checagem do limite esquerdo
-            {
-                peca.x = 0;
+        if (leftPressed) //Tecla esquerda
+        {
+            if(peca.colisorLateral(board, false)){
+                peca.x--;
+                if (peca.x < 0)   //Checagem do limite esquerdo
+                {
+                    peca.x = 0;
+                }
             }
         }
+        if (downPressed) //Tecla inferior
+        {
+            peca.descerPeca();
+        }
+        if (upPressed) //Tecla Superior
+            peca.rotacionar();
+        desenha();
     }
-    if (downPressed) //Tecla inferior
-    {
-        peca.descerPeca()
-    }
-    if (upPressed) //Tecla Superior
-        peca.rotacionar()
-    desenha();
 }
 
 //Verificação dos botões pressionados
@@ -136,7 +139,7 @@ function keyDownHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = true;
     }
-    else if (e.key == 'P' || e.key == 'p') {
+    else if (e.key == 'p' || e.code == 'KeyP') {
         pPressed = true;
     }
     gerenciarTeclas();
@@ -156,7 +159,7 @@ function keyUpHandler(e) {
     else if (e.key == 'Up' || e.key == 'ArrowUp') {
         upPressed = false;
     }
-    else if (e.key == 'P' || e.key == 80) {
+    else if (e.key == 'p' || e.code == 'KeyP') {
         pPressed = false;
     }
     gerenciarTeclas();
@@ -176,17 +179,17 @@ var timer = new timer(gerenciaGame, 1000);
 var botao = document.getElementById('playPause');
 
 botao.addEventListener("click", function(){
-    if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
+    if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
     {
         //O jogo é pausado
-        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png";
+        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png";
         timer.pause();
         statusPause = true;
     }
-    else if(document.getElementById('playPause').src == "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png")
+    else if(document.getElementById('playPause').src == "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png")
     {
         //O jogo continua
-        document.getElementById('playPause').src = "https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png"
+        document.getElementById('playPause').src = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png"
         timer.resume();
         statusPause = false;
     }
@@ -197,6 +200,14 @@ timer.resume();
 // Eventos para tecla pressionada e tecla não pressionada
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
+/*  Teste leo - tentar fazer o botão de restart funcionar! */
+
+function restart(){
+    document.getElementById('gameover').style.visibility = 'hidden';
+    board = resetBoard();
+    desenhaBoard(context, board, ROWS, COLS)
+}
 
 // WIP ENZO
 // audios no jogo - implementar as classes que estão no lugar de novoJogo, 
