@@ -241,5 +241,6 @@ function gameOver()
 {
     clearInterval(tempoTotalPartida); /* pausa tempo */
     document.getElementById('gameover').style.visibility = 'visible';
+    document.getElementById('score').innerHTML = 'Pontuação: ' + POINTS;
     perdeu = true;
 }
