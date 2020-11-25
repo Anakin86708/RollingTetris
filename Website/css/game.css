@@ -1,5 +1,14 @@
 @import url("global.css");
 
+:root {
+    --angulo-inicial: '0deg';
+    --angulo-final: '180deg';
+}
+
+* {
+    font-size: 1.6vmin;
+}
+
 a{
     color:var(--neutral-white);
     text-decoration: none;
@@ -67,7 +76,7 @@ main > div{
 .game{
     flex: 4;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 /*INICIO - Painel de Informações da partida*/
@@ -81,11 +90,48 @@ main > div{
 }
 
 .match-info h2{
-    margin-bottom: 1vh;    
+    margin-bottom: 1vh;
+    font-size: 2vmin; 
 }
 
 .match-info ul li{
     margin-left: 2vh;
+    font-size: 1.6vmin;
+}
+
+.controles {
+    background-color: var(--neutral-gray);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1.5vh;
+    display: inline-block;
+    margin-top: 1vh;
+}
+
+.controles > h2 {
+    margin-bottom: 1vh;
+    font-size: 2vmin;
+}
+
+.controles ul li {
+    margin-left: 2vh;
+    font-size: 1.6vmin;
+}
+
+.controles-inv {
+    /* transform: scaleX(-1);  */
+    direction: rtl;
+}
+
+.play-controles {
+    animation-name: 'controles-rotation';
+    animation-duration: 1s;
+}
+
+@keyframes controles-rotation {
+    0% {transform: rotateY(var(--angulo-inicial));}
+    100% {transform: rotateY(var(--angulo-final));}
 }
 
 .gen-info{
@@ -115,8 +161,8 @@ main > div{
 .rank-panel h2{
     text-align: center;
     color: var(--neutral-white);
-    font-size: 36px;
-    margin-bottom: 1vh;
+    font-size: 4vmin;
+    margin-bottom: 0.5vmin;
 }
 
 .ranking{
@@ -130,3 +176,159 @@ main > div{
 .img-demo{
     height: 60vh;
 }
+
+/* Game */
+
+.game-canvas {
+    border-radius: 0;
+    /* width: 100%; */
+    /* height: 40%; */
+    padding: 0px;
+    /* transform: rotate(180deg); */
+}
+
+.play-rotacao {
+    animation-name: 'rotacao';
+    animation-duration: 1500ms;  /* Deve ter o mesmo valor no JS */
+}
+
+@keyframes rotacao {
+    0% {transform: rotate(var(--angulo-inicial));}
+    100% {transform: rotate(var(--angulo-final));}
+}
+
+/* Div dentro do Game*/
+
+.game-painel{
+    background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    height: 85%;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+/*Cabeçalho (header) do painel à direita, com o botão play*/
+.cabecalho{
+    background-color: var(--neutral-black);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 8px; 
+    height: 15%; 
+    width: 100%;
+}
+
+.lista-pecas{
+    /* background-color: var(--neutral-white); */
+    background-color: var(--neutral-black);
+    border: 0.5em solid black;
+    border-radius: 1em;
+    /* height: 60%; */
+    /* width: 100%; */
+    display: flex;
+}
+
+.prox-piece{
+    align-self: center;
+    width: 100%;
+}
+
+.opcao-tamanho{
+    width: 100%;
+    text-align: center;
+    background-color: var(--neutral-white);
+    border-radius: 20px;
+    padding: 10px 0px;
+}
+
+.opcao-tamanho > span{
+    color: var(--neutral-black);
+}
+
+.opcao-tamanho:hover{
+    background-color:  var(--secondary-orange);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Botão de pausa e play */
+.dot{
+    /* height: 80px;
+    width: 80px; */
+    /* position: relative; */
+    /* display: inline-block; */
+    background-color: var(--neutral-gray);
+    border-radius: 50%;
+    background-color: var(--neutral-white);
+    width: 50%;
+  }
+/* Criando um botão alterando sua cor -> cabível de mudança*/
+
+.dot:hover{
+    background-color: var(--secondary-orange);
+    cursor: pointer;
+}
+
+.game-botao{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Centraliza o Tetris.*/
+.jogoTetris{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* Cria uma tela de Game Over para o usuário */
+
+#gameover{
+    display: flex;
+    background-color: dimgray;
+    width: 100%;
+    height: 100%;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 20px;
+    flex-direction: column;
+    visibility: hidden;
+    position: absolute; /* NÃO É GAMBIARRA!!!!! */
+    opacity: 0.8;
+}
+
+#gameover #texto{
+    font-size: 6em;
+}
+
+#gameover #score{
+    font-size: 2em;
+}
+
+#gameover-botoes{
+    margin: 20px;
+}
+
+#gameover-botoes #restart:hover{
+    background-color: var(--secondary-orange);
+}
+
+
+
+#gameover-botoes #restart{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 1em;
+    height: 3.4em;
+}
+
+/* Fim tela de game over */ 
+
+audio {
+    display: none;
+}
+

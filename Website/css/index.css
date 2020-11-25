@@ -12,7 +12,7 @@ h1{
 }
 
 /*altera os blocs de colocar informações do usuário*/
-input{
+.signup input{
   width: 60%;
   padding: 10px; /*tamanho das caixas*/
   color: white;
@@ -126,10 +126,74 @@ form{
   height: 65%;
 }
 
+.menu-acessibilidade {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+  width: 15%;
+  height: 20%;
+  background-color: var(--neutral-white);
+  border-radius: 15px;
+  visibility: hidden;
+}
+
+/* Estilo do forms de acessibilidade */
+.menu-acessibilidade form{
+  background-color: var(--neutral-gray);
+  border-radius: 10px;
+  height: 100%;
+}
+
+.item-acessibilidade{
+  padding: 8px 0px;
+}
+
+.item-acessibilidade label:hover{
+  color: var(--secondary-red);
+}
+
+h2{
+  color: var(--neutral-white);
+  border-bottom: 2px solid var(--neutral-white);
+}
+
+label{
+  cursor: pointer;
+  color: var(--neutral-white);
+}
+
 main{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-bottom: 5vh;
+}
+
+.play-popup {
+  animation-name: 'popup';
+  animation-duration: 0.6s;  
+}
+
+@keyframes popup {
+20% {
+  transform: scale(0.9);
+}
+100% {
+  transform: scale(1);
+}
+}
+
+.play-fadeout {
+  animation-name: 'fadeout';
+  animation-duration: 0.9s;  /* Alterar valor no JS */
+}
+
+@keyframes fadeout {
+0% {
+  transform: scale(1)
+}
+100% {
+  transform: scale(0);
+}
 }

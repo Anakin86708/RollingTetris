@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('colors/default.css');
 /* @import url('colors/default.css'); */
 /* FUTURAS OPÇÕES PARA ACESSIBILIDADE */
 /* @import url('colors/deuteranopia.css'); */
@@ -46,11 +45,13 @@ header{
 header > div > img{
     width: 17vw;
     height: 17vh;
+    user-select: none;
 }
 
 header > div > a > img{
     width: 17vw;
     height: 17vh;
+    user-select: none;
 }
 
 h1{
