@@ -1,4 +1,4 @@
-// Desenho de uma peça
+// Canvas do tetris
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d', { alpha: false });
 
@@ -6,6 +6,7 @@ const context = canvas.getContext('2d', { alpha: false });
 const canvasNext = document.getElementById('prox-piece');
 const ctxNext = canvasNext.getContext('2d');
 
+// Tamanhos do tabuleiro
 const COLS = 10;
 const ROWS = 20;
 var TAMANHO_BLOCO = setTamanhoBloco(ROWS);
@@ -236,7 +237,10 @@ async function girarTabuleiro() {
     await sleep(1500);  // Deve ter o mesmo valor que o CSS
     document.getElementById('tetris').style.transform = 'rotate(' + anguloFim + ')';
 
+    // Altera controles
+    
     sentidoBoardBaixo = !sentidoBoardBaixo;
+    gerarAjudaControles();
 }
 
 function animacaoTabuleiro() {
@@ -267,6 +271,50 @@ function keyUpHandler(e) {
     gerenciarTeclas();
 }
 
+function gerarAjudaControles() {
+    /*
+    Cria os controles dinâmicamente para o usuário
+    */
+    let elem = document.getElementById("info-controles");
+    elem.innerHTML = "";  // Limpa o conteúdo
+
+    // Cria os elementos
+    let cima = document.createElement('li');
+    let baixo = document.createElement('li');
+    let direita = document.createElement('li');
+    let esquerda = document.createElement('li');
+    let pause = document.createElement('li');
+
+    // Configura o texto da tecla
+    cima.innerText = 'Seta cima: ';
+    baixo.innerText = 'Seta baixo: ';
+    direita.innerText = 'Seta direita: ';
+    esquerda.innerText = 'Seta esquerda: ';
+    pause.innerText = 'P: pause';
+
+    if (sentidoBoardBaixo) {
+        // Sentido normal
+        cima.innerText += 'Rotacionar';
+        baixo.innerText += 'Acelerar';
+        direita.innerText += 'Mover direita';
+        esquerda.innerText += 'Mover esquerda';
+    } else {
+        cima.innerText += 'Acelerar';
+        baixo.innerText += 'Rotacionar';
+        direita.innerText += 'Mover esquerda';
+        esquerda.innerText += 'Mover direita';
+    }
+
+    // Adiciona os elementos ao documento
+    elem.appendChild(cima);
+    elem.appendChild(baixo);
+    elem.appendChild(direita);
+    elem.appendChild(esquerda);
+    elem.appendChild(pause);
+}
+
+// Exibe ajuda de controles
+gerarAjudaControles();
 
 // Limpa o canvas
 resize();
