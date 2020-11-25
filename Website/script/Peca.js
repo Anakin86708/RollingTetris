@@ -202,13 +202,13 @@ class Peca {
 
     descerPeca() {
         // Verifica antes de desenhar se é possiver avançar
-        if (!peca.colisorInferior(board)) {
+        if (!this.colisorInferior(board)) {
             // Peça colide com a inferior e é printada na tela
-            peca.pintaPecaBoard(board);
+            this.pintaPecaBoard(board);
             resetPecas();
         } else {
             // Consegue descer
-            peca.y += 1;
+            this.y += 1;
             desenha();
         }
     }

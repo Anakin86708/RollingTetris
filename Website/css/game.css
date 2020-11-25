@@ -5,6 +5,10 @@
     --angulo-final: '180deg';
 }
 
+* {
+    font-size: 1.6vmin;
+}
+
 a{
     color:var(--neutral-white);
     text-decoration: none;
@@ -86,11 +90,13 @@ main > div{
 }
 
 .match-info h2{
-    margin-bottom: 1vh;    
+    margin-bottom: 1vh;
+    font-size: 2vmin; 
 }
 
 .match-info ul li{
     margin-left: 2vh;
+    font-size: 1.6vmin;
 }
 
 .controles {
@@ -105,10 +111,12 @@ main > div{
 
 .controles > h2 {
     margin-bottom: 1vh;
+    font-size: 2vmin;
 }
 
 .controles ul li {
     margin-left: 2vh;
+    font-size: 1.6vmin;
 }
 
 .controles-inv {
@@ -153,8 +161,8 @@ main > div{
 .rank-panel h2{
     text-align: center;
     color: var(--neutral-white);
-    font-size: 36px;
-    margin-bottom: 1vh;
+    font-size: 4vmin;
+    margin-bottom: 0.5vmin;
 }
 
 .ranking{
