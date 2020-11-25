@@ -69,7 +69,10 @@ function desenha() {
         timer.pause()
         statusPause = true;
     }
-    pecaProxima.desenhanNoCanvas(ctxNext, 0, 6);
+
+    pintaPecaProxima(ctxNext);
+
+    // pecaProxima.desenhanNoCanvas(ctxNext, 0, 6);
 }
 
 // Verifica se uma linha está completa
