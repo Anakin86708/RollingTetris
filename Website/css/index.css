@@ -171,7 +171,7 @@ main{
 }
 
 .play-popup {
-  animation-name: 'popup';
+  animation-name: popup;
   animation-duration: 0.6s;  
 }
 
@@ -185,7 +185,7 @@ main{
 }
 
 .play-fadeout {
-  animation-name: 'fadeout';
+  animation-name: fadeout;
   animation-duration: 0.9s;  /* Alterar valor no JS */
 }
 
