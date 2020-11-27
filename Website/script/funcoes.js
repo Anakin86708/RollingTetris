@@ -200,7 +200,7 @@ function gerarCores() {
 function descerTabuleiro(linMin) {
     for (let lin = linMin; lin > 0; lin--) {
         // Passa por todas as linhas do tabuleiro
-        board[lin] = board[lin - 1];
+        board[lin] = board[lin - 1].slice();
     }
 
     // Cria uma nova linha superior
