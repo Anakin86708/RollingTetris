@@ -1,3 +1,9 @@
+/* 
+ *   Ao validar este arquivo, foi retornado alguns alertas e erros em relação ao "transform:rotate()". Ao consultar a documentação da MDN,
+ *   a nossa sintaxe está de acordo, mas mesmo assim obtivemos os mesmos erros. Não sabemos o motivo de tal acontecimento.
+ * https://developer.mozilla.org/pt-BR/docs/Web/CSS/transform
+*/
+
 @import url("global.css");
 
 :root {
@@ -125,7 +131,7 @@ main > div{
 }
 
 .play-controles {
-    animation-name: 'controles-rotation';
+    animation-name: controles-rotation;
     animation-duration: 1s;
 }
 
@@ -188,7 +194,7 @@ main > div{
 }
 
 .play-rotacao {
-    animation-name: 'rotacao';
+    animation-name: rotacao;
     animation-duration: 1500ms;  /* Deve ter o mesmo valor no JS */
 }
 
@@ -243,7 +249,7 @@ main > div{
     padding: 10px 0px;
 }
 
-.opcao-tamanho > span{
+.opcao-tamanho h3{
     color: var(--neutral-black);
 }
 
