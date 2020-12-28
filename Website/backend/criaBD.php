@@ -1,19 +1,18 @@
 <?php 
-    include_once 'conexao.php';
+    include_once './conexao.php';
 
-    criaBD($servername, $username, $password);
+    criaBD($servername, $username, $password, $dbname);
     criaTable($servername, $dbname, $username, $password);
 
-    function criaBD($servername, $username, $password)
+    function criaBD($servername, $username, $password, $dbname)
     {
         try {
             $conn = new PDO("mysql:host=$servername;", $username, $password);
+            $sql = "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+            $conn->exec($sql);
         } catch (PDOException $e) {
             echo "Ocorreu um erro na criação do Banco de Dados: " . $e->getMessage();
         }
-
-        $sql = "CREATE DATABASE usuarios DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
-        $conn->exec($sql);
     }
 
     function criaTable($servername, $dbname, $username, $password)
@@ -22,28 +21,39 @@
             $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
 
             $sql = "CREATE TABLE IF NOT EXISTS pessoa(
-                nome varchar(50),
-                nascimento int,
-                cpf tinyint,
-                telefone tinyint,
-                email varchar(50),
-                username varchar(50),    
-                senha varchar(50),
-                primary key (cpf)
+                cpf CHAR(11) NOT NULL,
+                nome VARCHAR(70) NOT NULL,
+                nascimento INT NOT NULL,
+                telefone CHAR(11) NOT NULL,
+                email VARCHAR(100) NOT NULL,
+                username VARCHAR(30) NOT NULL,
+                senha VARCHAR(50) NOT NULL,
+                PRIMARY KEY (cpf)
             )";
 
             $conn->exec($sql);
 
-            $sql = "CREATE TABLE partida(
-                idPartida int auto_increment,
-                tempoPartida int,
-                pontuacao int,
-                linhasEliminadas int,
-                nivel varchar(10),
-                primary key (idPartida)
+            $sql = "CREATE TABLE IF NOT EXISTS partida(
+                idPartida INT AUTO_INCREMENT NOT NULL,
+                tempoPartida INT NOT NULL,
+                pontuacao INT NOT NULL,
+                linhasEliminadas INT NOT NULL,
+                dificuldade CHAR(10) NOT NULL,
+                PRIMARY KEY (idPartida)
             )";
     
             $conn->exec($sql);
+
+            $sql = "CREATE TABLE IF NOT EXISTS joga(
+                cpf CHAR(11) NOT NULL,
+                idPartida INT NOT NULL,
+                PRIMARY KEY (cpf, idPartida),
+                FOREIGN KEY (cpf) REFERENCES pessoa(cpf),
+                FOREIGN KEY (idPartida) REFERENCES partida(idPartida)
+            )";
+
+            $conn->exec($sql);
+
             echo "Criado com sucesso!";
 
         } catch (PDOException $e) {
