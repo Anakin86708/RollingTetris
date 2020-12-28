@@ -30,7 +30,7 @@
                     <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
                     <!-- Futuro evento em JS para permitir a edição da imagem -->
                 </div>
-                <form id="form" name="form">
+                <form id="form" name="form" method="POST" action="backend/novoUsuario.php" onsubmit="return validaFormulario()">
                     <div class="form-line">
                         <p>Nome completo</p>
                         <input type="text" name="nome">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text" name="identificacao"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="cpf"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
@@ -59,7 +59,7 @@
                         <p>Senha</p>
                         <input type="password" name="senha">
                     </div>
-                    <button type="submit"onclick="playerCadastro()">Enviar</button> 
+                    <button type="submit" onclick="playerCadastro()">Enviar</button> 
                     <!-- <input type="submit" id="submit" value="Go!"> -->
                 </form>
             </div>

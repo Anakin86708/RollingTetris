@@ -24,18 +24,17 @@
     <main>
       <div class="default-div signup">
         <!--Cria um "Formulário com as respectivas funcionalidades abaixo" -->
-        <form>
+        <form method="post" action="backend/login.php">
           <h1>Login</h1>
           <div class="input-line">
             <img src="images/user.png" alt="Usuário">
-            <input type="text" id="username" placeholder="Usuário"> <!-- RECOLOCAR REQUIRED QUANDO NECESSÁRIO -->
+            <input type="text" id="username" placeholder="Usuário" name="username" required> <!-- RECOLOCAR REQUIRED QUANDO NECESSÁRIO -->
           </div>
           <div class="input-line">
             <img src="images/password.png" alt="Senha">
-            <input type="password" id="password" placeholder="Senha">
+            <input type="password" id="password" placeholder="Senha" name="password">
           </div>
-          <!-- <input type="submit" id="submit" value="Go!"> Botão permanente de submit-->
-          <a id="btn-go" class="btn-global" href="game.html">Go!</a> <!-- Botão temporário para entrega -->
+          <input type="submit" value="Go!" class="btn-global" id="btn-go"> 
         </form>
 
         <p>Não tem uma conta? <b><a href="register.html">Crie uma!</a></b></p>
