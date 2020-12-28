@@ -23,7 +23,7 @@
             $sql = "CREATE TABLE IF NOT EXISTS pessoa(
                 cpf CHAR(11) NOT NULL,
                 nome VARCHAR(70) NOT NULL,
-                nascimento INT NOT NULL,
+                nascimento DATE NOT NULL,
                 telefone CHAR(11) NOT NULL,
                 email VARCHAR(100) NOT NULL,
                 username VARCHAR(30) NOT NULL,
@@ -61,4 +61,3 @@
         }
     }
 ?>
-

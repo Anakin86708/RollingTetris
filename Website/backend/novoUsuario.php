@@ -24,6 +24,7 @@
         $sql = "INSERT INTO pessoa (nome, nascimento, cpf, telefone, email, username, senha) VALUES (:nome, :anoNascimento, :cpf, :telefone, :email, :username, :senha)";
         $stm = $conexao->prepare($sql);
         $stm->execute($info_usuario);
+        echo 'Sucesso ao inserir dados';
     };
 
     insereDados($info_usuario, $conn);
