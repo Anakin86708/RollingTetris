@@ -1,5 +1,4 @@
 <?php
-
     include_once 'conexao.php';
     
     $info_usuario = array("nome" => $_POST["nome"],
@@ -29,6 +28,6 @@
 
     insereDados($info_usuario, $conn);
     
-    // header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
+    header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
     
 ?>

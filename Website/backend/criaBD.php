@@ -35,23 +35,15 @@
 
             $sql = "CREATE TABLE IF NOT EXISTS partida(
                 idPartida INT AUTO_INCREMENT NOT NULL,
+                cpfJogador char(11) NOT NULL,
                 tempoPartida INT NOT NULL,
                 pontuacao INT NOT NULL,
                 linhasEliminadas INT NOT NULL,
                 dificuldade CHAR(10) NOT NULL,
-                PRIMARY KEY (idPartida)
+                PRIMARY KEY (idPartida),
+                FOREIGN KEY (cpfJogador) REFERENCES pessoa(cpf)
             )";
     
-            $conn->exec($sql);
-
-            $sql = "CREATE TABLE IF NOT EXISTS joga(
-                cpf CHAR(11) NOT NULL,
-                idPartida INT NOT NULL,
-                PRIMARY KEY (cpf, idPartida),
-                FOREIGN KEY (cpf) REFERENCES pessoa(cpf),
-                FOREIGN KEY (idPartida) REFERENCES partida(idPartida)
-            )";
-
             $conn->exec($sql);
 
             echo "Criado com sucesso!";
