@@ -254,6 +254,7 @@ function gameOver()
 function getAndSendGameResultToServer()
 {
     const data = new FormData();
+    data.append("cpfJogador", "12312312311");
     data.append("pontuacao", POINTS);
     data.append("linhasEliminadas", quantLinhas);
     data.append("dificuldade", dificuldade);
@@ -262,7 +263,7 @@ function getAndSendGameResultToServer()
 
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/backend/teste.php", true); // true para assync. A partir de agora podemos mandar o request para o php
+    xhr.open("POST", "/backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
     xhr.send(data);
 }
 
