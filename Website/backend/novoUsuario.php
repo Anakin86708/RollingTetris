@@ -25,8 +25,6 @@
         $stm = $conexao->prepare($sql);
         $stm->execute($info_usuario);
     };
-
-    insereDados($info_usuario, $conn);
     
     // header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
     

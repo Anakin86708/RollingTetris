@@ -30,7 +30,7 @@
                     <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
                     <!-- Futuro evento em JS para permitir a edição da imagem -->
                 </div>
-                <form id="form" name="form" method="POST" action="backend/novoUsuario.php" onsubmit="return validaFormulario()">
+                <form id="form" name="form" method="POST" action="backend/validaUsuario.php" onsubmit="return validaFormulario()">
                     <div class="form-line">
                         <p>Nome completo</p>
                         <input type="text" name="nome">
@@ -59,7 +59,7 @@
                         <p>Senha</p>
                         <input type="password" name="senha">
                     </div>
-                    <button type="submit" onclick="playerCadastro()">Enviar</button> 
+                    <button type="submit" name="botaoSubmissao">Enviar</button> 
                     <!-- <input type="submit" id="submit" value="Go!"> -->
                 </form>
             </div>
