@@ -1,5 +1,4 @@
 <?php
-    include_once 'conexao.php';
     include_once 'novoUsuario.php';
 
     if(isset($_POST['botaoSubmissao']))
