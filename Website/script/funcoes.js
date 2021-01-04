@@ -248,4 +248,23 @@ function gameOver()
     document.getElementById('gameover').style.visibility = 'visible';
     document.getElementById('score').innerHTML = 'Pontuação: ' + POINTS;
     perdeu = true;
+    getAndSendGameResultToServer();
 }
+
+function getAndSendGameResultToServer()
+{
+    const data = new FormData();
+    data.append("cpfJogador", "12312312311");
+    data.append("pontuacao", POINTS);
+    data.append("linhasEliminadas", quantLinhas);
+    data.append("dificuldade", dificuldade);
+    data.append("minuto",minuto);
+    data.append("segundo",segundo);
+
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
+    xhr.send(data);
+}
+
+

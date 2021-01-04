@@ -33,31 +33,31 @@
                 <form id="form" name="form" method="POST" action="backend/validaUsuario.php" onsubmit="return validaFormulario()">
                     <div class="form-line">
                         <p>Nome completo</p>
-                        <input type="text" name="nome">
+                        <input type="text" name="nome" required>
                     </div>
                     <div class="form-line">
                         <p>Data de nascimento</p>
-                        <input type="date" name="aniversario">
+                        <input type="date" name="aniversario" required>
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text" name="cpf"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="cpf" required> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="text" name="phone"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="phone" placeholder="(00)0000-0000" required> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email" name="mail"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" name="mail" required> <!-- É necessário criar um máscara para o campo no futuro e validação -->
                     </div>
                     <div class="form-line">
                         <p>Username</p>
-                        <input type="text" name="user">
+                        <input type="text" name="user" required>
                     </div>
                     <div class="form-line">
                         <p>Senha</p>
-                        <input type="password" name="senha">
+                        <input type="password" name="senha" required>
                     </div>
                     <button type="submit" name="botaoSubmissao">Enviar</button> 
                     <!-- <input type="submit" id="submit" value="Go!"> -->

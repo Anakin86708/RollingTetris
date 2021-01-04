@@ -1,23 +1,18 @@
 <?php
+include_once 'conexao.php';
 
-    include_once 'conexao.php';
-    
-    $info_usuario = array("nome" => $_POST["nome"],
-                          "anoNascimento" => $_POST["aniversario"],
-                          "cpf" => $_POST["cpf"],
-                          "telefone" => $_POST["phone"],
-                          "email" => $_POST["mail"],
-                          "username" => $_POST["user"],
-                          "senha" => $_POST["senha"]
-                          );
-    
-    try {
-        $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
+$info_usuario = array(
+    "nome" => $_POST["nome"],
+    "anoNascimento" => $_POST["aniversario"],
+    "cpf" => $_POST["cpf"],
+    "telefone" => $_POST["phone"],
+    "email" => $_POST["mail"],
+    "username" => $_POST["user"],
+    "senha" => $_POST["senha"]
+);
 
+$conn = getNewConnection();
 
-    } catch (PDOException $e) {
-        echo "Ocorreu um erro na conexão com o Banco de Dados: " . $e->getMessage();
-    }
 
     function insereDados($info_usuario, $conexao)
     {
