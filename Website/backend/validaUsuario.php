@@ -12,7 +12,7 @@
         $username   = $_POST["user"];           
         $senha      = $_POST["senha"];               
 
-        // algum campo vazio        
+        // algum campo vazio   COMO TEM O REQUIRED DO HTML, É NECESSÁRIO TER ISSO DAQUI?     
         if(empty($nome) || empty($nascimento) || empty($cpf) || empty($telefone) || empty($email) || empty($username) || empty($senha))
         {
             header('Location: ../register.html');
@@ -40,13 +40,12 @@
 
            if($sql->rowCount() > 0)
            {
-               echo "usuario já está cadastrado, tente um novo email";
-               echo $sql->rowCount();
+                echo "usuario já está cadastrado, tente um novo email";
            }
            else{
                 insereDados($info_usuario, $conn);
                 echo "castrado realizado com sucesso!";
-                header('Location: ../index.html'); // ariel havia pedido para retornar para o index.
+                // header('Location: ../index.html'); // ariel havia pedido para retornar para o index.
            }
         }
     }

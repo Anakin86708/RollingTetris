@@ -8,7 +8,9 @@ $info_usuario = array(
     "telefone" => $_POST["phone"],
     "email" => $_POST["mail"],
     "username" => $_POST["user"],
-    "senha" => $_POST["senha"]
+    // "senha" => md5($_POST["senha"]) // senha com o hash
+    // "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT)
+    "senha" => $_POST['senha']
 );
 
 $conn = getNewConnection();
@@ -22,5 +24,6 @@ $conn = getNewConnection();
     };
     
     // header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
+    // CRIAR UM FEEDBACK PARA O USUARIO SE POSSIVEL
     
 ?>
