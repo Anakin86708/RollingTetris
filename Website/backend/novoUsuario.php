@@ -7,10 +7,8 @@ $info_usuario = array(
     "cpf" => $_POST["cpf"],
     "telefone" => $_POST["phone"],
     "email" => $_POST["mail"],
-    "username" => $_POST["user"],
-    // "senha" => md5($_POST["senha"]) // senha com o hash
-    // "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT)
-    "senha" => $_POST['senha']
+    "usuario" => $_POST["user"],
+    "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT)
 );
 
 $conn = getNewConnection();
@@ -18,7 +16,7 @@ $conn = getNewConnection();
 
     function insereDados($info_usuario, $conexao)
     {
-        $sql = "INSERT INTO pessoa (nome, nascimento, cpf, telefone, email, username, senha) VALUES (:nome, :anoNascimento, :cpf, :telefone, :email, :username, :senha)";
+        $sql = "INSERT INTO pessoa (nome, nascimento, cpf, telefone, email, usuario, senha) VALUES (:nome, :anoNascimento, :cpf, :telefone, :email, :usuario, :senha)";
         $stm = $conexao->prepare($sql);
         $stm->execute($info_usuario);
     };
