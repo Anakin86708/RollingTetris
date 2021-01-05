@@ -1,36 +1,31 @@
 <?php
 
-    include_once 'conexao.php';
+include_once 'conexao.php';
 
-    try {
-        $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
+$conn = getNewConnection();
 
+// verifica se o login/senha está no nosso banco
+$sql = $conn->prepare("SELECT senha FROM pessoa WHERE usuario = :u");
+$sql->bindValue(":u", $_POST['usuario']);
+$sql->execute();
 
-    } catch (PDOException $e) {
-        echo "Ocorreu um erro na conexão com o Banco de Dados: " . $e->getMessage();
-    }
-    
-    // verifica se o login/senha está no nosso banco
-    $sql = $conn->prepare("SELECT username FROM pessoa WHERE username = :u AND senha = :p");
-    $sql->bindValue(":u", $_POST['username']);
-    $sql->bindValue(":p", $_POST['password']);
-    $sql->execute();
+if ($sql->rowCount() > 0) {
+    session_start();
+    $senhaInserida = $_POST['senha'];
+    $dadosUsuario = $sql->fetch(PDO::FETCH_ASSOC); // transforma todo o nosso select em um array associativo
+    $hash = $dadosUsuario['senha'];
 
-    if($sql->rowCount() > 0)
-    {
-        session_start();
-        $dadosUsuario = $sql->fetch(); // transforma todo o nosso select em um array associativo
-        
+    if (password_verify($senhaInserida, $hash)) {
         $_SESSION['logado'] = true;
-        $_SESSION['username'] = $dadosUsuario['username']; // ao logar, é criado uma sessão para esse usuário.
+        $_SESSION['usuario'] = $dadosUsuario['usuario']; // ao logar, é criado uma sessão para esse usuário.
         header('Location: ../game.php');
-
-    }
-    else{ // USUARIO NAO ENCONTRADO
+    } else {
+        echo '<br>falso<br>';
+        print_r($_POST);
         header('Location: ../index.html');
     }
-
-
-    
-
-?>
+} else {
+    // USUARIO NAO ENCONTRADO
+    echo 'não encontrado';
+    header('Location: ../index.html');
+}
