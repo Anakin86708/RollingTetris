@@ -26,7 +26,7 @@
                 nascimento DATE NOT NULL,
                 telefone CHAR(11) NOT NULL,
                 email VARCHAR(100) NOT NULL,
-                username VARCHAR(30) NOT NULL,
+                username VARCHAR(30) NOT NULL UNIQUE,
                 senha VARCHAR(50) NOT NULL,
                 PRIMARY KEY (cpf)
             )";
