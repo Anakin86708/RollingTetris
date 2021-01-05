@@ -51,10 +51,10 @@
                     <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
                     <!-- Futuro evento em JS para permitir a edição da imagem -->
                 </div>
-                <form>
+                <form method="POST" action="backend/atualizarDados.php">
                     <div class="form-line">
                         <p>Nome completo</p>
-                        <input type="text" value="<?php echo $dados['nome']?>">
+                        <input type="text" name="nome" value="<?php echo $dados['nome']?>">
                     </div>
                     <div class="form-line">
                         <p>Data de nascimento</p>
@@ -66,11 +66,11 @@
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="tel" value="<?php echo $dados['telefone']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="tel" name="telefone" value="<?php echo $dados['telefone']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email" value="<?php echo $dados['email']?>"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" name="email" value="<?php echo $dados['email']?>"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
                     </div>
                     <div class="form-line">
                         <p>Username</p>
@@ -78,9 +78,9 @@
                     </div>
                     <div class="form-line">
                         <p>Senha</p>
-                        <input type="password">
+                        <input type="password" name="senha">
                     </div>
-                    <button type="submit">Salvar</button>
+                    <button type="submit" name="enviar">Salvar</button>
                     <!-- <input type="submit" id="submit" value="Go!"> -->
                 </form>
             </div>
@@ -96,4 +96,12 @@
 
 </html>
 
-<?php } ?>
+<?php } 
+
+        if(isset($_GET['enviar'])){
+            // $a = $_POST['mail'];
+            echo 'clicou';
+            
+        } 
+
+?>
