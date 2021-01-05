@@ -5,7 +5,7 @@ include_once 'conexao.php';
 $conn = getNewConnection();
 
 // verifica se o login/senha está no nosso banco
-$sql = $conn->prepare("SELECT senha FROM pessoa WHERE usuario = :u");
+$sql = $conn->prepare("SELECT * FROM pessoa WHERE usuario = :u");
 $sql->bindValue(":u", $_POST['usuario']);
 $sql->execute();
 

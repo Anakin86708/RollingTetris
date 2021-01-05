@@ -36,7 +36,7 @@
                             <div class="item-01">
                                 <img class="default-avatar" src="images/sample-avatar.bmp" alt="Foto de perfil do usuário">
                                 <div class="user-name">
-                                    Nome de usuário
+                                    <?php echo $_SESSION['usuario'];?>
                                 </div>
                             </div>
 
@@ -186,6 +186,6 @@
 
         </html>
     
-<?php
+<?php   
     }
 ?>
