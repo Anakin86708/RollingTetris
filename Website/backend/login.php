@@ -12,20 +12,17 @@ $sql->execute();
 if ($sql->rowCount() > 0) {
     session_start();
     $senhaInserida = $_POST['senha'];
-    $dadosUsuario = $sql->fetch(PDO::FETCH_ASSOC); // transforma todo o nosso select em um array associativo
+    $dadosUsuario = $sql->fetch(PDO::FETCH_ASSOC);
     $hash = $dadosUsuario['senha'];
 
     if (password_verify($senhaInserida, $hash)) {
         $_SESSION['logado'] = true;
-        $_SESSION['usuario'] = $dadosUsuario['usuario']; // ao logar, é criado uma sessão para esse usuário.
+        $_SESSION['usuario'] = $dadosUsuario['usuario']; 
         header('Location: ../game.php');
     } else {
-        echo '<br>falso<br>';
-        print_r($_POST);
         header('Location: ../index.html');
     }
 } else {
     // USUARIO NAO ENCONTRADO
-    echo 'não encontrado';
     header('Location: ../index.html');
 }
