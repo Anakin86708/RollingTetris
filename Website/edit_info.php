@@ -1,3 +1,23 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['logado']))
+    {
+        header('location: index.html');
+    }
+    else{
+        include_once 'backend/conexao.php';
+
+        $conn = getNewConnection();
+        $stmt = $conn->prepare("SELECT * FROM pessoa WHERE usuario = :u");
+        $stmt->bindValue(":u", $_SESSION['usuario']);
+        
+        if($stmt->execute())
+        {
+            $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -34,27 +54,27 @@
                 <form>
                     <div class="form-line">
                         <p>Nome completo</p>
-                        <input type="text">
+                        <input type="text" value="<?php echo $dados['nome']?>">
                     </div>
                     <div class="form-line">
                         <p>Data de nascimento</p>
-                        <input type="date" disabled>
+                        <input type="date" disabled value="<?php echo $dados['nascimento']?>">
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text" disabled> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" disabled value="<?php echo $dados['cpf']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="tel"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="tel" value="<?php echo $dados['telefone']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
                     </div>
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" value="<?php echo $dados['email']?>"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
                     </div>
                     <div class="form-line">
                         <p>Username</p>
-                        <input type="text" disabled>
+                        <input type="text" disabled value="<?php echo $dados['usuario']?>">
                     </div>
                     <div class="form-line">
                         <p>Senha</p>
@@ -75,3 +95,5 @@
 </body>
 
 </html>
+
+<?php } ?>

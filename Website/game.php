@@ -45,7 +45,7 @@
                                     <a href="backend/logout.php">Logout</a>
                                 </div>
                                 <div class="edit">
-                                    <a href="edit_info.html">Editar informações</a>
+                                    <a href="edit_info.php">Editar informações</a>
                                 </div>
                             </div>
                         </div>
