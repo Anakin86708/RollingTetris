@@ -262,7 +262,7 @@ function getAndSendGameResultToServer()
 
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/atividadePHP/RollingTetris/Website/backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
+    xhr.open("POST", "backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
     xhr.onload = function(e) {//Call a function when the state changes.
         if (this.status == 200) 
         {
@@ -271,5 +271,3 @@ function getAndSendGameResultToServer()
     }
     xhr.send(formdado);
 }
-
-

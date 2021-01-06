@@ -5,7 +5,12 @@
         header("Location: index.html");
     }
     else{
-      
+
+        include_once 'backend/conexao.php';
+
+        $conn = getNewConnection();
+        $stmt = $conn->query("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador");
+
     ?>
 
         <!DOCTYPE html>
@@ -52,7 +57,7 @@
 
                         <div class="match-info">
                             <h2 class="info-title">Informações da partida</h2>
-                            <ul class="gen-info">
+                            <ul class="gen-info">                                               
                                 <li class="item">
                                     Tempo: <div id="tempo"></div>
                                 </li>
@@ -136,7 +141,17 @@
                                     <th>Tempo</th>
                                 </tr>
 
-                                <tr>
+                                <?php 
+                                
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                                {
+                                    echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
+                                }
+
+                                ?>
+                                
+                                
+                                <!-- <tr>
                                     <td>Ariel</td>
                                     <td>1000000</td>
                                     <td>57</td>
@@ -159,7 +174,7 @@
                                     <td>1000</td>
                                     <td>7</td>
                                     <td>00h:09m:10s</td>
-                                </tr>
+                                </tr> -->
                             </table>
                             <div class="world-ranking">
                                 <a class="btn-global" href="rank.html">RANKING GLOBAL</a>
