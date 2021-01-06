@@ -10,6 +10,11 @@ function onLoad() {
     loadStyle();
 }
 
+function onLoadGame(cpf) {
+    onLoad();
+    loadRankingFromDB(cpf);
+}
+
 function loadStyle() {
     // Verifica se o cookie já existe
     let cookie = getStyleValue('cssAcessibilidade');

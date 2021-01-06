@@ -182,7 +182,7 @@ main > div{
     flex-direction: column;
 }
 
-.ranking table tr{
+.ranking-row{
     width:100%;
 }
 
