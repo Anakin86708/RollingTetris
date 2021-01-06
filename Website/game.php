@@ -7,9 +7,11 @@
     else{
 
         include_once 'backend/conexao.php';
-
+        
         $conn = getNewConnection();
-        $stmt = $conn->query("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador");
+        $stmt = $conn->prepare("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador WHERE pe.cpf = ':cpf' ORDER BY pontuacao DESC");
+        $stmt->bindValue(':cpf', $_SESSION['cpf']);
+        $stmt->execute();
 
     ?>
 
@@ -146,6 +148,7 @@
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                                 {
                                     echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
+                                    print_r($row);
                                 }
 
                                 ?>
