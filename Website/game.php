@@ -177,7 +177,7 @@
                                 </tr> -->
                             </table>
                             <div class="world-ranking">
-                                <a class="btn-global" href="rank.html">RANKING GLOBAL</a>
+                                <a class="btn-global" href="rank.php">RANKING GLOBAL</a>
                             </div>
                         </div>
                     </div>
