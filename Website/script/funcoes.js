@@ -173,7 +173,7 @@ function gerarCores() {
     Valores de cor de acordo com a paleta selecionada no CSS
     Necessário para a acessibilidade!
     */
-    loadCookieStyle();
+    loadStyle();
     console.log('Carregando cores!');
     const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
     const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
