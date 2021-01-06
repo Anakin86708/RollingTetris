@@ -1,12 +1,16 @@
 <?php
 require_once('conexao.php');
+session_start();
+    if(!isset($_SESSION['logado']))
+    {
+        header("Location: index.html");
+    }
+saveGameDataOnDB($_POST);
 
-saveGameDataOnDB();
-
-function saveGameDataOnDB()
+function saveGameDataOnDB($data)
 {
     $conn = getNewConnection();
-    $gameData = getCurrentGameData();
+    $gameData = getCurrentGameData($data);
 
     $sql = "INSERT INTO partida (idPartida, cpfJogador, tempoPartida, pontuacao, linhasEliminadas, dificuldade) VALUES (DEFAULT, :cpfJogador, :tempoPartida, :pontuacao, :linhasEliminadas, :dificuldade)";
     $stm = $conn->prepare($sql);
@@ -20,14 +24,14 @@ function saveGameDataOnDB()
     print_r($gameData);
 }
 
-function getCurrentGameData()
+function getCurrentGameData($data)
 {
     return array(
-        "cpfJogador" => $_POST["cpfJogador"]."",
-        "pontuacao" => $_POST["pontuacao"],
-        "dificuldade" => $_POST["dificuldade"],
-        "linhasEliminadas" => $_POST["linhasEliminadas"],
-        "tempoPartida" => getTempoPartida($_POST),
+        "cpfJogador" => $_SESSION['cpf'],
+        "pontuacao" => $data['pontuacao'],
+        "dificuldade" => $data['dificuldade'],
+        "linhasEliminadas" => $data['linhasEliminadas'],
+        "tempoPartida" => getTempoPartida($data),
     );
 }
 
