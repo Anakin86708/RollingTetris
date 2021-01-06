@@ -9,8 +9,8 @@
         include_once 'backend/conexao.php';
         
         $conn = getNewConnection();
-        $stmt = $conn->prepare("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador WHERE pe.cpf = ':cpf' ORDER BY pontuacao DESC");
-        $stmt->bindValue(':cpf', $_SESSION['cpf']);
+        $stmt = $conn->prepare("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador WHERE pe.cpf = ? ORDER BY pontuacao DESC");
+        $stmt->bindValue(1, $_SESSION['cpf']);
         $stmt->execute();
 
     ?>
@@ -148,36 +148,10 @@
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                                 {
                                     echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
-                                    print_r($row);
                                 }
 
                                 ?>
-                                
-                                
-                                <!-- <tr>
-                                    <td>Ariel</td>
-                                    <td>1000000</td>
-                                    <td>57</td>
-                                    <td>00h:35m:10s</td>
-                                </tr>
-                                <tr>
-                                    <td>Enzo</td>
-                                    <td>100000</td>
-                                    <td>27</td>
-                                    <td>00h:30m:10s</td>
-                                </tr>
-                                <tr>
-                                    <td>Leonardo</td>
-                                    <td>10000</td>
-                                    <td>19</td>
-                                    <td>00h:25m:10s</td>
-                                </tr>
-                                <tr>
-                                    <td>Guilherme</td>
-                                    <td>1000</td>
-                                    <td>7</td>
-                                    <td>00h:09m:10s</td>
-                                </tr> -->
+
                             </table>
                             <div class="world-ranking">
                                 <a class="btn-global" href="rank.php">RANKING GLOBAL</a>
