@@ -24,7 +24,7 @@
                 cpf CHAR(11) NOT NULL,
                 nome VARCHAR(70) NOT NULL,
                 nascimento DATE NOT NULL,
-                telefone CHAR(11) NOT NULL,
+                telefone CHAR(14) NOT NULL,
                 email VARCHAR(100) NOT NULL,
                 usuario VARCHAR(30) NOT NULL UNIQUE,
                 senha VARCHAR(255) NOT NULL,
