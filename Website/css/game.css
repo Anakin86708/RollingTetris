@@ -177,6 +177,15 @@ main > div{
     height: 80%;
 }
 
+.ranking table{
+    display:flex;
+    flex-direction: column;
+}
+
+.ranking table tr{
+    width:100%;
+}
+
 /*FIM - RANKING*/
 
 .img-demo{

@@ -133,10 +133,8 @@
                     <div class="rank-panel">
                         <h2>Ranking</h2>
                         <div class="default-div ranking">
-                            <!-- default-div ranking-->
-
                             <table>
-                                <tr>
+                                <tr class="header-table">
                                     <th>Nome</th>
                                     <th>Pontuação</th>
                                     <th>Nível</th>
