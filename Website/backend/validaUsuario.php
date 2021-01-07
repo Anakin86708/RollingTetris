@@ -5,7 +5,7 @@ if (isset($_POST['botaoSubmissao'])) {
     $conn = getNewConnection();
     $nome       = $_POST["nome"];
     $nascimento = $_POST["aniversario"];
-    $cpf        = $_POST["cpf"];
+    $cpf        = tratamentoCPF();
     $telefone   = $_POST["phone"];
     $email      = $_POST["mail"];
     $username   = $_POST["user"];
@@ -25,15 +25,15 @@ if (isset($_POST['botaoSubmissao'])) {
         exit();
     }
 
-    // verifica se o username já está cadastrado
     else {
-        $sql = $conn->prepare("SELECT username FROM pessoa WHERE username = :user");
+        $sql = $conn->prepare("SELECT cpf, usuario FROM pessoa WHERE usuario = ? OR cpf = ?");
 
-        $sql->bindValue(":user", $username);
+        $sql->bindValue(1, $username);
+        $sql->bindValue(2, $cpf);
         $sql->execute();  // se retornar algo, já está cadastrado
 
         if ($sql->rowCount() > 0) {
-            echo "usuario já está cadastrado, tente um novo email";
+            header('Location: ../feedback.html');
         } else {
             $info_usuario = array(
                 "nome" => $_POST["nome"],
