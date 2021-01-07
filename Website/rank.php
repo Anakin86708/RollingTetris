@@ -30,7 +30,6 @@
     <div class="container">
         <header>
             <div class="back-button">
-                <!-- <a href="game.php"><button>VOLTAR</button></a> -->
                 <a class="btn-global" href="game.php">VOLTAR</a>
             </div>
             <div class="tetris-logo">

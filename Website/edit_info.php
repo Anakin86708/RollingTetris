@@ -34,7 +34,6 @@
     <div class="container">
         <header>
             <div class="back-button">
-                <!-- <a href="game.php"><button>VOLTAR</button></a> -->
                 <a class="btn-global" href="game.php">VOLTAR</a>
             </div>
             <div>
@@ -62,15 +61,14 @@
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text" disabled value="<?php echo $dados['cpf']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" disabled value="<?php echo $dados['cpf']?>"> 
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="tel" name="telefone" value="<?php echo $dados['telefone']?>"> <!-- É necessário criar um máscara para o campo no futuro -->
-                    </div>
+                        <input type="tel" name="telefone" value="<?php echo $dados['telefone']?>"> 
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email" name="email" value="<?php echo $dados['email']?>"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" name="email" value="<?php echo $dados['email']?>">
                     </div>
                     <div class="form-line">
                         <p>Username</p>
@@ -81,7 +79,6 @@
                         <input type="password" name="senha">
                     </div>
                     <button type="submit" name="enviar">Salvar</button>
-                    <!-- <input type="submit" id="submit" value="Go!"> -->
                 </form>
             </div>
         </main>

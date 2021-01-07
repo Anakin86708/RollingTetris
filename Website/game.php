@@ -118,7 +118,6 @@
                     </div>
 
                     <div class="game-botao">
-                        <!-- <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png" alt="Play" width="100%" height="100%" class="dot" id="playPause"> -->
                         <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png" alt="Play" class="dot" id="playPause">
                     </div>
                 </div>
@@ -136,16 +135,6 @@
                             <th>Nível</th>
                             <th>Tempo</th>
                         </tr>
-
-
-                        <!-- <?php
-
-                                // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                //     echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
-                                // }
-
-                                ?> -->
-
                     </table>
                     <div class="world-ranking">
                         <a class="btn-global" href="rank.php">RANKING GLOBAL</a>

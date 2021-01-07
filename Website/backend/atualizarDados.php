@@ -25,7 +25,6 @@ else
 
     header('location: ../edit_info.php');
 
-    // CRIAR FEEDBACK SE POSSÍVEL!!
 }
 
 
