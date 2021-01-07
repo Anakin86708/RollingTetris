@@ -9,7 +9,7 @@
         include_once 'backend/conexao.php';
 
         $conn = getNewConnection();
-        $stmt = $conn->query("SELECT pe.nome, MAX(pa.pontuacao) AS pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe INNER JOIN partida pa ON pe.cpf = pa.cpfJogador GROUP BY nome ORDER BY MAX(pa.pontuacao) DESC LIMIT 10");
+        $stmt = $conn->query("SELECT pe.nome, MAX(pa.pontuacao) AS pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe INNER JOIN partida pa ON pe.cpf = pa.cpfJogador GROUP BY nome ORDER BY MAX(pa.pontuacao) DESC");
 ?>
 
 <!DOCTYPE html>
@@ -48,15 +48,36 @@
                     <table>
                         <tr>
                             <th>Nome</th>
+                            <th>Posição</th>
                             <th>Pontuação</th>
                             <th>Nível</th>
                             <th>Tempo</th>
                         </tr>
 
-                        <?php     
+                        <?php
+                            $check = 0;
+                            $contagem = 0;
                             while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                             {
-                                echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
+                                $contagem += 1;
+                                if($row['nome'] == $_SESSION['nome']) {
+                                    echo"<tr class='user-position'><td>{$row['nome']}</td><td>$contagem</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td></tr>";
+                                    $check = 1;
+                                }
+                                else {
+                                    echo"<tr><td>{$row['nome']}</td><td>$contagem</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td></tr>";
+                                }
+                                if($contagem == 10) {
+                                    break;
+                                }
+                            }
+                            if($check == 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                    $contagem += 1;
+                                    if($row['nome'] == $_SESSION['nome']) {
+                                        echo"<tr class='user-position'><td>{$row['nome']}</td><td>$contagem</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td></tr>";   
+                                    }
+                                }
                             }
                         ?>
                         
