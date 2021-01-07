@@ -42,9 +42,8 @@
                 echo "usuario já está cadastrado, tente um novo email";
            }
            else{
-                insereDados($info_usuario, $conn);
-                echo "castrado realizado com sucesso!";
-                // header('Location: ../index.html'); // ariel havia pedido para retornar para o index.
+                insereDados($info_usuario, $conn); 
+                header('Location: ../index.html'); // falta feedback p/usuario se der tempo 
            }
         }
     }

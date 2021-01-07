@@ -9,7 +9,7 @@
         include_once 'backend/conexao.php';
 
         $conn = getNewConnection();
-        $stmt = $conn->query("SELECT pe.nome, pa.pontuacao, pa.dificuldade, pa.tempoPartida FROM pessoa pe JOIN partida pa ON pe.cpf = pa.cpfJogador ORDER BY pontuacao DESC");
+        $stmt = $conn->query("SELECT pe.nome, MAX(pa.pontuacao) AS pontuacao, pa.dificuldade, pa.tempoPartida, pe.cpf FROM pessoa pe INNER JOIN partida pa ON pe.cpf = pa.cpfJogador GROUP BY nome ORDER BY MAX(pa.pontuacao) DESC LIMIT 10");
 ?>
 
 <!DOCTYPE html>
