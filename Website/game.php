@@ -23,7 +23,7 @@ if (!isset($_SESSION['logado'])) {
         <title>Rolling Tetris</title>
     </head>
 
-    <body onresize="resize()" onload="onLoadGame(cpf)">
+    <body onresize="resize()" onload="onLoadGame()">
 
         <div class="container">
             <header>

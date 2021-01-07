@@ -49,7 +49,7 @@ function validaTelefone(telefone) {
     return regexTelefone.test(telefone);
 }
 
-function loadRankingFromDB(cpf) {
+function loadRankingFromDB() {
     var xhttp;
     
     var data = new FormData();
@@ -60,6 +60,7 @@ function loadRankingFromDB(cpf) {
             document.getElementById("rankingTable").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "backend/rankingBD.php", true);    
+    xhttp.open("POST", "backend/rankingBD.php", true);
+    console.log("Envindo cpf " + cpf);
     xhttp.send(data);
 }

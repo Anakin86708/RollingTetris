@@ -10,9 +10,9 @@ function onLoad() {
     loadStyle();
 }
 
-function onLoadGame(cpf) {
+function onLoadGame() {
     onLoad();
-    loadRankingFromDB(cpf);
+    loadRankingFromDB();
 }
 
 function loadStyle() {

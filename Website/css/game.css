@@ -182,8 +182,13 @@ main > div{
     flex-direction: column;
 }
 
+.header-table{
+    color: var(--neutral-white);
+}
+
 .ranking-row{
     width:100%;
+    color: var(--neutral-white);
 }
 
 /*FIM - RANKING*/
