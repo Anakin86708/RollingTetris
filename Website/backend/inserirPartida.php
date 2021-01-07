@@ -19,9 +19,9 @@ function saveGameDataOnDB($data)
     if ($stm->rowCount() > 0) {
         echo "Dados da partida inseridos com sucesso!<br>";
     }  else {
-        echo "Erro!!<br>";
+        echo "Erro!!";
+        die();
     }
-    print_r($gameData);
 }
 
 function getCurrentGameData($data)
