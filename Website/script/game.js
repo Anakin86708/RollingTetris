@@ -374,6 +374,7 @@ function start() {
 }
 
 function restart() {
+    loadRankingFromDB();
     board = resetBoard();
     resetPecas();
     desenhaBoard(context, board, ROWS, COLS);
