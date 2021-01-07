@@ -11,7 +11,7 @@
         $username   = $_POST["user"];           
         $senha      = $_POST["senha"];               
 
-        // algum campo vazio   COMO TEM O REQUIRED DO HTML, É NECESSÁRIO TER ISSO DAQUI?     
+        // algum campo vazio
         if(empty($nome) || empty($nascimento) || empty($cpf) || empty($telefone) || empty($email) || empty($username) || empty($senha))
         {
             header('Location: ../register.html');

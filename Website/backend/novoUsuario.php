@@ -4,7 +4,7 @@ include_once 'conexao.php';
 $info_usuario = array(
     "nome" => $_POST["nome"],
     "anoNascimento" => $_POST["aniversario"],
-    "cpf" => $_POST["cpf"],
+    "cpf" => tratamentoCPF(),
     "telefone" => $_POST["phone"],
     "email" => $_POST["mail"],
     "usuario" => $_POST["user"],
@@ -20,8 +20,11 @@ $conn = getNewConnection();
         $stm = $conexao->prepare($sql);
         $stm->execute($info_usuario);
     };
+
+    function tratamentoCPF() {
+        return str_replace("-", "", filter_var($_POST["cpf"], FILTER_SANITIZE_NUMBER_INT));
+    }
     
-    // header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
-    // CRIAR UM FEEDBACK PARA O USUARIO SE POSSIVEL
+    header("location: ../index.html"); // redireciona novamente para o index, assim o usuario poderá realizar o seu cadastro.
     
 ?>

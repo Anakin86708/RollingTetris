@@ -249,6 +249,7 @@ function gameOver()
     document.getElementById('score').innerHTML = 'Pontuação: ' + POINTS;
     perdeu = true;
     getAndSendGameResultToServer();
+    loadRankingFromDB();
 }
 
 function getAndSendGameResultToServer()
