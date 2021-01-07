@@ -56,7 +56,14 @@
                         <?php     
                             while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                             {
-                                echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$row['tempoPartida']}</td>";
+                                $tempo = $row['tempoPartida'];
+                                
+                                $minuto = intval($tempo/60);
+                                $segundos = $tempo - ($minuto * 60);
+
+                                $tempo = $minuto . "m" . $segundos . "s";
+                                
+                                echo "<tr><td>{$row['nome']}</td><td>{$row['pontuacao']}</td><td>{$row['dificuldade']}</td><td>{$tempo}</td>";
                             }
                         ?>
                         
