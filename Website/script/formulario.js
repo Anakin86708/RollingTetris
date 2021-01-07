@@ -48,3 +48,19 @@ function validaTelefone(telefone) {
 
     return regexTelefone.test(telefone);
 }
+
+function loadRankingFromDB() {
+    var xhttp;
+    
+    var data = new FormData();
+    data.append('cpf', cpf);
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("rankingTable").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "backend/rankingBD.php", true);
+    console.log("Envindo cpf " + cpf);
+    xhttp.send(data);
+}

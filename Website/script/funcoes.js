@@ -249,22 +249,26 @@ function gameOver()
     document.getElementById('score').innerHTML = 'Pontuação: ' + POINTS;
     perdeu = true;
     getAndSendGameResultToServer();
+    loadRankingFromDB();
 }
 
 function getAndSendGameResultToServer()
 {
-    const data = new FormData();
-    data.append("cpfJogador", "12312312311");
-    data.append("pontuacao", POINTS);
-    data.append("linhasEliminadas", quantLinhas);
-    data.append("dificuldade", dificuldade);
-    data.append("minuto",minuto);
-    data.append("segundo",segundo);
+    var formdado = new FormData();
+    formdado.append("pontuacao", POINTS);
+    formdado.append("linhasEliminadas", quantLinhas);
+    formdado.append("dificuldade", dificuldade);
+    formdado.append("minuto",minuto);
+    formdado.append("segundo",segundo);
 
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
-    xhr.send(data);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
+    xhr.onload = function(e) {//Call a function when the state changes.
+        if (this.status == 200) 
+        {
+            console.log(e.target.response);
+        }
+    }
+    xhr.send(formdado);
 }
-
-
