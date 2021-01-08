@@ -1,19 +1,23 @@
 'use strict';
 
 function changeColor(type) {
-    // Cria um cookie com o css que deve ser utilizado
-    document.cookie = 'cssAcessibilidade = ' + type;
+    localStorage.setItem('cssAcessibilidade', type);
     // Carrega o estilo selecionado
-    loadCookieStyle();
+    loadStyle();
 }
 
 function onLoad() {
-    loadCookieStyle();
+    loadStyle();
 }
 
-function loadCookieStyle() {
+function onLoadGame() {
+    onLoad();
+    loadRankingFromDB();
+}
+
+function loadStyle() {
     // Verifica se o cookie já existe
-    let cookie = getCookieValue('cssAcessibilidade');
+    let cookie = getStyleValue('cssAcessibilidade');
     let style = document.getElementById('colorsCSS');
     console.log("Valor do cookie: " + cookie);
     if (cookie != null && style != null) {
@@ -33,14 +37,8 @@ function loadCookieStyle() {
 
 // Manter a seleção por cookies.
 // https://www.w3schools.com/js/js_cookies.asp
-function getCookieValue(wantedKey) {
-    let cookies = document.cookie.split(';');
-    for (let index in cookies) {
-        let key = cookies[index].split('=')[0];
-        if (key == wantedKey)
-            return cookies[index].split('=')[1];
-    }
-    return null;
+function getStyleValue(wantedKey) {
+    return localStorage.getItem(wantedKey);
 }
 
 async function menuAcessibilidade() {

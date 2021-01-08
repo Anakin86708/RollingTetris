@@ -64,3 +64,7 @@ footer{
     height: 20%;
     margin-top: 10vh;
 }
+
+.user-position > td{
+    background-color: var(--main-purple);
+}

@@ -177,6 +177,20 @@ main > div{
     height: 80%;
 }
 
+.ranking table{
+    display:flex;
+    flex-direction: column;
+}
+
+.header-table{
+    color: var(--neutral-white);
+}
+
+.ranking-row{
+    width:100%;
+    color: var(--neutral-white);
+}
+
 /*FIM - RANKING*/
 
 .img-demo{

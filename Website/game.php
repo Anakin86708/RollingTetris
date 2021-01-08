@@ -9,14 +9,27 @@
     <link id="colorsCSS" rel="stylesheet" type="text/css" href="css/colors/default.css">
     <script src="script/default.js"></script>
     <title>Rolling Tetris</title>
+
+    <?php
+    include_once 'backend/conexao.php';
+    include_once 'backend/rankingBD.php';
+    session_start();
+
+
+    if (!isset($_SESSION['logado'])) {
+        header("Location: index.html");
+    } else {
+        echo "<script>const cpf = " . $_SESSION['cpf'] . ";</script>";
+    ?>
+
 </head>
 
-<body onresize="resize()" onload="onLoad()">
+<body onresize="resize()" onload="onLoadGame()">
 
     <div class="container">
         <header>
             <div>
-                <a href="game.html"><img src="images/logo-peq.png" alt="logo do tetris rolling"></a>
+                <a href="game.php"><img src="images/logo-peq.png" alt="logo do tetris rolling"></a>
             </div>
         </header>
 
@@ -26,16 +39,16 @@
                     <div class="item-01">
                         <img class="default-avatar" src="images/sample-avatar.bmp" alt="Foto de perfil do usuário">
                         <div class="user-name">
-                            Nome de usuário
+                            <?php echo $_SESSION['usuario']; ?>
                         </div>
                     </div>
 
                     <div class="edit-logout">
                         <div class="logout">
-                            <a href="index.html">Logout</a>
+                            <a href="backend/logout.php">Logout</a>
                         </div>
                         <div class="edit">
-                            <a href="edit_info.html">Editar informações</a>
+                            <a href="edit_info.php">Editar informações</a>
                         </div>
                     </div>
                 </div>
@@ -96,17 +109,16 @@
                         <canvas id='prox-piece' class="prox-piece"></canvas>
                     </div>
                     <!--Botão-->
-                    
+
                     <div class="opcao-tamanho">
                         <!--chamar função para trocar o tamanho -->
                         <div onclick="trocaLinhas()">
                             <h3 id="tamanho-jogo">10x20</h3>
                         </div>
                     </div>
-                    
+
                     <div class="game-botao">
-                            <!-- <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Figura-Play-PNG-1200x1200.png" alt="Play" width="100%" height="100%" class="dot" id="playPause"> -->
-                            <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png" alt="Play"  class="dot" id="playPause">
+                        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-pause-512.png" alt="Play" class="dot" id="playPause">
                     </div>
                 </div>
             </div>
@@ -116,43 +128,16 @@
             <div class="rank-panel">
                 <h2>Ranking</h2>
                 <div class="default-div ranking">
-                    <!-- default-div ranking-->
-
-                    <table>
-                        <tr>
+                    <table id='rankingTable'>
+                        <tr class="header-table ranking-row">
                             <th>Nome</th>
                             <th>Pontuação</th>
                             <th>Nível</th>
                             <th>Tempo</th>
                         </tr>
-
-                        <tr>
-                            <td>Ariel</td>
-                            <td>1000000</td>
-                            <td>57</td>
-                            <td>00h:35m:10s</td>
-                        </tr>
-                        <tr>
-                            <td>Enzo</td>
-                            <td>100000</td>
-                            <td>27</td>
-                            <td>00h:30m:10s</td>
-                        </tr>
-                        <tr>
-                            <td>Leonardo</td>
-                            <td>10000</td>
-                            <td>19</td>
-                            <td>00h:25m:10s</td>
-                        </tr>
-                        <tr>
-                            <td>Guilherme</td>
-                            <td>1000</td>
-                            <td>7</td>
-                            <td>00h:09m:10s</td>
-                        </tr>
                     </table>
                     <div class="world-ranking">
-                        <a class="btn-global" href="rank.html">RANKING GLOBAL</a>
+                        <a class="btn-global" href="rank.php">RANKING GLOBAL</a>
                     </div>
                 </div>
             </div>
@@ -163,15 +148,20 @@
         <footer>
             <b>Gaveta Filmes - Web</b>. <br>
             SI401B - Programação para a Web, Unicamp, 2020.
-            <audio src="/sounds/theme.mp3" autoplay loop>
-                <p>If you are reading this, it is because your browser does not support the audio element.     </p>
-            </audio>                
+            <audio src="./sounds/theme.mp3" autoplay loop>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
         </footer>
     </div>
     <script src="script/funcoes.js"></script>
     <script src="script/Peca.js"></script>
     <script src="script/game.js"></script>
     <script src="script/proximaPeca.js"></script>
+    <script src="script/formulario.js"></script>
 </body>
 
 </html>
+
+<?php
+    }
+?>

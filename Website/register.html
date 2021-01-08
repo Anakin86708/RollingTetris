@@ -16,7 +16,7 @@
     <div class="container">
         <header>
             <div>
-                <a href="game.html"><img src="images/logo-peq.png" alt="logo do tetris rolling"></a>
+                <a href="index.html"><img src="images/logo-peq.png" alt="logo do tetris rolling"></a>
             </div>
         </header>
 
@@ -28,39 +28,37 @@
                         <h1>Cadastro</h1>
                     </div>
                     <img class="default-avatar avatar" src="images/sample-avatar.bmp" alt="Avatar">
-                    <!-- Futuro evento em JS para permitir a edição da imagem -->
                 </div>
-                <form id="form" name="form">
+                <form id="form" name="form" method="POST" action="backend/validaUsuario.php" onsubmit="return validaFormulario()">
                     <div class="form-line">
                         <p>Nome completo</p>
-                        <input type="text" name="nome">
+                        <input type="text" name="nome" required>
                     </div>
                     <div class="form-line">
                         <p>Data de nascimento</p>
-                        <input type="date" name="aniversario">
+                        <input type="date" name="aniversario" required>
                     </div>
                     <div class="form-line">
                         <p>CPF</p>
-                        <input type="text" name="identificacao"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="cpf" placeholder="___.___.___-__" data-slots="_" required>
                     </div>
                     <div class="form-line">
                         <p>Telefone</p>
-                        <input type="text" name="phone"> <!-- É necessário criar um máscara para o campo no futuro -->
+                        <input type="text" name="phone" placeholder="(00)0000-0000" data-slots="0" required> 
                     </div>
                     <div class="form-line">
                         <p>E-Mail</p>
-                        <input type="email" name="mail"> <!-- É necessário criar um máscara para o campo no futuro e validação -->
+                        <input type="email" name="mail" required> 
                     </div>
                     <div class="form-line">
                         <p>Username</p>
-                        <input type="text" name="user">
+                        <input type="text" name="user" required>
                     </div>
                     <div class="form-line">
                         <p>Senha</p>
-                        <input type="password" name="senha">
+                        <input type="password" name="senha" required>
                     </div>
-                    <button type="submit"onclick="playerCadastro()">Enviar</button> 
-                    <!-- <input type="submit" id="submit" value="Go!"> -->
+                    <button type="submit" name="botaoSubmissao">Enviar</button> 
                 </form>
             </div>
         </main>

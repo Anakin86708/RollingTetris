@@ -173,7 +173,7 @@ function gerarCores() {
     Valores de cor de acordo com a paleta selecionada no CSS
     Necessário para a acessibilidade!
     */
-    loadCookieStyle();
+    loadStyle();
     console.log('Carregando cores!');
     const purple = getComputedStyle(document.documentElement).getPropertyValue('--main-purple');
     const red = getComputedStyle(document.documentElement).getPropertyValue('--secondary-red');
@@ -248,4 +248,27 @@ function gameOver()
     document.getElementById('gameover').style.visibility = 'visible';
     document.getElementById('score').innerHTML = 'Pontuação: ' + POINTS;
     perdeu = true;
+    getAndSendGameResultToServer();
+    loadRankingFromDB();
+}
+
+function getAndSendGameResultToServer()
+{
+    var formdado = new FormData();
+    formdado.append("pontuacao", POINTS);
+    formdado.append("linhasEliminadas", quantLinhas);
+    formdado.append("dificuldade", dificuldade);
+    formdado.append("minuto",minuto);
+    formdado.append("segundo",segundo);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "backend/inserirPartida.php", true); // true para assync. A partir de agora podemos mandar o request para o php
+    xhr.onload = function(e) {//Call a function when the state changes.
+        if (this.status == 200) 
+        {
+            console.log(e.target.response);
+        }
+    }
+    xhr.send(formdado);
 }
